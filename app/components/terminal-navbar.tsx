@@ -35,18 +35,24 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
       className={`sticky top-0 z-50 w-full border-b-2 bg-terminal-black border-terminal-green`}
       aria-label="main navigation"
     >
-      <div className="flex items-center justify-between px-4 py-3">
-        <span className="font-mono text-terminal-green whitespace-nowrap text-sm">
+      <div className="grid grid-cols-[auto_1fr_auto] items-center w-full px-4 py-3">
+        {/* Columna 1: Prompt */}
+        <span className="w-[34ch] block overflow-hidden text-ellipsis whitespace-nowrap font-mono text-terminal-green text-sm">
           facu@portfolio:~$ {command ? (
             <>
-              <span>{command}</span> <span className="text-terminal-cyan">→</span>
+              <span>{command}</span> <span className="text-terminal-cyan">↲</span>
             </>
           ) : (
-            <span className="animate-pulse">_</span>
+            <span className="absolute animate-pulse">_</span>
           )}
+          {/* Texto oculto para accesibilidad */}
+          <span className="opacity-0 pointer-events-none absolute">
+            projects -all ↲
+          </span>
         </span>
 
-        <ul className="hidden md:flex gap-6">
+        {/* Columna 2: Comandos */}
+        <ul className="hidden md:flex gap-8 justify-center w-full">
           {navItems.map((item) => (
             <li key={item.section}>
               <button
@@ -59,7 +65,8 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
+        {/* Columna 3: Toggles y menú */}
+        <div className="flex items-center gap-2 justify-end">
           <Button
             variant="ghost"
             size="icon"

@@ -19,8 +19,8 @@ const translations = {
     "hero.tags": "Backend | DevOps | Security",
     "hero.tagline": "Building robust systems one commit at a time",
     "hero.downloadCV": "Download CV",
-    "about.description":
-      "Passionate backend developer with 5+ years of experience building scalable systems. I specialize in creating robust APIs, implementing DevOps practices, and ensuring security best practices across the development lifecycle.",
+    "about.description": 
+    "Soy desarrollador backend y estudiante avanzado de Ingeniería en Sistemas de Información en UTN FRC. Combino experiencia práctica en desarrollo de microservicios con Java, Docker y PostgreSQL, junto con una fuerte base en seguridad y buenas prácticas DevOps. Lidero el backend de ShopUp, participo como mentor en ciberseguridad en GISSIC y me desempeño como ayudante en Sistemas Operativos. Actualmente, investigo cómo aplicar IA generativa para automatizar procesos y mejorar la experiencia del usuario en entornos reales.",
     "projects.apiGateway.description":
       "High-performance API gateway with rate limiting, authentication, and load balancing",
     "projects.infrastructure.description": "Terraform modules for AWS infrastructure deployment and management",
@@ -44,7 +44,7 @@ const translations = {
     "hero.tagline": "Construyendo sistemas robustos un commit a la vez",
     "hero.downloadCV": "Descargar CV",
     "about.description":
-      "Desarrollador backend apasionado con más de 5 años de experiencia construyendo sistemas escalables. Me especializo en crear APIs robustas, implementar prácticas DevOps y asegurar las mejores prácticas de seguridad en todo el ciclo de desarrollo.",
+      "I'm a backend developer and senior Information Systems Engineering student at UTN FRC. I combine hands-on experience with Java microservices, Docker, and PostgreSQL, with a strong foundation in security and DevOps best practices. I lead the backend of ShopUp, mentor in cybersecurity at GISSIC, and assist in teaching Operating Systems. I'm currently researching how to apply generative AI to automate processes and enhance real-world user experiences.",
     "projects.apiGateway.description":
       "Gateway de API de alto rendimiento con limitación de velocidad, autenticación y balanceador de carga",
     "projects.infrastructure.description": "Módulos de Terraform para despliegue y gestión de infraestructura AWS",

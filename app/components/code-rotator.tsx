@@ -9,6 +9,9 @@ const codeSnippets = [
   "git push origin main",
   "curl -X POST /api/deploy",
   "npm run build && npm run deploy",
+  "python manage.py migrate",
+  "echo 'Hello, World!' > hello.txt",
+  "ssh user@server 'uptime'",
 ]
 
 export function CodeRotator() {
@@ -19,7 +22,6 @@ export function CodeRotator() {
 
   useEffect(() => {
     const currentSnippet = codeSnippets[currentIndex]
-
     if (isTyping && charIndex < currentSnippet.length) {
       const timeout = setTimeout(() => {
         setDisplayText(currentSnippet.slice(0, charIndex + 1))
