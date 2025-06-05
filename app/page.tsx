@@ -4,11 +4,10 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Download, Github, Linkedin, Mail, Sun, Moon, Languages } from "lucide-react"
-import { TerminalWindow } from "./components/terminal-window"
+import { Download, Github, Linkedin, Mail } from "lucide-react"
+import { TerminalNavbar } from "./components/terminal-navbar"
 import { TypingEffect } from "./components/typing-effect"
 import { ProjectCard } from "./components/project-card"
-import { Navigation } from "./components/navigation"
 import { CodeRotator } from "./components/code-rotator"
 import { MiniTimeline } from "./components/mini-timeline"
 import { useTranslation } from "./hooks/use-translation"
@@ -71,13 +70,12 @@ export default function Portfolio() {
 
   return (
     <div className={`min-h-screen transition-all duration-200 ${isDarkMode ? "dark bg-terminal-black" : "bg-gray-50"}`}>
-      <TerminalWindow 
+      <TerminalNavbar
         isDarkMode={isDarkMode}
         toggleLanguage={toggleLanguage}
         setIsDarkMode={setIsDarkMode}
-      >        
-        {/* Navigation */}
-        <Navigation onNavigate={scrollToSection} />
+        onNavigate={scrollToSection}
+      />
           
 
         {/* Hero Section */}
@@ -239,7 +237,6 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
-      </TerminalWindow>
     </div>
   )
 }
