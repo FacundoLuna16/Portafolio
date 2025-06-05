@@ -70,7 +70,7 @@ export default function Portfolio() {
   }
 
   return (
-    <div className={`min-h-screen transition-all duration-300 ${isDarkMode ? "dark bg-terminal-black" : "bg-gray-50"}`}>
+    <div className={`min-h-screen transition-all duration-200 ${isDarkMode ? "dark bg-terminal-black" : "bg-gray-50"}`}>
       <TerminalWindow 
         isDarkMode={isDarkMode}
         toggleLanguage={toggleLanguage}

@@ -13,7 +13,7 @@ export function TerminalWindow({ children, isDarkMode, toggleLanguage, setIsDark
   return (
     <div className="min-h-screen p-4">
       <div
-        className={`relative max-w-full mx-auto rounded-xl border-2 min-h-[calc(100vh-2rem)] ${
+        className={`relative max-w-full mx-auto rounded-xl border-2 min-h-[calc(100vh-2rem)] overflow-y-auto ${
           isDarkMode ? "bg-terminal-black border-terminal-green" : "bg-white border-gray-300"
         }`}
       >
