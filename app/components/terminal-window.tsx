@@ -18,7 +18,7 @@ export function TerminalWindow({ children, isDarkMode, toggleLanguage, setIsDark
         }`}
       >
         {/* Toggles: Theme and Language */}
-        <div className="absolute top-1 right-6 z-40 flex gap-2">
+        <div className="absolute top-1 right-6 z-50 flex gap-2">
           <Button
             variant="ghost"
             size="icon"

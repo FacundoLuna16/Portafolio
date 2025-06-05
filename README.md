@@ -123,7 +123,7 @@ Podés cambiar entre español e inglés usando el toggle en la esquina superior 
 
 ---
 
-## 📝 LicenciaMIT License
+## 📝 Licencia MIT
 
 Copyright (c) 2024 Facundo Luna
 

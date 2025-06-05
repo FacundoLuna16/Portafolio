@@ -105,7 +105,7 @@ export default function Portfolio() {
               size="lg"
             >
               <Download className="mr-2 h-4 w-4" />
-              {t("download.CV")}
+              {t("hero.downloadCV")}
             </Button>
           </div>
         </section>
