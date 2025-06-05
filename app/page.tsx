@@ -13,14 +13,8 @@ import { MiniTimeline } from "./components/mini-timeline"
 import { useTranslation } from "./hooks/use-translation"
 
 const banner = [
-  "  ______                         _             _____                 _                       ",
-  " |  ____|                       | |           |  __ \\               | |                      ",
-  " | |__ __ _  ___ _   _ _ __   __| | ___ ______| |  | | _____   _____| | ___  _ __   ___ _ __ ",
-  " |  __/ _` |/ __| | | | '_ \\ / _` |/ _ \\______| |  | |/ _ \\ \\ / / _ \\ |/ _ \\| '_ \\ / _ \\ '__|",
-  " | | | (_| | (__| |_| | | | | (_| | (_) |     | |__| |  __/\\ V /  __/ | (_) | |_) |  __/ |   ",
-  " |_|  \\__,_|\\___|\\__,_|_| |_|\\__,_|\\___/      |_____/ \\___| \\_/ \\___|_|\\___/| .__/ \\___|_|   ",
-  "                                                                            | |              ",
-  "                                                                            |_|               ",
+  "LUNA FACUNDO",
+  "DEVELOPER",
 ].join("\n")
 
 export default function Portfolio() {
@@ -90,16 +84,12 @@ export default function Portfolio() {
           
 
         {/* Hero Section */}
-        <section id="hero" className="min-h-screen flex items-center justify-center px-4 relative">
-          {/* Background Code Rotator */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none">
-            <CodeRotator />
-          </div>
-
-            <div className="text-center space-y-6 relative z-10">
+        <section id="hero" className="min-h-screen w-full flex flex-col items-center justify-center px-4 relative">
+            {/* Background Code Rotator */}
+          <div className="relative z-10 flex flex-col items-center py-0 text-center space-y-6 w-full max-w-2xl">
               <div className="space-y-4">
-                <pre className="font-mono text-terminal-green whitespace-pre leading-none text-[clamp(0.5rem,5vw,1.15rem)]">
-                  <TypingEffect text={banner} speed={15} />
+                <pre className="font-mono text-terminal-green whitespace-pre leading-none text-2xl md:text-4xl lg:text-5xl">
+                  <TypingEffect text={banner} speed={50} />
                 </pre>
                 <div className="text-xl md:text-2xl text-terminal-cyan font-mono">{t("hero.tags")}</div>
                 <div className="text-terminal-green font-mono text-lg">
@@ -107,14 +97,20 @@ export default function Portfolio() {
                   <span className="animate-pulse">_</span>
                 </div>
               </div>
-            <Button
-              className="bg-terminal-green text-terminal-black hover:bg-terminal-cyan hover:text-terminal-black font-mono"
-              size="lg"
-            >
-              <Download className="mr-2 h-4 w-4" />
+              <Button
+                className="bg-terminal-green text-terminal-black hover:bg-terminal-cyan hover:text-terminal-black font-mono"
+                size="lg"
+              >
+                <Download className="mr-2 h-4 w-4" />
               {t("hero.downloadCV")}
-            </Button>
+              </Button>
+            <div className="absolute w-full left-0 right-0 flex opacity-15 pointer-events-none">
+              <div className="whitespace-nowrap overflow-ellipsis">
+                <CodeRotator />
+              </div>
+            </div>
           </div>
+          {/* Background Image */}
         </section>
 
         {/* About Section */}
