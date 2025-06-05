@@ -12,10 +12,7 @@ import { CodeRotator } from "./components/code-rotator"
 import { MiniTimeline } from "./components/mini-timeline"
 import { useTranslation } from "./hooks/use-translation"
 
-const banner = [
-  "LUNA FACUNDO",
-  "DEVELOPER",
-].join("\n")
+const homeTitle = "LUNA FACUNDO DEVELOPER"
 
 export default function Portfolio() {
   const [isDarkMode, setIsDarkMode] = useState(true)
@@ -88,8 +85,8 @@ export default function Portfolio() {
             {/* Background Code Rotator */}
           <div className="relative z-10 flex flex-col items-center py-0 text-center space-y-6 w-full max-w-2xl">
               <div className="space-y-4">
-                <pre className="font-mono text-terminal-green whitespace-pre leading-none text-2xl md:text-4xl lg:text-5xl">
-                  <TypingEffect text={banner} speed={50} />
+                <pre className="font-mono text-terminal-green whitespace-pre leading-none font-bold text-4xl sm:text-5xl lg:text-7xl">
+                  <TypingEffect text={homeTitle} speed={50} />
                 </pre>
                 <div className="text-xl md:text-2xl text-terminal-cyan font-mono">{t("hero.tags")}</div>
                 <div className="text-terminal-green font-mono text-lg">
@@ -104,11 +101,11 @@ export default function Portfolio() {
                 <Download className="mr-2 h-4 w-4" />
               {t("hero.downloadCV")}
               </Button>
-            <div className="absolute w-full left-0 right-0 flex opacity-15 pointer-events-none">
+            {/* <div className="absolute w-full left-0 right-0 flex opacity-15 pointer-events-none">
               <div className="whitespace-nowrap overflow-ellipsis">
                 <CodeRotator />
               </div>
-            </div>
+            </div> */}
           </div>
           {/* Background Image */}
         </section>
