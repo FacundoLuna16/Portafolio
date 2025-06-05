@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { cn } from "@/lib/utils"
 
 const codeSnippets = [
   "docker compose up -d",
@@ -14,7 +15,11 @@ const codeSnippets = [
   "ssh user@server 'uptime'",
 ]
 
-export function CodeRotator() {
+interface CodeRotatorProps {
+  className?: string
+}
+
+export function CodeRotator({ className = "" }: CodeRotatorProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [displayText, setDisplayText] = useState("")
   const [isTyping, setIsTyping] = useState(true)
@@ -46,7 +51,7 @@ export function CodeRotator() {
 
   return (
     <div className="font-mono text-terminal-green text-2xl md:text-4xl lg:text-6xl leading-relaxed">
-      <pre className="whitespace-pre-wrap">
+      <pre className={cn("whitespace-pre-wrap", className)}>
         <span className="text-terminal-cyan">$ </span>
         {displayText}
         <span className="animate-pulse">_</span>
