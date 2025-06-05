@@ -11,6 +11,7 @@ import { ProjectCard } from "./components/project-card"
 import { CodeRotator } from "./components/code-rotator"
 import { MiniTimeline } from "./components/mini-timeline"
 import { useTranslation } from "./hooks/use-translation"
+import { useDarkMode } from "./hooks/use-dark-mode"
 
 const banner = [
   "  ______                         _             _____                 _                       ",
@@ -24,7 +25,7 @@ const banner = [
 ].join("\n")
 
 export default function Portfolio() {
-  const [isDarkMode, setIsDarkMode] = useState(true)
+  const { isDarkMode, setIsDarkMode } = useDarkMode()
   const [activeFilter, setActiveFilter] = useState("All")
   const { t, locale, setLocale } = useTranslation()
 
@@ -80,33 +81,29 @@ export default function Portfolio() {
   }
 
   return (
-    <div className={`min-h-screen transition-all duration-200 ${isDarkMode ? "dark bg-terminal-black" : "bg-gray-50"}`}>
-      <TerminalNavbar
-        isDarkMode={isDarkMode}
-        toggleLanguage={toggleLanguage}
-        setIsDarkMode={setIsDarkMode}
-        onNavigate={scrollToSection}
-      />
+    <div
+      className={`min-h-screen transition-all duration-200 overflow-x-hidden ${
+        isDarkMode ? "dark bg-terminal-black" : "bg-gray-50"
+      }`}
+    >
+      <TerminalNavbar toggleLanguage={toggleLanguage} onNavigate={scrollToSection} />
           
 
         {/* Hero Section */}
-        <section id="hero" className="min-h-screen flex items-center justify-center px-4 relative">
-          {/* Background Code Rotator */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none">
-            <CodeRotator />
-          </div>
-
-            <div className="text-center space-y-6 relative z-10">
-              <div className="space-y-4">
-                <pre className="font-mono text-terminal-green whitespace-pre leading-none text-[clamp(0.5rem,5vw,1.15rem)]">
-                  <TypingEffect text={banner} speed={15} />
-                </pre>
-                <div className="text-xl md:text-2xl text-terminal-cyan font-mono">{t("hero.tags")}</div>
-                <div className="text-terminal-green font-mono text-lg">
-                  <span className="text-terminal-cyan">$</span> echo "{t("hero.tagline")}"
-                  <span className="animate-pulse">_</span>
-                </div>
+        <section
+          id="hero"
+          className="relative flex flex-col items-center justify-center min-h-screen gap-y-8 pb-24 px-4"
+        >
+          <div className="text-center space-y-6">
+            <div className="space-y-4">
+              <pre className="font-mono text-terminal-green whitespace-pre leading-none text-[clamp(0.5rem,5vw,1.15rem)]">
+                <TypingEffect text={banner} speed={15} />
+              </pre>
+              <div className="text-xl md:text-2xl text-terminal-cyan font-mono">{t("hero.tags")}</div>
+              <div className="text-terminal-green font-mono text-lg">
+                <span className="text-terminal-cyan">$</span> echo "{t("hero.tagline")}"<span className="animate-pulse">_</span>
               </div>
+            </div>
             <Button
               className="bg-terminal-green text-terminal-black hover:bg-terminal-cyan hover:text-terminal-black font-mono"
               size="lg"
@@ -115,10 +112,13 @@ export default function Portfolio() {
               {t("hero.downloadCV")}
             </Button>
           </div>
+          <div className="absolute bottom-4 inset-x-0 flex justify-center opacity-25 pointer-events-none text-[clamp(0.7rem,2vw,1.2rem)]">
+            <CodeRotator />
+          </div>
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 px-4">
+        <section id="about" className="py-20 px-4 scroll-mt-24 md:scroll-mt-28">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-mono font-bold text-terminal-green mb-8">
               <span className="text-terminal-cyan">$</span> whoami
@@ -163,7 +163,7 @@ export default function Portfolio() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-20 px-4">
+        <section id="projects" className="py-20 px-4 scroll-mt-24 md:scroll-mt-28">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-mono font-bold text-terminal-green mb-8">
               <span className="text-terminal-cyan">$</span> ls projects/
@@ -196,7 +196,7 @@ export default function Portfolio() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20 px-4">
+        <section id="contact" className="py-20 px-4 scroll-mt-24 md:scroll-mt-28">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-mono font-bold text-terminal-green mb-8">
               <span className="text-terminal-cyan">$</span> curl --data "message" https://contact.api

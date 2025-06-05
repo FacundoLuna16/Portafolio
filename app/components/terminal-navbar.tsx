@@ -3,20 +3,20 @@
 import React from "react"
 import { useCommandAnimation } from "../hooks/use-command-animation"
 import { useTranslation } from "../hooks/use-translation"
+import { useDarkMode } from "../hooks/use-dark-mode"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
 import { Languages, Menu, Moon, Sun } from "lucide-react"
 
 interface TerminalNavbarProps {
-  isDarkMode: boolean
-  setIsDarkMode: (val: boolean) => void
   toggleLanguage: () => void
   onNavigate: (id: string) => void
 }
 
-export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNavigate }: TerminalNavbarProps) {
+export function TerminalNavbar({ toggleLanguage, onNavigate }: TerminalNavbarProps) {
   const { t } = useTranslation()
   const { command, runCommand } = useCommandAnimation()
+  const { isDarkMode, setIsDarkMode } = useDarkMode()
 
   const navItems = [
     { section: "hero", command: `${t("navbar.home")} -li` },
@@ -32,11 +32,12 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full border-b-2 bg-terminal-black border-terminal-green`}
+      className="sticky top-0 z-50 w-full border-b-2 bg-terminal-black border-terminal-green"
       aria-label="main navigation"
     >
-      <div className="flex items-center justify-between px-4 py-3">
-        <span className="font-mono text-terminal-green whitespace-nowrap text-sm">
+      <div className="flex items-center justify-between w-full px-4 py-3">
+        {/* Prompt */}
+        <div className="flex-none min-w-max font-mono text-terminal-green overflow-hidden text-ellipsis">
           facu@portfolio:~$ {command ? (
             <>
               <span>{command}</span> <span className="text-terminal-cyan">→</span>
@@ -44,14 +45,15 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
           ) : (
             <span className="animate-pulse">_</span>
           )}
-        </span>
+        </div>
 
-        <ul className="hidden md:flex gap-6">
+        {/* Commands */}
+        <ul className="flex-1 hidden md:flex justify-center gap-6 font-mono text-terminal-green">
           {navItems.map((item) => (
             <li key={item.section}>
               <button
                 onClick={() => handleNav(item.section, item.command)}
-                className="font-mono text-terminal-green hover:text-terminal-cyan underline-offset-4 hover:underline whitespace-nowrap"
+                className="hover:text-terminal-cyan underline-offset-4 hover:underline whitespace-nowrap"
               >
                 $ {item.command}
               </button>
@@ -59,7 +61,8 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
+        {/* Toggles + menu */}
+        <div className="flex-none flex items-center gap-4">
           <Button
             variant="ghost"
             size="icon"
@@ -91,8 +94,8 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
               </Button>
             </SheetTrigger>
             <SheetContent
-              side="left"
-              className={`top-0 right-0 h-full w-2/3 max-w-xs border-2 ${isDarkMode ? "bg-terminal-black border-terminal-green" : "bg-white border-gray-300"}`}
+              side="right"
+              className="fixed inset-y-0 right-0 w-4/5 max-w-xs md:hidden z-[60] bg-terminal-black border-l-2 border-terminal-green"
             >
               <nav
                 className="mt-6 flex flex-col gap-4 overflow-y-auto"

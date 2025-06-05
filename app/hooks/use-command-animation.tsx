@@ -7,7 +7,7 @@ export function useCommandAnimation() {
 
   const runCommand = (cmd: string) => {
     setCommand(cmd)
-    setTimeout(() => setCommand(null), 1000)
+    setTimeout(() => setCommand(null), 2000)
   }
 
   return { command, runCommand }
