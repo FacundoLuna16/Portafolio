@@ -12,6 +12,17 @@ import { CodeRotator } from "./components/code-rotator"
 import { MiniTimeline } from "./components/mini-timeline"
 import { useTranslation } from "./hooks/use-translation"
 
+const banner = [
+  "  ______                         _             _____                 _                       ",
+  " |  ____|                       | |           |  __ \\               | |                      ",
+  " | |__ __ _  ___ _   _ _ __   __| | ___ ______| |  | | _____   _____| | ___  _ __   ___ _ __ ",
+  " |  __/ _` |/ __| | | | '_ \\ / _` |/ _ \\______| |  | |/ _ \\ \\ / / _ \\ |/ _ \\| '_ \\ / _ \\ '__|",
+  " | | | (_| | (__| |_| | | | | (_| | (_) |     | |__| |  __/\\ V /  __/ | (_) | |_) |  __/ |   ",
+  " |_|  \\__,_|\\___|\\__,_|_| |_|\\__,_|\\___/      |_____/ \\___| \\_/ \\___|_|\\___/| .__/ \\___|_|   ",
+  "                                                                            | |              ",
+  "                                                                            |_|               ",
+].join("\n")
+
 export default function Portfolio() {
   const [isDarkMode, setIsDarkMode] = useState(true)
   const [activeFilter, setActiveFilter] = useState("All")
@@ -85,19 +96,17 @@ export default function Portfolio() {
             <CodeRotator />
           </div>
 
-          <div className="text-center space-y-6 relative z-10">
-            <div className="space-y-4">
-              <TypingEffect
-                text="FACUNDO DEVELOPER"
-                className="text-4xl md:text-6xl font-mono font-bold text-terminal-green"
-                speed={100}
-              />
-              <div className="text-xl md:text-2xl text-terminal-cyan font-mono">{t("hero.tags")}</div>
-              <div className="text-terminal-green font-mono text-lg">
-                <span className="text-terminal-cyan">$</span> echo "{t("hero.tagline")}"
-                <span className="animate-pulse">_</span>
+            <div className="text-center space-y-6 relative z-10">
+              <div className="space-y-4">
+                <pre className="font-mono text-terminal-green whitespace-pre leading-none text-[clamp(0.5rem,5vw,1.15rem)]">
+                  <TypingEffect text={banner} speed={15} />
+                </pre>
+                <div className="text-xl md:text-2xl text-terminal-cyan font-mono">{t("hero.tags")}</div>
+                <div className="text-terminal-green font-mono text-lg">
+                  <span className="text-terminal-cyan">$</span> echo "{t("hero.tagline")}"
+                  <span className="animate-pulse">_</span>
+                </div>
               </div>
-            </div>
             <Button
               className="bg-terminal-green text-terminal-black hover:bg-terminal-cyan hover:text-terminal-black font-mono"
               size="lg"

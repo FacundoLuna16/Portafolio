@@ -27,26 +27,77 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
 
   const handleNav = (section: string, cmd: string) => {
     runCommand(cmd)
-    document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
+    onNavigate(section)
   }
 
   return (
-    <div className={`sticky top-0 z-50 border-b-2 ${isDarkMode ? "bg-terminal-black border-terminal-green" : "bg-gray-100 border-gray-300"}`}>
-      <div className="relative flex items-center justify-between p-4">
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded-full bg-red-500" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500" />
-          <div className="w-3 h-3 rounded-full bg-green-500" />
-        </div>
-        <div className="md:hidden">
+    <nav
+      className={`sticky top-0 z-50 w-full border-b-2 bg-terminal-black border-terminal-green`}
+      aria-label="main navigation"
+    >
+      <div className="flex items-center justify-between px-4 py-3">
+        <span className="font-mono text-terminal-green whitespace-nowrap text-sm">
+          facu@portfolio:~$ {command ? (
+            <>
+              <span>{command}</span> <span className="text-terminal-cyan">→</span>
+            </>
+          ) : (
+            <span className="animate-pulse">_</span>
+          )}
+        </span>
+
+        <ul className="hidden md:flex gap-6">
+          {navItems.map((item) => (
+            <li key={item.section}>
+              <button
+                onClick={() => handleNav(item.section, item.command)}
+                className="font-mono text-terminal-green hover:text-terminal-cyan underline-offset-4 hover:underline whitespace-nowrap"
+              >
+                $ {item.command}
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-terminal-green hover:text-terminal-cyan"
+            onClick={toggleLanguage}
+            aria-label="Cambiar idioma"
+          >
+            <Languages className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-terminal-green hover:text-terminal-cyan"
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            aria-label="Cambiar tema"
+          >
+            {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </Button>
+
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Abrir menú" className="text-terminal-green hover:text-terminal-cyan">
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Abrir menú"
+                className="text-terminal-green hover:text-terminal-cyan md:hidden"
+              >
                 <Menu className="h-4 w-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className={`border-2 ${isDarkMode ? "bg-terminal-black border-terminal-green" : "bg-white border-gray-300"}`}>
-              <nav className="mt-6 flex flex-col gap-4" aria-label="Secciones">
+            <SheetContent
+              side="left"
+              className={`top-0 right-0 h-full w-2/3 max-w-xs border-2 ${isDarkMode ? "bg-terminal-black border-terminal-green" : "bg-white border-gray-300"}`}
+            >
+              <nav
+                className="mt-6 flex flex-col gap-4 overflow-y-auto"
+                aria-label="Secciones"
+              >
                 {navItems.map((item) => (
                   <SheetClose asChild key={item.section}>
                     <button
@@ -61,41 +112,7 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
             </SheetContent>
           </Sheet>
         </div>
-        <div className="absolute top-1 right-6 flex gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-terminal-green hover:text-terminal-cyan"
-            onClick={toggleLanguage}
-          >
-            <Languages className="h-4 w-4" />
-            <span className="sr-only">Toggle language</span>
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-terminal-green hover:text-terminal-cyan"
-            onClick={() => setIsDarkMode(!isDarkMode)}
-          >
-            {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-        </div>
       </div>
-      <nav className="hidden md:flex items-center gap-x-6 p-4 font-mono text-sm" aria-label="Secciones">
-        <span className="text-terminal-green whitespace-nowrap">
-          facu@portfolio:~$ {command ? <><span>{command}</span> <span className="text-terminal-cyan">→</span></> : <span className="animate-pulse">_</span>}
-        </span>
-        {navItems.map((item) => (
-          <button
-            key={item.section}
-            onClick={() => handleNav(item.section, item.command)}
-            className="text-terminal-green hover:text-terminal-cyan whitespace-nowrap"
-          >
-            $ {item.command}
-          </button>
-        ))}
-      </nav>
-    </div>
+    </nav>
   )
 }
