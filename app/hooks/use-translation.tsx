@@ -28,12 +28,20 @@ const translations = {
     "contact.thanks": "Thanks for visiting!",
     "timeline.utn.title": "UTN FRC – SO Assistant",
     "timeline.utn.description": "Operating Systems Teaching Assistant",
+    "timeline.utn.summary":
+      "Supported labs, guided students and assisted with Linux exercises.",
     "timeline.shopup.title": "ShopUp Core – Backend Lead",
     "timeline.shopup.description": "Led backend development team",
+    "timeline.shopup.summary":
+      "Led core architecture and mentored team on backend best practices.",
     "timeline.hacklab.title": "Hacklab GISSIC – Mentor",
     "timeline.hacklab.description": "Cybersecurity research mentor",
+    "timeline.hacklab.summary":
+      "Researched exploits with students and hosted weekly workshops.",
     "timeline.ai.title": "Generative AI – Researcher",
     "timeline.ai.description": "AI/ML research and development",
+    "timeline.ai.summary":
+      "Exploring ML techniques to automate tasks and improve UX.",
   },
   es: {
     "navbar.home": "inicio",
@@ -52,12 +60,20 @@ const translations = {
     "contact.thanks": "¡Gracias por visitar!",
     "timeline.utn.title": "UTN FRC – Ayudante SO",
     "timeline.utn.description": "Ayudante de Cátedra Sistemas Operativos",
+    "timeline.utn.summary":
+      "Acompañé prácticas de laboratorio, guié estudiantes y resolví ejercicios de Linux.",
     "timeline.shopup.title": "ShopUp Core – Líder Backend",
     "timeline.shopup.description": "Lideré el equipo de desarrollo backend",
+    "timeline.shopup.summary":
+      "Diseñé la arquitectura core y orienté al equipo en buenas prácticas backend.",
     "timeline.hacklab.title": "Hacklab GISSIC – Mentor",
     "timeline.hacklab.description": "Mentor de investigación en ciberseguridad",
+    "timeline.hacklab.summary":
+      "Investigamos vulnerabilidades con estudiantes y dictamos talleres semanales.",
     "timeline.ai.title": "IA Generativa – Investigador",
     "timeline.ai.description": "Investigación y desarrollo en IA/ML",
+    "timeline.ai.summary":
+      "Explorando técnicas de ML para automatizar tareas y mejorar la experiencia.",
   },
 }
 

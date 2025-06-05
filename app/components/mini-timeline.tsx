@@ -1,9 +1,13 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 import { useTranslation } from "../hooks/use-translation"
+interface MiniTimelineProps {
+  className?: string
+}
 
-export function MiniTimeline() {
+export function MiniTimeline({ className }: MiniTimelineProps) {
   const { t } = useTranslation()
 
   const timelineItems = [
@@ -11,26 +15,30 @@ export function MiniTimeline() {
       year: "2019",
       title: t("timeline.utn.title"),
       description: t("timeline.utn.description"),
+      summary: t("timeline.utn.summary"),
     },
     {
       year: "2023",
       title: t("timeline.shopup.title"),
       description: t("timeline.shopup.description"),
+      summary: t("timeline.shopup.summary"),
     },
     {
       year: "2024",
       title: t("timeline.hacklab.title"),
       description: t("timeline.hacklab.description"),
+      summary: t("timeline.hacklab.summary"),
     },
     {
       year: "2025",
       title: t("timeline.ai.title"),
       description: t("timeline.ai.description"),
+      summary: t("timeline.ai.summary"),
     },
   ]
 
   return (
-    <Card className="bg-terminal-black border-terminal-green">
+    <Card className={cn("bg-terminal-black border-terminal-green", className)}>
       <CardHeader>
         <CardTitle className="text-terminal-green font-mono text-lg">
           <span className="text-terminal-cyan">$</span> history | tail -n 4
@@ -47,6 +55,7 @@ export function MiniTimeline() {
               <div className="flex-grow min-w-0">
                 <div className="text-terminal-green font-mono text-sm font-semibold">{item.title}</div>
                 <div className="text-terminal-green/80 font-mono text-xs">{item.description}</div>
+                <div className="text-terminal-green/80 font-mono text-xs line-clamp-3 mt-1">{item.summary}</div>
               </div>
               <div className="absolute left-6 top-4 w-2 h-2 bg-terminal-cyan rounded-full transform -translate-x-1/2"></div>
             </div>

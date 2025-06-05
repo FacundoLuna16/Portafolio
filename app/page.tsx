@@ -117,7 +117,7 @@ export default function Portfolio() {
               <span className="text-terminal-cyan">$</span> whoami
             </h2>
 
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-2 gap-8 lg:items-stretch">
               <div className="space-y-6">
                 <Card className="bg-terminal-black border-terminal-green">
                   <CardContent className="p-6">
@@ -145,9 +145,9 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 lg:h-full">
                 {/* Mini Timeline */}
-                <MiniTimeline />
+                <MiniTimeline className="lg:h-full" />
 
                 {/* ASCII Avatar */}
               </div>
