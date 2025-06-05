@@ -26,7 +26,7 @@ export function Navigation({ onNavigate }: NavigationProps) {
     },
     {
       section: "about",
-      command: t("navbar.about") + " -me",
+      command: "man " + t("navbar.about"),
     },
     {
       section: "projects" ,
