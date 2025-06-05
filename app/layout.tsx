@@ -1,11 +1,9 @@
-"use client"
-
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { TranslationProvider } from "./hooks/use-translation"
-import { DarkModeProvider, useDarkMode } from "./hooks/use-dark-mode"
+import { DarkModeProvider } from "./hooks/use-dark-mode"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -20,18 +18,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <DarkModeProvider>
-      <LayoutInner>{children}</LayoutInner>
-    </DarkModeProvider>
-  )
-}
-
-function LayoutInner({ children }: { children: React.ReactNode }) {
-  const { isDarkMode } = useDarkMode()
-  return (
-    <html lang="en" className={isDarkMode ? "dark" : ""}>
+    <html lang="en">
       <body className={`${inter.className} overflow-x-hidden`}>
-        <TranslationProvider>{children}</TranslationProvider>
+        <DarkModeProvider>
+          <TranslationProvider>{children}</TranslationProvider>
+        </DarkModeProvider>
       </body>
     </html>
   )
