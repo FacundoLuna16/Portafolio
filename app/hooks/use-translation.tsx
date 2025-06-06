@@ -19,29 +19,31 @@ const translations = {
     "hero.tags": "Backend | DevOps | Security",
     "hero.tagline": "Building robust systems one commit at a time",
     "hero.downloadCV": "Download CV",
-    "about.description": 
-    "Soy desarrollador backend y estudiante avanzado de Ingeniería en Sistemas de Información en UTN FRC. Combino experiencia práctica en desarrollo de microservicios con Java, Docker y PostgreSQL, junto con una fuerte base en seguridad y buenas prácticas DevOps. Lidero el backend de ShopUp, participo como mentor en ciberseguridad en GISSIC y me desempeño como ayudante en Sistemas Operativos. Actualmente, investigo cómo aplicar IA generativa para automatizar procesos y mejorar la experiencia del usuario en entornos reales.",
+    "about.description":
+      "Backend developer and senior Information Systems Engineering student at UTN FRC. I have hands-on experience building microservices with Java and Spring Boot, QA automation, Docker-based deployments, and modern DevOps practices in cloud environments (AWS, Terraform). I contribute as a teaching assistant in Operating Systems and specialize in integrating security (DevSecOps, Keycloak, Spring Security) and automation within CI/CD pipelines. Currently, I actively participate in cybersecurity challenges and explore the use of AI to automate processes and enhance real-world user experience.",
     "projects.apiGateway.description":
       "High-performance API gateway with rate limiting, authentication, and load balancing",
     "projects.infrastructure.description": "Terraform modules for AWS infrastructure deployment and management",
     "projects.security.description": "Automated vulnerability scanner for web applications and APIs",
     "contact.thanks": "Thanks for visiting!",
-    "timeline.utn.title": "UTN FRC – SO Assistant",
-    "timeline.utn.description": "Operating Systems Teaching Assistant",
+    "timeline.utn.title": "UTN FRC – Operating Systems Teaching Assistant",
+    "timeline.utn.description": "Teaching Assistant in Operating Systems (2024–Present)",
     "timeline.utn.summary":
-      "Supported labs, guided students and assisted with Linux exercises.",
-    "timeline.shopup.title": "ShopUp Core – Backend Lead",
-    "timeline.shopup.description": "Led backend development team",
-    "timeline.shopup.summary":
-      "Led core architecture and mentored team on backend best practices.",
-    "timeline.hacklab.title": "Hacklab GISSIC – Mentor",
-    "timeline.hacklab.description": "Cybersecurity research mentor",
-    "timeline.hacklab.summary":
-      "Researched exploits with students and hosted weekly workshops.",
-    "timeline.ai.title": "Generative AI – Researcher",
-    "timeline.ai.description": "AI/ML research and development",
-    "timeline.ai.summary":
-      "Exploring ML techniques to automate tasks and improve UX.",
+      "Prepared and delivered theoretical and lab classes, graded exams, and provided technical and conceptual support to students. Full course responsibility since 2025.",
+
+    "timeline.qatitle": "TestingDeSoftwareArg – QA Automation",
+    "timeline.qadescription": "QA Automation, TestingDeSoftwareArg (Jan 2024–Nov 2024)",
+    "timeline.qasummary":
+      "Designed and executed automated tests using Selenium (Python/Java), Locust, TDD, and REST API validation. Integrated testing in CI pipelines.",
+
+    "timeline.logistics.title": "Logistics Project – Backend Developer (Freelance)",
+    "timeline.logistics.description": "Backend Developer, Freelance Project (Nov 2023–Jan 2024)",
+    "timeline.logistics.summary":
+      "Developed RESTful APIs with Java/Spring Boot, implemented microservice architectures, Docker integration, API Gateway management, and security with Keycloak/Spring Security.",
+    "timeline.soon.year": "2025",
+    "timeline.soon.title": "Coming soon…",
+    "timeline.soon.description": "Preparing for new professional challenges.",
+    "timeline.soon.summary": "Stay tuned for upcoming projects and opportunities."
   },
   es: {
     "navbar.home": "inicio",
@@ -52,28 +54,30 @@ const translations = {
     "hero.tagline": "Construyendo sistemas robustos un commit a la vez",
     "hero.downloadCV": "Descargar CV",
     "about.description":
-      "I'm a backend developer and senior Information Systems Engineering student at UTN FRC. I combine hands-on experience with Java microservices, Docker, and PostgreSQL, with a strong foundation in security and DevOps best practices. I lead the backend of ShopUp, mentor in cybersecurity at GISSIC, and assist in teaching Operating Systems. I'm currently researching how to apply generative AI to automate processes and enhance real-world user experiences.",
+  "Desarrollador backend y estudiante avanzado de Ingeniería en Sistemas de Información en UTN FRC. Tengo experiencia real en el desarrollo de microservicios con Java y Spring Boot, automatización de pruebas (QA Automation), despliegue con Docker y prácticas DevOps modernas en entornos cloud (AWS, Terraform). Colaboro como ayudante de cátedra en Sistemas Operativos y me especializo en la integración de seguridad (DevSecOps, Keycloak, Spring Security) y automatización en pipelines CI/CD. Actualmente, participo activamente en desafíos de ciberseguridad y exploro la aplicación de inteligencia artificial para automatizar procesos y mejorar la experiencia de usuario en proyectos reales.",
     "projects.apiGateway.description":
       "Gateway de API de alto rendimiento con limitación de velocidad, autenticación y balanceador de carga",
     "projects.infrastructure.description": "Módulos de Terraform para despliegue y gestión de infraestructura AWS",
     "projects.security.description": "Escáner automatizado de vulnerabilidades para aplicaciones web y APIs",
     "contact.thanks": "¡Gracias por visitar!",
-    "timeline.utn.title": "UTN FRC – Ayudante SO",
-    "timeline.utn.description": "Ayudante de Cátedra Sistemas Operativos",
+    "timeline.utn.title": "UTN FRC – Ayudante de Sistemas Operativos",
+    "timeline.utn.description": "Ayudante de cátedra en Sistemas Operativos (2024–Actualidad)",
     "timeline.utn.summary":
-      "Acompañé prácticas de laboratorio, guié estudiantes y resolví ejercicios de Linux.",
-    "timeline.shopup.title": "ShopUp Core – Líder Backend",
-    "timeline.shopup.description": "Lideré el equipo de desarrollo backend",
-    "timeline.shopup.summary":
-      "Diseñé la arquitectura core y orienté al equipo en buenas prácticas backend.",
-    "timeline.hacklab.title": "Hacklab GISSIC – Mentor",
-    "timeline.hacklab.description": "Mentor de investigación en ciberseguridad",
-    "timeline.hacklab.summary":
-      "Investigamos vulnerabilidades con estudiantes y dictamos talleres semanales.",
-    "timeline.ai.title": "IA Generativa – Investigador",
-    "timeline.ai.description": "Investigación y desarrollo en IA/ML",
-    "timeline.ai.summary":
-      "Explorando técnicas de ML para automatizar tareas y mejorar la experiencia.",
+      "Preparé y dicté clases teóricas y prácticas, corregí exámenes y brindé soporte técnico y conceptual a estudiantes. Responsable de un curso completo desde 2025.",
+
+    "timeline.qatitle": "TestingDeSoftwareArg – QA Automation",
+    "timeline.qadescription": "QA Automation, TestingDeSoftwareArg (Ene 2024–Nov 2024)",
+    "timeline.qasummary":
+      "Diseñé y ejecuté pruebas automatizadas con Selenium (Python/Java), Locust, TDD y validación de APIs REST. Integración de pruebas en pipelines CI.",
+
+    "timeline.logistics.title": "Proyecto Logística – Backend Freelance",
+    "timeline.logistics.description": "Desarrollador Backend Freelance (Nov 2023–Ene 2024)",
+    "timeline.logistics.summary":
+      "Desarrollé APIs RESTful en Java/Spring Boot, arquitecturas con microservicios, integración con Docker y API Gateway, y seguridad con Keycloak/Spring Security.",
+    "timeline.soon.year": "2025",
+    "timeline.soon.title": "Próximamente…",
+    "timeline.soon.description": "Preparando nuevos desafíos profesionales.",
+    "timeline.soon.summary": "Mantente atento para próximos proyectos y oportunidades."
   },
 }
 

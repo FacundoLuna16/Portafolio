@@ -19,12 +19,41 @@ export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("All")
   const { t, locale, setLocale } = useTranslation()
 
-  const skills = {
-    Backend: ["Node.js", "Python", "Go", "PostgreSQL", "Redis", "GraphQL"],
-    DevOps: ["Docker", "Kubernetes", "AWS", "Terraform", "Jenkins", "Monitoring"],
-    Security: ["OWASP", "Penetration Testing", "SSL/TLS", "OAuth", "Encryption"],
-    Languages: ["Java", "Python", "TypeScript", "JavaScript", "Bash", "SQL"],
-  }
+const skills = {
+  Backend: [
+    "Java (Spring Boot)",
+    "Python (FastAPI, Pytest)",
+    "Node.js (Express)",
+    "Microservicios",
+    "PostgreSQL",
+    "MySQL",
+    "Swagger / OpenAPI",
+  ],
+  DevOps: [
+    "Docker",
+    "CI/CD (GitLab, Jenkins, GitHub Actions)",
+    "Terraform",
+    "AWS (EC2, RDS, IAM, CloudFormation)",
+    "Linux / Bash Scripting",
+    "Pipelines de integración",
+  ],
+  Security: [
+    "Broken Access Control",
+    "IDOR",
+    "Token analysis",
+    "Vulnerabilidad en APIs",
+    "Cifrado y gestión de credenciales",
+  ],
+  QA: [
+    "Selenium",
+    "Pytest",
+    "JUnit",
+    "TestNG",
+    "Postman / Newman",
+    "Testing Automation",
+  ],
+};
+
 
   const projects = [
     {
@@ -117,15 +146,20 @@ export default function Portfolio() {
               <span className="text-terminal-cyan">$</span> whoami
             </h2>
 
-            <div className="grid lg:grid-cols-2 gap-8 lg:items-stretch">
-              <div className="space-y-6">
+            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 items-stretch min-h-[400px]">
+              {/* Columna izquierda: Sobre mí + Skills */}
+              <div className="flex flex-col h-full space-y-6">
+                {/* Sobre mí */}
                 <Card className="bg-terminal-black border-terminal-green">
                   <CardContent className="p-6">
-                    <p className="text-terminal-green font-mono leading-relaxed">{t("about.description")}</p>
+                    <p className="text-terminal-green font-mono leading-relaxed">
+                      {t("about.description")}
+                    </p>
                   </CardContent>
                 </Card>
 
-                <div className="space-y-4">
+                {/* Skills (con scroll si es necesario) */}
+                <div className="space-y-4 overflow-y-auto max-h-[70vh]">
                   {Object.entries(skills).map(([category, skillList]) => (
                     <div key={category}>
                       <h3 className="text-terminal-cyan font-mono font-semibold mb-2">{category}:</h3>
@@ -145,11 +179,9 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <div className="space-y-6 lg:h-full">
-                {/* Mini Timeline */}
-                <MiniTimeline className="lg:h-full" />
-
-                {/* ASCII Avatar */}
+              {/* Columna derecha: Timeline */}
+              <div className="flex flex-col h-full">
+                <MiniTimeline className="h-full" />
               </div>
             </div>
           </div>
