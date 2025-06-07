@@ -25,5 +25,17 @@
   "timeline.soon.year": "2025",
   "timeline.soon.title": "Próximamente…",
   "timeline.soon.description": "Preparando nuevos desafíos profesionales.",
-  "timeline.soon.summary": "Mantente atento para próximos proyectos y oportunidades."
+  "timeline.soon.summary": "Mantente atento para próximos proyectos y oportunidades.",
+  "projects.shopup.title": "ShopUp – Plataforma E-commerce",
+  "projects.shopup.description": "PWA para ayudar a pequeños emprendimientos a gestionar catálogos, ventas y reputación. Soporta búsquedas por voz, reportes, calificaciones e integración con IA para asistencia.",
+  "projects.isidoro.title": "Isidoro S.A. – Web Institucional",
+  "projects.isidoro.description": "Sitio informativo responsive para empresa agropecuaria. Estilo inspirado en John Deere, soporte multilenguaje y backend con envío de correos.",
+  "projects.logistica.title": "Sistema de Logística – Gestión de Envíos",
+  "projects.logistica.description": "Plataforma integral para la gestión de pedidos, rutas de entrega y notificaciones a clientes. Incluye autenticación, asignación de recursos y despliegue dockerizado.",
+  "projects.security.title": "Training Ciberseguridad – GISSIC UTN",
+  "projects.security.description": "Repositorio técnico con análisis, scripts y soluciones a desafíos de ciberseguridad ofensiva y desarrollo seguro. Alineado a prácticas DevSecOps.",
+  "projects.devops.title": "Taller DevOps – Infraestructura & Despliegue",
+  "projects.devops.description": "Proyecto integrador de prácticas DevOps: pipelines CI/CD, contenedores Docker, despliegue en AWS y conceptos de IaC y Kubernetes. Trabajo colaborativo y automatizado.",
+  "projects.tpi.title": "TPI Backend – Sistema de Alquiler de Bicicletas",
+  "projects.tpi.description": "Sistema backend con arquitectura de microservicios para gestionar el alquiler de bicicletas, cálculo de precios, estaciones y usuarios autenticados vía JWT. Despliegue local y Docker-ready."
 }

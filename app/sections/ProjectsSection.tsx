@@ -1,11 +1,15 @@
 "use client"
 
+import React from "react"
 import { Button } from "@/components/ui/button"
 import { ProjectCard } from "../components/project-card"
 import { useProjectFilter } from "@/lib/hooks/use-project-filter"
-import { projects } from "@/lib/data/projects"
+import { getProjects } from "@/lib/data/projects"
+import { useTranslation } from "../hooks/use-translation"
 
 export function ProjectsSection() {
+  const { t } = useTranslation()
+  const projects = React.useMemo(() => getProjects(t), [t])
   const { activeFilter, setActiveFilter, filteredProjects } = useProjectFilter(projects)
 
   return (

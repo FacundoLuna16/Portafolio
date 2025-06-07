@@ -6,7 +6,10 @@ import { useTranslation } from "../hooks/use-translation"
 export function HistorySection() {
   const { t } = useTranslation()
   return (
-    <section id="history" className="py-20 px-2 sm:px-4 lg:px-8 bg-terminal-black text-terminal-green">
+    <section
+      id="history"
+      className="py-20 px-2 sm:px-4 lg:px-8 bg-background text-foreground dark:text-terminal-green"
+    >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-mono font-bold mb-8">
           <span className="text-terminal-cyan">$</span> history

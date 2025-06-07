@@ -18,7 +18,7 @@ export function HeroSection() {
           </pre>
           <div className="text-xl md:text-2xl text-terminal-cyan font-mono">{t("hero.tags")}</div>
           <div className="text-terminal-green font-mono text-xl">
-            <span className="text-terminal-cyan">$</span> echo "{t("hero.tagline")}"<span className="animate-pulse">_</span>
+            <span className="text-terminal-cyan">$</span> echo &quot;{t("hero.tagline")}&quot;<span className="animate-pulse">_</span>
           </div>
         </div>
         <a href="/Luna-Facundo-CV.pdf" download className="inline-block">
