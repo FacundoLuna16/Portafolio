@@ -32,12 +32,12 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full border-b-2 bg-terminal-black border-terminal-green`}
+      className={`sticky top-0 z-50 w-full border-b-2 border-terminal-green ${isDarkMode ? "bg-terminal-black" : "bg-white"}`}
       aria-label="main navigation"
     >
-      <div className="grid grid-cols-[auto_1fr_auto] items-center w-full px-4 py-3">
+      <div className="grid grid-cols-[auto_1fr_auto] items-center w-full px-2 py-2 md:px-12 md:py-6 gap-2 md:gap-4">
         {/* Columna 1: Prompt */}
-        <span className="w-[34ch] block overflow-hidden text-ellipsis whitespace-nowrap font-mono text-terminal-green text-sm">
+        <span className="block overflow-hidden text-ellipsis whitespace-nowrap font-mono text-terminal-green text-base md:w-[34ch]">
           facu@portfolio:~$ {command ? (
             <>
               <span>{command}</span> <span className="text-terminal-cyan">↲</span>
@@ -57,7 +57,7 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
             <li key={item.section}>
               <button
                 onClick={() => handleNav(item.section, item.command)}
-                className="font-mono text-terminal-green hover:text-terminal-cyan underline-offset-4 hover:underline whitespace-nowrap"
+                className="font-mono text-terminal-green hover:text-terminal-cyan underline-offset-4 hover:underline whitespace-nowrap text-xl"
               >
                 $ {item.command}
               </button>
@@ -67,23 +67,24 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
 
         {/* Columna 3: Toggles y menú */}
         <div className="flex items-center gap-2 justify-end">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-terminal-green hover:text-terminal-cyan"
-            onClick={toggleLanguage}
-            aria-label="Cambiar idioma"
-          >
-            <Languages className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-terminal-green hover:text-terminal-cyan"
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            aria-label="Cambiar tema"
-          >
-            {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-terminal-green hover:text-terminal-cyan p-3"
+          onClick={toggleLanguage}
+          aria-label="Cambiar idioma"
+        >
+          <Languages className="h-6 w-6" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-terminal-green hover:text-terminal-cyan p-3"
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          aria-label="Cambiar tema"
+          disabled = {true} // Deshabilitado temporalmente para evitar cambios de tema
+        >
+            {isDarkMode ? <Sun className="h-8 w-8" /> : <Moon className="h-8 w-8" />}
           </Button>
 
           <Sheet>
@@ -94,7 +95,7 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
                 aria-label="Abrir menú"
                 className="text-terminal-green hover:text-terminal-cyan md:hidden"
               >
-                <Menu className="h-4 w-4" />
+                <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
             <SheetContent
