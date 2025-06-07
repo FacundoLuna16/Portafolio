@@ -37,7 +37,7 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
       className={`sticky top-0 z-50 w-full border-b-2 border-terminal-green ${isDarkMode ? "bg-terminal-black" : "bg-white"}`}
       aria-label="main navigation"
     >
-      <div className="grid grid-cols-[auto_1fr_auto] items-center w-full px-2 py-2 md:px-12 md:py-6 gap-2 md:gap-4">
+      <div className="grid grid-cols-[auto_1fr_auto] items-center w-full px-2 py-2 md:px-12 md:py-4 gap-2 md:gap-4">
         {/* Columna 1: Prompt */}
         <span className="block overflow-hidden text-ellipsis whitespace-nowrap font-mono text-terminal-green text-base md:w-[34ch]">
           facu@portfolio:~$ {command ? (
