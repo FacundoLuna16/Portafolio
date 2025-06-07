@@ -8,6 +8,7 @@ import { Download, Github, Linkedin, Mail } from "lucide-react"
 import { TerminalNavbar } from "./components/terminal-navbar"
 import { TypingEffect } from "./components/typing-effect"
 import { ProjectCard } from "./components/project-card"
+import TerminalTimeline from './components/terminalTimeline';
 import { CodeRotator } from "./components/code-rotator"
 import { MiniTimeline } from "./components/mini-timeline"
 import { useTranslation } from "./hooks/use-translation"
@@ -94,7 +95,7 @@ const projects = [
       "JWT", "Swagger", "Spring Security"
     ],
     imgSrc: "/ProyectoLogistica/principal.webp", // Cambialo si tenés captura, o dejá el placeholder
-    codeUrl: "https://github.com/FacundoLuna16/ProyectoLogistica.png",
+    codeUrl: "https://github.com/FacundoLuna16/ProyectoLogistica",
     demoUrl: null,
     category: "Backend",
   },
@@ -192,7 +193,7 @@ const projects = [
 
               {/* Botón para descargar CV */}
               <a
-                href="/public/Luna-Facundo-CV.pdf"
+                href="/Luna-Facundo-CV.pdf"
                 download
                 className="inline-block" // Mantiene el estilo del botón
               >
@@ -217,8 +218,8 @@ const projects = [
 
         {/* About Section */}
         <section id="about" className="py-20 px-2 sm:px-4 lg:px-8">
-          <div className="max-w-7xl xl:max-w-screen-2xl mx-auto px-2 sm:px-8">
-            <h2 className="text-5xl font-mono font-bold text-terminal-green mb-8">
+          <div className="max-w-6xl xl:max-w-screen-2xl mx-auto px-2 sm:px-8">
+            <h2 className="text-4xl font-mono font-bold text-terminal-green mb-8">
               <span className="text-terminal-cyan">$</span> whoami
             </h2>
 
@@ -228,17 +229,19 @@ const projects = [
                 {/* Sobre mí */}
                 <Card className="bg-terminal-black border-terminal-green">
                   <CardContent className="p-6">
-                    <p className="text-terminal-green font-mono leading-relaxed md:text-xl">
+                    <p className="text-terminal-green font-mono leading-relaxed md:text-base">
                       {t("about.description")}
                     </p>
                   </CardContent>
                 </Card>
+              </div>
 
-                {/* Skills (con scroll si es necesario) */}
+              {/* Columna derecha*/}
+              {/* Skills (con scroll si es necesario) */}
                 <div className="space-y-4 overflow-y-auto max-h-[70vh]">
                   {Object.entries(skills).map(([category, skillList]) => (
                     <div key={category}>
-                      <h3 className="text-terminal-cyan font-mono font-semibold mb-2 md:text-xl">{category}:</h3>
+                      <h3 className="text-terminal-cyan font-mono font-semibold mb-2 md:text-base">{category}:</h3>
                       <div className="flex flex-wrap gap-2">
                         {skillList.map((skill) => (
                           <Badge
@@ -253,20 +256,27 @@ const projects = [
                     </div>
                   ))}
                 </div>
-              </div>
-
-              {/* Columna derecha: Timeline */}
-              <div className="flex flex-col h-full">
-                <MiniTimeline className="h-full" />
-              </div>
             </div>
+          </div>
+        </section>
+
+        {/* History Section */}
+        <section id="history" className="py-20 px-2 sm:px-4 lg:px-8 bg-terminal-black text-terminal-green">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-mono font-bold mb-8">
+              <span className="text-terminal-cyan">$</span> history
+            </h2>
+            <p className="font-mono text-base mb-6">
+              {t("history.description")}
+            </p>
+            <TerminalTimeline />
           </div>
         </section>
 
         {/* Projects Section */}
         <section id="projects" className="py-20 px-2 sm:px-4 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-5xl font-mono font-bold text-terminal-green mb-8">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-mono font-bold text-terminal-green mb-8">
               <span className="text-terminal-cyan">$</span> ls projects/
             </h2>
 
@@ -276,7 +286,7 @@ const projects = [
                 <Button
                   key={filter}
                   variant={activeFilter === filter ? "default" : "outline"}
-                  className={`font-mono text-xl ${
+                  className={`font-mono text-base ${
                     activeFilter === filter
                       ? "bg-terminal-green text-terminal-black"
                       : "border-terminal-green text-terminal-green hover:bg-terminal-green hover:text-terminal-black"
@@ -298,8 +308,8 @@ const projects = [
 
         {/* Contact Section */}
         <section id="contact" className="py-20 px-2 sm:px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-mono font-bold text-terminal-green mb-8">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-4xl font-mono font-bold text-terminal-green mb-8">
               <span className="text-terminal-cyan">$</span> curl --data "message" https://contact.api
             </h2>
 
