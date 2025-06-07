@@ -10,10 +10,10 @@ export function ContactSection() {
     <section id="contact" className="py-20 px-2 sm:px-4 lg:px-8">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-4xl font-mono font-bold text-terminal-green mb-8">
-          <span className="text-terminal-cyan">$</span> curl --data "message" https://contact.api
+          <span className="text-terminal-cyan">$</span> curl --data &quot;message&quot; https://contact.api
         </h2>
         <div className="space-y-8">
-          <Card className="bg-terminal-black border-terminal-green">
+          <Card className="border-terminal-green bg-background">
             <CardContent className="p-8">
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
@@ -44,7 +44,7 @@ export function ContactSection() {
             </CardContent>
           </Card>
           <div className="font-mono text-terminal-green">
-            <span className="text-terminal-cyan">$</span> echo "{t("contact.thanks")}"<span className="animate-pulse">_</span>
+            <span className="text-terminal-cyan">$</span> echo &quot;{t("contact.thanks")}&quot;<span className="animate-pulse">_</span>
           </div>
         </div>
       </div>

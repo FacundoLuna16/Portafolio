@@ -15,9 +15,9 @@ export function AboutSection() {
         </h2>
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-12 items-stretch min-h-[400px]">
           <div className="flex flex-col h-full space-y-6">
-            <Card className="bg-terminal-black border-terminal-green">
+            <Card className="border-terminal-green bg-background">
               <CardContent className="p-6">
-                <p className="text-terminal-green font-mono leading-relaxed md:text-base">
+                <p className="font-mono leading-relaxed md:text-base text-foreground dark:text-terminal-green">
                   {t("about.description")}
                 </p>
               </CardContent>
