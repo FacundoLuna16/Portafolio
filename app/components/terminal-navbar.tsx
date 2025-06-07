@@ -6,17 +6,18 @@ import { useTranslation } from "../hooks/use-translation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
 import { Languages, Menu, Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 
 interface TerminalNavbarProps {
-  isDarkMode: boolean
-  setIsDarkMode: (val: boolean) => void
   toggleLanguage: () => void
   onNavigate: (id: string) => void
 }
 
-export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNavigate }: TerminalNavbarProps) {
+export function TerminalNavbar({ toggleLanguage, onNavigate }: TerminalNavbarProps) {
   const { t } = useTranslation()
   const { command, runCommand } = useCommandAnimation()
+  const { theme, setTheme } = useTheme()
+  const isDarkMode = theme === "dark"
 
   const navItems = [
     { section: "hero", command: `${t("navbar.home")} -li` },
@@ -82,12 +83,11 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
           variant="ghost"
           size="icon"
           className="text-terminal-green hover:text-terminal-cyan p-3"
-          onClick={() => setIsDarkMode(!isDarkMode)}
+          onClick={() => setTheme(isDarkMode ? "light" : "dark")}
           aria-label="Cambiar tema"
-          disabled = {true} // Deshabilitado temporalmente para evitar cambios de tema
         >
-            {isDarkMode ? <Sun className="h-8 w-8" /> : <Moon className="h-8 w-8" />}
-          </Button>
+          {isDarkMode ? <Sun className="h-8 w-8" /> : <Moon className="h-8 w-8" />}
+        </Button>
 
           <Sheet>
             <SheetTrigger asChild>
