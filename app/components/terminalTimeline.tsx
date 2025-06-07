@@ -83,7 +83,7 @@ export default function TerminalTimeline() {
       variants={fadeInVariants}
       className="py-10 px-4 bg-background text-foreground dark:text-terminal-green"
     >
-      <VerticalTimeline>
+      <VerticalTimeline lineColor={accentColor}>
         {timelineItems.map(
           ({ year, title, description, summary }, idx) => (
             <VerticalTimelineElement

@@ -8,11 +8,11 @@ export interface Project {
   category: string
 }
 
-export const projects: Project[] = [
-  {
-    title: "ShopUp – Plataforma E-commerce",
-    description:
-      "PWA para ayudar a pequeños emprendimientos a gestionar catálogos, ventas y reputación. Soporta búsquedas por voz, reportes, calificaciones e integración con IA para asistencia.",
+export function getProjects(t: (key: string) => string): Project[] {
+  return [
+    {
+    title: t('projects.shopup.title'),
+    description: t('projects.shopup.description'),
     techStack: [
       "Java",
       "Node.js",
@@ -35,9 +35,8 @@ export const projects: Project[] = [
     category: "Backend",
   },
   {
-    title: "Isidoro S.A. – Web Institucional",
-    description:
-      "Sitio informativo responsive para empresa agropecuaria. Estilo inspirado en John Deere, soporte multilenguaje y backend con envío de correos.",
+    title: t('projects.isidoro.title'),
+    description: t('projects.isidoro.description'),
     techStack: [
       "React",
       "Vite",
@@ -54,9 +53,8 @@ export const projects: Project[] = [
     category: "Frontend",
   },
   {
-    title: "Sistema de Logística – Gestión de Envíos",
-    description:
-      "Plataforma integral para la gestión de pedidos, rutas de entrega y notificaciones a clientes. Incluye autenticación, asignación de recursos y despliegue dockerizado.",
+    title: t('projects.logistica.title'),
+    description: t('projects.logistica.description'),
     techStack: [
       "Java",
       "Spring Boot",
@@ -74,9 +72,8 @@ export const projects: Project[] = [
     category: "Backend",
   },
   {
-    title: "Training Ciberseguridad – GISSIC UTN",
-    description:
-      "Repositorio técnico con análisis, scripts y soluciones a desafíos de ciberseguridad ofensiva y desarrollo seguro. Alineado a prácticas DevSecOps.",
+    title: t('projects.security.title'),
+    description: t('projects.security.description'),
     techStack: [
       "Python",
       "Burp Suite",
@@ -92,9 +89,8 @@ export const projects: Project[] = [
     category: "Security",
   },
   {
-    title: "Taller DevOps – Infraestructura & Despliegue",
-    description:
-      "Proyecto integrador de prácticas DevOps: pipelines CI/CD, contenedores Docker, despliegue en AWS y conceptos de IaC y Kubernetes. Trabajo colaborativo y automatizado.",
+    title: t('projects.devops.title'),
+    description: t('projects.devops.description'),
     techStack: [
       "GitLab CI/CD",
       "Docker",
@@ -112,9 +108,8 @@ export const projects: Project[] = [
     category: "DevOps",
   },
   {
-    title: "TPI Backend – Sistema de Alquiler de Bicicletas",
-    description:
-      "Sistema backend con arquitectura de microservicios para gestionar el alquiler de bicicletas, cálculo de precios, estaciones y usuarios autenticados vía JWT. Despliegue local y Docker-ready.",
+    title: t('projects.tpi.title'),
+    description: t('projects.tpi.description'),
     techStack: [
       "Java",
       "Spring Boot",
@@ -130,4 +125,5 @@ export const projects: Project[] = [
     demoUrl: null,
     category: "Backend",
   },
-] as const
+  ] as const
+}
