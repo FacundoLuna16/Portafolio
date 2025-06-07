@@ -35,7 +35,7 @@ export function TerminalNavbar({ toggleLanguage, onNavigate }: TerminalNavbarPro
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full border-b-2 border-terminal-green ${isDarkMode ? "bg-terminal-black" : "bg-white"}`}
+      className="sticky top-0 z-50 w-full border-b-2 border-terminal-green bg-background"
       aria-label="main navigation"
     >
       <div className="grid grid-cols-[auto_1fr_auto] items-center w-full px-2 py-2 md:px-12 md:py-4 gap-2 md:gap-4">
@@ -102,7 +102,7 @@ export function TerminalNavbar({ toggleLanguage, onNavigate }: TerminalNavbarPro
             </SheetTrigger>
             <SheetContent
               side="left"
-              className={`top-0 right-0 h-full w-2/3 max-w-xs border-2 ${isDarkMode ? "bg-terminal-black border-terminal-green" : "bg-white border-gray-300"}`}
+              className="top-0 right-0 h-full w-2/3 max-w-xs border-2 bg-background border-terminal-green"
             >
               <nav
                 className="mt-6 flex flex-col gap-4 overflow-y-auto"

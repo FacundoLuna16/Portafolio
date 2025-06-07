@@ -16,7 +16,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, description, techStack, imgSrc, codeUrl, demoUrl }: ProjectCardProps) {
   return (
-    <Card className="border-terminal-green bg-white dark:bg-terminal-black hover:border-terminal-cyan transition-all duration-300 group">
+    <Card className="border-terminal-green bg-background hover:border-terminal-cyan transition-all duration-300 group">
       <CardHeader className="p-4">
         <div className="aspect-video relative overflow-hidden rounded border border-terminal-green">
           <Image

@@ -81,7 +81,7 @@ export default function TerminalTimeline() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={fadeInVariants}
-      className="py-10 px-4 bg-white text-foreground dark:bg-terminal-black dark:text-terminal-green"
+      className="py-10 px-4 bg-background text-foreground dark:text-terminal-green"
     >
       <VerticalTimeline>
         {timelineItems.map(

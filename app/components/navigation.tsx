@@ -41,7 +41,7 @@ export function Navigation({ onNavigate }: NavigationProps) {
   if (!isVisible) return null
 
   return (
-    <nav className="fixed top-[4.75rem] left-4 right-4 z-40 border border-terminal-green rounded p-4 backdrop-blur-sm bg-white/90 dark:bg-terminal-black/90">
+    <nav className="fixed top-[4.75rem] left-4 right-4 z-40 border border-terminal-green rounded p-4 backdrop-blur-sm bg-background/90">
       <div className="flex flex-wrap gap-4 justify-center">
         {navItems.map((item) => (
           <button

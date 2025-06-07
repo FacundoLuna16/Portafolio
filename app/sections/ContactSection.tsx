@@ -13,7 +13,7 @@ export function ContactSection() {
           <span className="text-terminal-cyan">$</span> curl --data &quot;message&quot; https://contact.api
         </h2>
         <div className="space-y-8">
-          <Card className="border-terminal-green bg-white dark:bg-terminal-black">
+          <Card className="border-terminal-green bg-background">
             <CardContent className="p-8">
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
