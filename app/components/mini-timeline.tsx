@@ -41,34 +41,39 @@ const timelineItems = [
   return (
     <Card className={cn("bg-terminal-black border-terminal-green h-full", className)}>
       <CardHeader>
-        <CardTitle className="text-terminal-green font-mono text-lg">
-          <span className="text-terminal-cyan">$</span> history | tail -n 4
-
+        <CardTitle className="text-terminal-green font-mono">
+          <span className="text-terminal-cyan md:text-xl">$</span> history | tail -n 4
         </CardTitle>
       </CardHeader>
       
-      <CardContent className="h-full flex flex-col overflow-hidden py-12">
+      <CardContent className="h-full flex flex-col overflow-hidden py-8">
         <div className="relative h-full">
-          {/* Línea timeline */}
-          {/* <div className="absolute left-6 inset-y-0 w-0.5 bg-terminal-green" /> */}
-          {/* Contenedor items distribuidos */}
-          <div className="flex-1 flex flex-col space-y-14 h-full">
+          <div className="flex-1 flex flex-col space-y-10 sm:space-y-12 h-full overflow-y-auto px-2 sm:px-6 md:px-12">
             {timelineItems.map((item, index) => (
-              <div key={index} className="relative flex items-start space-x-4 ">
+              <div key={index} className="relative flex items-start space-x-2 sm:space-x-4">
                 {/* Año */}
-                <div className="flex-shrink-0 w-20 min-h-[48px] bg-terminal-black border border-terminal-green rounded flex flex-col items-center justify-center px-1">
-                  <span className="text-terminal-cyan font-mono text-xs font-bold whitespace-pre-line text-center">{item.year}</span>
+                <div className="flex-shrink-0 w-12 sm:w-20 min-h-[40px] sm:min-h-[60px] bg-terminal-black border border-terminal-green rounded flex flex-col items-center justify-center px-1">
+                  <span className="text-terminal-cyan font-mono text-xs sm:text-sm font-bold whitespace-pre-line text-center">
+                    {item.year}
+                  </span>
                 </div>
                 {/* Contenido */}
                 <div className="flex-grow min-w-0">
-                  <div className="text-terminal-green font-mono text-sm font-semibold">{item.title}</div>
-                  <div className="text-terminal-green/80 font-mono text-xs mt-2">{item.description}</div>
-                  <div className="text-terminal-green/80 font-mono text-xs mt-2">{item.summary}</div>
+                  <div className="text-terminal-green font-mono text-xs sm:text-sm md:text-xl font-semibold">
+                    {item.title}
+                  </div>
+                  <div className="text-terminal-green/80 font-mono text-[11px] sm:text-xs md:text-base mt-2">
+                    {item.description}
+                  </div>
+                  <div className="text-terminal-green/80 font-mono text-[11px] sm:text-xs md:text-base mt-2">
+                    {item.summary}
+                  </div>
                 </div>
                 {/* Línea vertical SÓLO SI no es el último */}
                 {index < timelineItems.length - 1 && (
-                  <div className="absolute left-6 top-1/2 w-0.5 bg-terminal-green"
-                    style={{ height: "calc(100% + 2rem)" }} // 2rem ≈ separacion entre los puntos
+                  <div
+                    className="absolute left-5 sm:left-6 top-1/4 w-0.5 bg-terminal-green"
+                    style={{ height: "calc(100% + 0rem)" }}
                   />
                 )}
               </div>
@@ -76,6 +81,7 @@ const timelineItems = [
           </div>
         </div>
       </CardContent>
+
     </Card>
   )
 }

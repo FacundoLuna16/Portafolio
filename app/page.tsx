@@ -55,35 +55,101 @@ const skills = {
 };
 
 
-  const projects = [
-    {
-      title: "Microservices API Gateway",
-      description: t("projects.apiGateway.description"),
-      techStack: ["Go", "Redis", "Docker", "Kubernetes"],
-      imgSrc: "/placeholder.svg?height=200&width=300",
-      codeUrl: "https://github.com/username/api-gateway",
-      demoUrl: "https://api-gateway-demo.com",
-      category: "Backend",
-    },
-    {
-      title: "Infrastructure as Code",
-      description: t("projects.infrastructure.description"),
-      techStack: ["Terraform", "AWS", "CloudFormation", "Ansible"],
-      imgSrc: "/placeholder.svg?height=200&width=300",
-      codeUrl: "https://github.com/username/terraform-aws",
-      demoUrl: null,
-      category: "DevOps",
-    },
-    {
-      title: "Security Scanner",
-      description: t("projects.security.description"),
-      techStack: ["Python", "OWASP ZAP", "Docker", "CI/CD"],
-      imgSrc: "/placeholder.svg?height=200&width=300",
-      codeUrl: "https://github.com/username/security-scanner",
-      demoUrl: "https://scanner-demo.com",
-      category: "Security",
-    },
-  ]
+const projects = [
+  {
+    title: "ShopUp – Plataforma E-commerce",
+    description:
+      "PWA para ayudar a pequeños emprendimientos a gestionar catálogos, ventas y reputación. Soporta búsquedas por voz, reportes, calificaciones e integración con IA para asistencia.",
+    techStack: [
+      "Java", "Node.js", "Spring Boot", "React", "JavaScript", 
+      "PostgreSQL", "MariaDB", "Docker", "Kubernetes", 
+      "Keycloak", "Mercado Pago", "Google Maps", "OpenAI", "Whisper"
+    ],
+    imgSrc: "/placeholder.svg?height=200&width=300", // Cambialo si tenés otro más representativo
+    codeUrl: null,
+    demoUrl: "https://kzmlebtfsrefxoyqvjgl.lite.vusercontent.net/",
+    category: "Backend",
+  },
+  {
+    title: "Isidoro S.A. – Web Institucional",
+    description:
+      "Sitio informativo responsive para empresa agropecuaria. Estilo inspirado en John Deere, soporte multilenguaje y backend con envío de correos.",
+    techStack: [
+      "React", "Vite", "TailwindCSS", 
+      "Node.js", "Express", 
+      "Docker", "GitHub Actions", "Nginx"
+    ],
+    imgSrc: "/Isidoro/isidoro.webp", // Podés poner una captura si tenés, o dejar el placeholder
+    codeUrl: "https://github.com/lautarogregorat/IsidoroWebPage",
+    demoUrl: "https://isidorosas.com.ar/",
+    category: "Frontend",
+  },
+  {
+    title: "Sistema de Logística – Gestión de Envíos",
+    description:
+      "Plataforma integral para la gestión de pedidos, rutas de entrega y notificaciones a clientes. Incluye autenticación, asignación de recursos y despliegue dockerizado.",
+    techStack: [
+      "Java", "Spring Boot", "MySQL",
+      "Next.js", "Docker", "Keycloak",
+      "JWT", "Swagger", "Spring Security"
+    ],
+    imgSrc: "/ProyectoLogistica/principal.webp", // Cambialo si tenés captura, o dejá el placeholder
+    codeUrl: "https://github.com/FacundoLuna16/ProyectoLogistica.png",
+    demoUrl: null,
+    category: "Backend",
+  },
+  {
+    title: "Training Ciberseguridad – GISSIC UTN",
+    description:
+      "Repositorio técnico con análisis, scripts y soluciones a desafíos de ciberseguridad ofensiva y desarrollo seguro. Alineado a prácticas DevSecOps.",
+    techStack: [
+      "Python", "Burp Suite", "Bash", "Docker",
+      "Markdown", "Kali Linux", "DevSecOps"
+    ],
+    imgSrc: "/placeholder.svg?height=200&width=300", // Cambialo por una captura si tenés, o usá un placeholder
+    codeUrl: "https://github.com/FacundoLuna16/Seguridad",
+    demoUrl: null,
+    category: "Security",
+  },
+  {
+    title: "Taller DevOps – Infraestructura & Despliegue",
+    description:
+      "Proyecto integrador de prácticas DevOps: pipelines CI/CD, contenedores Docker, despliegue en AWS y conceptos de IaC y Kubernetes. Trabajo colaborativo y automatizado.",
+    techStack: [
+      "GitLab CI/CD", "Docker", "Terraform", "AWS", "Kubernetes",
+      "Linux", "Bash", "VirtualBox", "CloudFormation"
+    ],
+    imgSrc: "/TallerDevOps/taller.png", // Podés reemplazarlo por una imagen del proyecto
+    codeUrl: "https://github.com/FacundoLuna16/TallerDevOps",
+    demoUrl: null,
+    category: "DevOps",
+  },
+  {
+    title: "TPI Backend – Sistema de Alquiler de Bicicletas",
+    description:
+      "Sistema backend con arquitectura de microservicios para gestionar el alquiler de bicicletas, cálculo de precios, estaciones y usuarios autenticados vía JWT. Despliegue local y Docker-ready.",
+    techStack: [
+      "Java", "Spring Boot", "SQLite", "Maven",
+      "JWT", "Swagger", "Docker", "API Gateway"
+    ],
+    imgSrc: "/placeholder.svg?height=200&width=300",  // Podés reemplazarlo por una miniatura real
+    codeUrl: "https://github.com/FacundoLuna16/TpiBack",
+    demoUrl: null,
+    category: "Backend",
+  },
+  // {
+  //   title: "Test Automatizado – Despegar",
+  //   description:
+  //     "Framework de testing automatizado usando Java, Selenium y TestNG. Arquitectura basada en Page Object Model y ejecución multiplataforma vía Maven en Chrome, Firefox, Edge y Brave.",
+  //   techStack: [
+  //     "Java", "Selenium", "TestNG", "Maven", "Page Object Model"
+  //   ],
+  //   imgSrc: "/testdespegar.png", // reemplazá si tenés una miniatura
+  //   codeUrl: "https://github.com/FacundoLuna16/testDespegar",
+  //   demoUrl: null,
+  //   category: "Testing",
+  // },
+];
 
 
   const filteredProjects =
@@ -112,24 +178,34 @@ const skills = {
         {/* Hero Section */}
         <section id="hero" className="min-h-screen w-full flex flex-col items-center justify-center px-4 relative">
             {/* Background Code Rotator */}
-          <div className="relative z-10 flex flex-col items-center py-0 text-center space-y-6 w-full max-w-2xl">
-              <div className="space-y-4">
-                <pre className="font-mono text-terminal-green whitespace-pre leading-none font-bold text-4xl sm:text-5xl lg:text-7xl">
+          <div className="relative z-10 flex flex-col items-center py-0 text-center space-y-10 w-full max-w-2xl">
+              <div className="space-y-12">
+                <pre className="font-mono text-terminal-green whitespace-pre-line leading-tight font-bold text-2xl xs:text-3xl sm:text-4xl lg:text-7xl break-words">
                   <TypingEffect text={homeTitle} speed={50} />
                 </pre>
                 <div className="text-xl md:text-2xl text-terminal-cyan font-mono">{t("hero.tags")}</div>
-                <div className="text-terminal-green font-mono text-lg">
+                <div className="text-terminal-green font-mono text-xl">
                   <span className="text-terminal-cyan">$</span> echo "{t("hero.tagline")}"
                   <span className="animate-pulse">_</span>
                 </div>
               </div>
-              <Button
-                className="bg-terminal-green text-terminal-black hover:bg-terminal-cyan hover:text-terminal-black font-mono"
-                size="lg"
+
+              {/* Botón para descargar CV */}
+              <a
+                href="/public/Luna-Facundo-CV.pdf"
+                download
+                className="inline-block" // Mantiene el estilo del botón
               >
-                <Download className="mr-2 h-4 w-4" />
-              {t("hero.downloadCV")}
-              </Button>
+                <Button
+                  className="
+                    bg-terminal-green text-terminal-black
+                    hover:bg-terminal-cyan hover:text-terminal-black font-mono
+                    px-16 py-8 text-xl"  // <-- Más padding y fuente grande
+                >
+                  <Download className="mr-2 h-5 w-5" /> {/* Icono más grande también */}
+                  {t("hero.downloadCV")}
+                </Button>
+              </a>
             {/* <div className="absolute w-full left-0 right-0 flex opacity-15 pointer-events-none">
               <div className="whitespace-nowrap overflow-ellipsis">
                 <CodeRotator />
@@ -140,19 +216,19 @@ const skills = {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-mono font-bold text-terminal-green mb-8">
+        <section id="about" className="py-20 px-2 sm:px-4 lg:px-8">
+          <div className="max-w-7xl xl:max-w-screen-2xl mx-auto px-2 sm:px-8">
+            <h2 className="text-5xl font-mono font-bold text-terminal-green mb-8">
               <span className="text-terminal-cyan">$</span> whoami
             </h2>
 
-            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 items-stretch min-h-[400px]">
+            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-12 items-stretch min-h-[400px]">
               {/* Columna izquierda: Sobre mí + Skills */}
               <div className="flex flex-col h-full space-y-6">
                 {/* Sobre mí */}
                 <Card className="bg-terminal-black border-terminal-green">
                   <CardContent className="p-6">
-                    <p className="text-terminal-green font-mono leading-relaxed">
+                    <p className="text-terminal-green font-mono leading-relaxed md:text-xl">
                       {t("about.description")}
                     </p>
                   </CardContent>
@@ -162,13 +238,13 @@ const skills = {
                 <div className="space-y-4 overflow-y-auto max-h-[70vh]">
                   {Object.entries(skills).map(([category, skillList]) => (
                     <div key={category}>
-                      <h3 className="text-terminal-cyan font-mono font-semibold mb-2">{category}:</h3>
+                      <h3 className="text-terminal-cyan font-mono font-semibold mb-2 md:text-xl">{category}:</h3>
                       <div className="flex flex-wrap gap-2">
                         {skillList.map((skill) => (
                           <Badge
                             key={skill}
                             variant="outline"
-                            className="border-terminal-green text-terminal-green hover:bg-terminal-green hover:text-terminal-black font-mono"
+                            className="border-terminal-green text-terminal-green hover:bg-terminal-green hover:text-terminal-black font-mono text-sm md:text-base"
                           >
                             {skill}
                           </Badge>
@@ -188,9 +264,9 @@ const skills = {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-mono font-bold text-terminal-green mb-8">
+        <section id="projects" className="py-20 px-2 sm:px-4 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-5xl font-mono font-bold text-terminal-green mb-8">
               <span className="text-terminal-cyan">$</span> ls projects/
             </h2>
 
@@ -200,7 +276,7 @@ const skills = {
                 <Button
                   key={filter}
                   variant={activeFilter === filter ? "default" : "outline"}
-                  className={`font-mono ${
+                  className={`font-mono text-xl ${
                     activeFilter === filter
                       ? "bg-terminal-green text-terminal-black"
                       : "border-terminal-green text-terminal-green hover:bg-terminal-green hover:text-terminal-black"
@@ -221,7 +297,7 @@ const skills = {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20 px-4">
+        <section id="contact" className="py-20 px-2 sm:px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-mono font-bold text-terminal-green mb-8">
               <span className="text-terminal-cyan">$</span> curl --data "message" https://contact.api
