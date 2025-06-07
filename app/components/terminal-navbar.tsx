@@ -21,8 +21,10 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
   const navItems = [
     { section: "hero", command: `${t("navbar.home")} -li` },
     { section: "about", command: `${t("navbar.about")} -me` },
+    { section: "history", command: `${t("navbar.history")}` },
     { section: "projects", command: `${t("navbar.projects")} -all` },
     { section: "contact", command: `${t("navbar.contact")} -me` },
+
   ]
 
   const handleNav = (section: string, cmd: string) => {
@@ -57,7 +59,7 @@ export function TerminalNavbar({ isDarkMode, setIsDarkMode, toggleLanguage, onNa
             <li key={item.section}>
               <button
                 onClick={() => handleNav(item.section, item.command)}
-                className="font-mono text-terminal-green hover:text-terminal-cyan underline-offset-4 hover:underline whitespace-nowrap text-xl"
+                className="font-mono text-terminal-green hover:text-terminal-cyan underline-offset-4 hover:underline whitespace-nowrap text-base"
               >
                 $ {item.command}
               </button>

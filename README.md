@@ -9,7 +9,7 @@ Incluye soporte para dark/light mode, animaciones tipo CLI, cambio de idioma (ES
 
 ## 🚀 Demo
 
-> [Ver online en GitHub Pages (o Vercel)](https://tuusuario.github.io/portfolio-terminal)
+> [Ver online en GitHub Pages (o Vercel)](https://luna-facundo.com)
 
 ---
 
