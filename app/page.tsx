@@ -10,7 +10,6 @@ import { TypingEffect } from "./components/typing-effect"
 import { ProjectCard } from "./components/project-card"
 import TerminalTimeline from './components/terminalTimeline';
 import { CodeRotator } from "./components/code-rotator"
-import { MiniTimeline } from "./components/mini-timeline"
 import { useTranslation } from "./hooks/use-translation"
 
 const homeTitle = "LUNA FACUNDO DEVELOPER"
