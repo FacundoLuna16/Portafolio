@@ -1,10 +1,12 @@
+import React from 'react';
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import { FaLaptopCode, FaServer, FaShieldAlt,FaCode } from 'react-icons/fa';
+import { FaLaptopCode, FaServer, FaShieldAlt, FaCode } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
 import { useTranslation } from '../hooks/use-translation';
 
 // ---------- Animación fade-in ----------
@@ -18,19 +20,29 @@ const fadeInVariants = {
 };
 
 // ---------- Estilos comunes ----------
-const elementStyles = {
-  contentStyle: {
-    background: '#000',
-    color: '#0f0',
-    border: '1px solid #0f0',
-    fontFamily: 'monospace',
-  },
-  contentArrowStyle: { borderRight: '7px solid  #0f0' },
-  iconStyle: { background: '#000', color: '#0f0', border: '1px solid #0f0' },
-};
+const accentColor = '#39ff14';
+
+function getElementStyles(isDark: boolean) {
+  return {
+    contentStyle: {
+      background: isDark ? '#0d0d0d' : '#ffffff',
+      color: isDark ? accentColor : '#000000',
+      border: `1px solid ${accentColor}`,
+      fontFamily: 'monospace',
+    },
+    contentArrowStyle: { borderRight: `7px solid ${accentColor}` },
+    iconStyle: {
+      background: isDark ? '#0d0d0d' : '#ffffff',
+      color: accentColor,
+      border: `1px solid ${accentColor}`,
+    },
+  };
+}
 
 export default function TerminalTimeline() {
   const { t } = useTranslation();
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   // ⬇️ NO se modifica: sólo lo traemos del hook para mantener la traducción
   const timelineItems = [
@@ -61,7 +73,7 @@ export default function TerminalTimeline() {
   ];
 
   // Iconos por posición (podés cambiarlos si querés otro orden):
-  const icons = [<FaLaptopCode />, <FaServer />, <FaShieldAlt />, <FaCode />];
+  const icons = [FaLaptopCode, FaServer, FaShieldAlt, FaCode];
 
   return (
     <motion.section
@@ -69,7 +81,7 @@ export default function TerminalTimeline() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={fadeInVariants}
-      className="py-10 px-4 bg-terminal-black text-terminal-green"
+      className="py-10 px-4 bg-white text-foreground dark:bg-terminal-black dark:text-terminal-green"
     >
       <VerticalTimeline>
         {timelineItems.map(
@@ -78,8 +90,8 @@ export default function TerminalTimeline() {
               key={idx}
               className="vertical-timeline-element--work"
               date={year}
-              icon={icons[idx] ?? <FaLaptopCode />}
-              {...elementStyles}
+              icon={React.createElement(icons[idx] ?? FaLaptopCode)}
+              {...getElementStyles(isDark)}
             >
               <h3 className="vertical-timeline-element-title font-bold text-terminal-cyan">
                 {title}
