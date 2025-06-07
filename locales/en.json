@@ -25,5 +25,17 @@
   "timeline.soon.year": "2025",
   "timeline.soon.title": "Coming soon…",
   "timeline.soon.description": "Preparing for new professional challenges.",
-  "timeline.soon.summary": "Stay tuned for upcoming projects and opportunities."
+  "timeline.soon.summary": "Stay tuned for upcoming projects and opportunities.",
+  "projects.shopup.title": "ShopUp – E-commerce Platform",
+  "projects.shopup.description": "PWA to help small businesses manage catalogs, sales, and reputation. Supports voice search, reporting, ratings, and AI integration for assistance.",
+  "projects.isidoro.title": "Isidoro S.A. – Corporate Website",
+  "projects.isidoro.description": "Responsive informational site for an agribusiness company. Style inspired by John Deere, multi-language support, and backend with email sending.",
+  "projects.logistica.title": "Logistics System – Shipment Management",
+  "projects.logistica.description": "Comprehensive platform for managing orders, delivery routes, and client notifications. Includes authentication, resource assignment, and Dockerized deployment.",
+  "projects.security.title": "Cybersecurity Training – GISSIC UTN",
+  "projects.security.description": "Technical repository with analyses, scripts, and solutions to offensive cybersecurity challenges and secure development. Aligned with DevSecOps practices.",
+  "projects.devops.title": "DevOps Workshop – Infrastructure & Deployment",
+  "projects.devops.description": "Integrative DevOps project: CI/CD pipelines, Docker containers, AWS deployment, and IaC and Kubernetes concepts. Collaborative and automated work.",
+  "projects.tpi.title": "Final Project Backend – Bicycle Rental System",
+  "projects.tpi.description": "Backend system with microservices architecture to manage bike rentals, price calculations, stations, and users authenticated via JWT. Local deployment and Docker-ready."
 }
