@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { use, useEffect, useState } from 'react';
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -42,9 +42,15 @@ function getElementStyles(isDark: boolean) {
 export default function TerminalTimeline() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Asegurarse de que el componente se haya montado antes de acceder al tema
+    setMounted(true);
+  }, []);
+
   const isDark = theme === 'dark';
 
-  // ⬇️ NO se modifica: sólo lo traemos del hook para mantener la traducción
   const timelineItems = [
     {
       year: 'Ene 2024\nNov 2024',
@@ -72,8 +78,8 @@ export default function TerminalTimeline() {
     },
   ];
 
-  // Iconos por posición (podés cambiarlos si querés otro orden):
   const icons = [FaLaptopCode, FaServer, FaShieldAlt, FaCode];
+  if (!mounted) return null; // Evitar renderizado antes de que el tema esté disponible
 
   return (
     <motion.section
