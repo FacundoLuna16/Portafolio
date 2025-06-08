@@ -15,6 +15,7 @@ const config: Config = {
         "terminal-green": "#39ff14",
         "terminal-cyan": "#00d9ff",
         "terminal-gray": "#1a1a1a",
+        "off-white": "#f2f2f2",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -62,6 +63,7 @@ const config: Config = {
       animation: {
         pulse: "pulse 1s step-end infinite",
         glow: "glow 2s ease-in-out infinite alternate",
+        marquee: "marquee 20s linear infinite",
       },
       keyframes: {
         glow: {
@@ -71,6 +73,10 @@ const config: Config = {
           "100%": {
             textShadow: "0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14",
           },
+        },
+        marquee: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-100%)" },
         },
       },
       borderRadius: {

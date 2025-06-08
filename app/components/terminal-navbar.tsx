@@ -85,6 +85,7 @@ export function TerminalNavbar({ toggleLanguage, onNavigate }: TerminalNavbarPro
           className="text-terminal-green hover:text-terminal-cyan p-3"
           onClick={() => setTheme(isDarkMode ? "light" : "dark")}
           aria-label="Cambiar tema"
+          disabled
         >
           {isDarkMode ? <Sun className="h-8 w-8" /> : <Moon className="h-8 w-8" />}
         </Button>
