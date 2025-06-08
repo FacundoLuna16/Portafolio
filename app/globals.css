@@ -144,6 +144,34 @@ html {
     transform: translateX(0);
   }
 }
+@keyframes marquee-left {
+  0% {
+    left: -100vw;
+  }
+  100% {
+    left: 100vw;
+  }
+}
+@keyframes marquee-right {
+  0% {
+    left: 100vw;
+  }
+  100% {
+    left: -100vw;
+  }
+}
+.animate-marquee-left {
+  position: absolute;
+  animation: marquee-left 18s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+.animate-marquee-right {
+  position: absolute;
+  animation: marquee-right 22s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
 
 .timeline-item {
   animation: slideInLeft 0.6s ease-out forwards;
