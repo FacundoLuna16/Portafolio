@@ -15,12 +15,32 @@ function randomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function randomTop() {
+  // Evita el rango 40% a 60% (ajusta según tu layout)
+  const ranges = [
+    [5, 40],
+    [60, 70]
+  ];
+  const range = ranges[Math.floor(Math.random() * ranges.length)];
+  return `${randomInt(range[0], range[1])}%`;
+}
+
+function randomLeft() {
+  // Evita el rango 40% a 60% horizontal (ajusta según tu layout)
+  const ranges = [
+    [5, 40],
+    [60, 70]
+  ];
+  const range = ranges[Math.floor(Math.random() * ranges.length)];
+  return `${randomInt(range[0], range[1])}%`;
+}
+
 export function FloatingPanelsBackground() {
   const [panels, setPanels] = useState(
-    Array.from({ length: 6 }, (_, i) => ({ // ← de 4 a 6
+    Array.from({ length: 5 }, (_, i) => ({
       code: codeSnippets[randomInt(0, codeSnippets.length - 1)],
-      top: `${randomInt(5, 70)}%`,
-      left: `${randomInt(5, 70)}%`,
+      top: randomTop(), // usa la función aquí
+      left: randomLeft(), // usa la función aquí
       show: true,
       delay: randomInt(0, 8),
       blur: i % 2 === 0,
@@ -42,8 +62,8 @@ export function FloatingPanelsBackground() {
             !p.show
               ? {
                   code: codeSnippets[randomInt(0, codeSnippets.length - 1)],
-                  top: `${randomInt(5, 70)}%`,
-                  left: `${randomInt(5, 70)}%`,
+                  top: randomTop(),
+                  left: randomLeft(),
                   show: true,
                   delay: randomInt(0, 8),
                   blur: Math.random() > 0.5,

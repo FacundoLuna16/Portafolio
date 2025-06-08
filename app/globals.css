@@ -162,13 +162,13 @@ html {
 }
 .animate-marquee-left {
   position: absolute;
-  animation: marquee-left 18s linear infinite;
+  animation: marquee-left 28s linear infinite;
   white-space: nowrap;
   width: max-content;
 }
 .animate-marquee-right {
   position: absolute;
-  animation: marquee-right 22s linear infinite;
+  animation: marquee-right 34s linear infinite;
   white-space: nowrap;
   width: max-content;
 }
