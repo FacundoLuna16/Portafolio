@@ -6,6 +6,7 @@ import { ProjectCard } from "../components/project-card"
 import { useProjectFilter } from "@/lib/hooks/use-project-filter"
 import { getProjects } from "@/lib/data/projects"
 import { useTranslation } from "../hooks/use-translation"
+import { motion } from "framer-motion"
 
 export function ProjectsSection() {
   const { t } = useTranslation()
@@ -13,7 +14,13 @@ export function ProjectsSection() {
   const { activeFilter, setActiveFilter, filteredProjects } = useProjectFilter(projects)
 
   return (
-    <section id="projects" className="py-20 px-2 sm:px-4 lg:px-8">
+    <motion.section
+      id="projects"
+      className="py-20 px-2 sm:px-4 lg:px-8"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-mono font-bold text-terminal-green mb-8">
           <span className="text-terminal-cyan">$</span> ls projects/
@@ -40,6 +47,6 @@ export function ProjectsSection() {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

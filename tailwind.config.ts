@@ -63,6 +63,8 @@ const config: Config = {
       animation: {
         pulse: "pulse 1s step-end infinite",
         glow: "glow 2s ease-in-out infinite alternate",
+        gradient: "gradient 15s ease infinite",
+        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
       },
       keyframes: {
         glow: {
@@ -72,6 +74,14 @@ const config: Config = {
           "100%": {
             textShadow: "0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14",
           },
+        },
+        gradient: {
+          "0%,100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        "fade-in-up": {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
       },
       borderRadius: {

@@ -4,11 +4,18 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useTranslation } from "../hooks/use-translation"
 import { skills } from "@/lib/data/skills"
+import { motion } from "framer-motion"
 
 export function AboutSection() {
   const { t } = useTranslation()
   return (
-    <section id="about" className="py-20 px-2 sm:px-4 lg:px-8">
+    <motion.section
+      id="about"
+      className="py-20 px-2 sm:px-4 lg:px-8"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
       <div className="max-w-6xl xl:max-w-screen-2xl mx-auto px-2 sm:px-8">
         <h2 className="text-4xl font-mono font-bold text-terminal-green mb-8">
           <span className="text-terminal-cyan">$</span> whoami
@@ -45,6 +52,6 @@ export function AboutSection() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

@@ -3,11 +3,18 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Github, Linkedin, Mail } from "lucide-react"
 import { useTranslation } from "../hooks/use-translation"
+import { motion } from "framer-motion"
 
 export function ContactSection() {
   const { t } = useTranslation()
   return (
-    <section id="contact" className="py-20 px-2 sm:px-4 lg:px-8">
+    <motion.section
+      id="contact"
+      className="py-20 px-2 sm:px-4 lg:px-8"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-4xl font-mono font-bold text-terminal-green mb-8">
           <span className="text-terminal-cyan">$</span> curl --data &quot;message&quot; https://contact.api
@@ -48,6 +55,6 @@ export function ContactSection() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
