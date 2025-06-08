@@ -17,7 +17,54 @@ const allCommands = [
   "ssh facu@server",
   "ls -l /var/www",
   "top",
-]
+  "sudo systemctl restart nginx",
+  "htop",
+  "chmod +x deploy.sh",
+  "scp dist/app.zip user@server:/opt/",
+  "ps aux | grep node",
+  "tail -f /var/log/syslog",
+  "export NODE_ENV=production",
+  "sudo ufw allow 80/tcp",
+  "openssl req -new -x509 -days 365",
+  "alias gs='git status'",
+  "kill -9 $(lsof -t -i:3000)",
+  "pip install --upgrade pip",
+  "npm outdated",
+  "yarn add tailwindcss",
+  "docker logs -f web",
+  "docker exec -it db bash",
+  "nc -vz 192.168.1.1 80",
+  "ifconfig",
+  "whoami",
+  "tree -L 2",
+  "awk '{print $1}' file.txt",
+  "sed 's/foo/bar/g' input.txt > output.txt",
+  "find . -type f -name '*.js'",
+  "rsync -avz ./dist/ user@server:/var/www/",
+  "npm run test",
+  "pytest tests/",
+  "systemctl status postgresql",
+  "history | tail -10",
+  "date '+%Y-%m-%d %H:%M:%S'",
+  "wget https://github.com/facundoluna",
+  "ssh-keygen -t ed25519",
+  "g++ main.cpp -o app",
+  "java -jar myapp.jar",
+  "ping -c 4 google.com",
+  "echo 'Hello, Facu!'",
+  "cat /etc/os-release",
+  "df -h",
+  "free -m",
+  "uname -a",
+  "journalctl -xe",
+  "zip -r backup.zip ./project",
+  "tar -xzvf archive.tar.gz",
+  "crontab -e",
+  "dig github.com",
+  "alias please='sudo'",
+  "fortune | cowsay",
+];
+
 
 function randomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min
@@ -28,14 +75,14 @@ export function TerminalBackground() {
     Array.from({ length: 10 }, (_, i) => {
       const dir = i % 2 === 0 ? "left" : "right";
       // Duración debe coincidir con tu CSS (18s y 22s)
-      const duration = dir === "left" ? 18 : 22;
+      const duration = dir === "left" ? 28 : 34;
       return {
         cmd: allCommands[randomInt(0, allCommands.length - 1)],
         dir,
         size: randomInt(12, 20),
         opacity: randomInt(10, 25) / 100,
         top: `${i * 10 + randomInt(-2, 2)}%`,
-        delay: `${randomInt(0, duration)}s`, // <-- delay aleatorio en todo el ciclo
+        delay: `-${(0.3 + Math.random() * 0.4) * duration}s`,
         blur: i % 3 === 0,
       };
     })
