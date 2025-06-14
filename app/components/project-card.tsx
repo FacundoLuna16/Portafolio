@@ -70,7 +70,7 @@ export function ProjectCard({ id, title, description, techStack, imgSrc, codeUrl
             <div className="absolute top-2 right-2 z-10">
               <div className="flex items-center gap-1 bg-red-500/90 text-red-900 px-2 py-1 rounded text-xs font-mono font-bold border border-red-600">
                 <span>🛡️</span>
-                TRAINING UTN
+                EN DESARROLLO
               </div>
             </div>
           )}
@@ -137,7 +137,7 @@ export function ProjectCard({ id, title, description, techStack, imgSrc, codeUrl
           {isSecurity && (
             <div className="mt-2">
               <span className="inline-flex items-center gap-1 bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-mono border border-red-500/30">
-                🛡️ Ago 2023 - Dic 2023 - GISSIC UTN FRC
+                🛡️ Abr 2025 - Presente - En desarrollo
               </span>
             </div>
           )}

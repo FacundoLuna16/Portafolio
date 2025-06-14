@@ -39,9 +39,8 @@ export default function ProjectPage() {
   const getProjectType = (projectSlug: string) => {
     switch (projectSlug) {
       case 'shopup':
-        return 'development' as const
       case 'security':
-        return 'security' as const
+        return 'development' as const
       case 'isidoro':
         return 'web' as const
       default:
