@@ -88,7 +88,7 @@ export function getProjects(t: (key: string) => string): Project[] {
       "Kali Linux",
       "DevSecOps",
     ],
-    imgSrc: "/placeholder.svg?height=200&width=300",
+    imgSrc: "/Seguridad/portada.webp",
     codeUrl: "https://github.com/FacundoLuna16/Seguridad",
     demoUrl: null,
     category: "Security",

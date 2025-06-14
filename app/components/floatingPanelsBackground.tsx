@@ -1,5 +1,7 @@
+"use client"
+
 import { useEffect, useState } from "react";
-import { FloatingCodePanel } from "./floatingCodePanel"; // el archivo de arriba
+import { FloatingCodePanel } from "./floatingCodePanel";
 
 const codeSnippets = [
   `docker run -d -p 80:80 nginx`,
@@ -16,7 +18,6 @@ function randomInt(min: number, max: number) {
 }
 
 function randomTop() {
-  // Evita el rango 40% a 60% (ajusta según tu layout)
   const ranges = [
     [5, 40],
     [60, 70]
@@ -26,7 +27,6 @@ function randomTop() {
 }
 
 function randomLeft() {
-  // Evita el rango 40% a 60% horizontal (ajusta según tu layout)
   const ranges = [
     [5, 40],
     [60, 70]
@@ -35,19 +35,41 @@ function randomLeft() {
   return `${randomInt(range[0], range[1])}%`;
 }
 
+// Genera paneles iniciales de forma determinística para evitar hidratación mismatch
+function generateInitialPanels() {
+  return Array.from({ length: 5 }, (_, i) => ({
+    code: codeSnippets[i % codeSnippets.length], // Determinístico
+    top: `${20 + i * 15}%`, // Determinístico
+    left: `${10 + i * 15}%`, // Determinístico
+    show: true,
+    delay: i * 2, // Determinístico
+    blur: i % 2 === 0,
+  }));
+}
+
 export function FloatingPanelsBackground() {
-  const [panels, setPanels] = useState(
-    Array.from({ length: 5 }, (_, i) => ({
+  const [mounted, setMounted] = useState(false)
+  const [panels, setPanels] = useState(generateInitialPanels)
+
+  // Marcar como montado en el cliente
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Solo después de montar, empezar el comportamiento dinámico
+  useEffect(() => {
+    if (!mounted) return
+
+    // Generar paneles con posiciones random después del montaje
+    setPanels(Array.from({ length: 5 }, (_, i) => ({
       code: codeSnippets[randomInt(0, codeSnippets.length - 1)],
-      top: randomTop(), // usa la función aquí
-      left: randomLeft(), // usa la función aquí
+      top: randomTop(),
+      left: randomLeft(),
       show: true,
       delay: randomInt(0, 8),
       blur: i % 2 === 0,
-    }))
-  );
+    })))
 
-  useEffect(() => {
     const interval = setInterval(() => {
       setPanels(panels =>
         panels.map(p =>
@@ -71,10 +93,11 @@ export function FloatingPanelsBackground() {
               : p
           )
         );
-      }, 900); // match with transition, menos tiempo para más velocidad
-    }, 3000); // ← de 5000 a 3000 para más velocidad
+      }, 900);
+    }, 3000);
+    
     return () => clearInterval(interval);
-  }, []);
+  }, [mounted]);
 
   return (
     <div className="absolute inset-0 pointer-events-none -z-10">
