@@ -48,7 +48,7 @@ export function getProjects(t: (key: string) => string): Project[] {
       "Nginx",
     ],
     imgSrc: "/Isidoro/isidoro.webp",
-    codeUrl: "https://github.com/lautarogregorat/IsidoroWebPage",
+    codeUrl: null, // Repositorio privado
     demoUrl: "https://isidorosas.com.ar/",
     category: "Frontend",
   },
