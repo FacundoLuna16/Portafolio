@@ -35,6 +35,22 @@ export default function ProjectPage() {
     notFound()
   }
 
+  // Determinar el tipo de proyecto para personalizar el componente LessonsLearned
+  const getProjectType = (projectSlug: string) => {
+    switch (projectSlug) {
+      case 'shopup':
+        return 'development' as const
+      case 'security':
+        return 'security' as const
+      case 'isidoro':
+        return 'web' as const
+      default:
+        return 'other' as const
+    }
+  }
+
+  const projectType = getProjectType(slug)
+
   return (
     <div className="min-h-screen bg-background">
       <TerminalNavbar />
@@ -203,6 +219,7 @@ export default function ProjectPage() {
         <LessonsLearned 
           lessons={project.lessonsLearned}
           nextSteps={project.nextSteps || []}
+          projectType={projectType}
         />
 
       </div>

@@ -22,6 +22,7 @@ export function ProjectCard({ id, title, description, techStack, imgSrc, codeUrl
   const isShopUp = id === 'shopup'
   const isIsidoro = id === 'isidoro'
   const isSwiftLogix = id === 'logistica'
+  const isSecurity = id === 'security'
 
   return (
     <Card className="border-terminal-green bg-background hover:border-terminal-cyan transition-all duration-300 group">
@@ -63,6 +64,16 @@ export function ProjectCard({ id, title, description, techStack, imgSrc, codeUrl
               </div>
             </div>
           )}
+
+          {/* Badge de Training para Security */}
+          {isSecurity && (
+            <div className="absolute top-2 right-2 z-10">
+              <div className="flex items-center gap-1 bg-red-500/90 text-red-900 px-2 py-1 rounded text-xs font-mono font-bold border border-red-600">
+                <span>🛡️</span>
+                TRAINING UTN
+              </div>
+            </div>
+          )}
           
           {/* Overlay para proyectos en desarrollo */}
           {isShopUp && (
@@ -78,6 +89,11 @@ export function ProjectCard({ id, title, description, techStack, imgSrc, codeUrl
           {isSwiftLogix && (
             <div className="absolute inset-0 bg-gradient-to-t from-purple-500/10 to-transparent pointer-events-none" />
           )}
+
+          {/* Overlay para proyectos de training */}
+          {isSecurity && (
+            <div className="absolute inset-0 bg-gradient-to-t from-red-500/10 to-transparent pointer-events-none" />
+          )}
         </div>
       </CardHeader>
       <CardContent className="p-4 space-y-4">
@@ -92,6 +108,9 @@ export function ProjectCard({ id, title, description, techStack, imgSrc, codeUrl
             )}
             {isSwiftLogix && (
               <span className="text-purple-400 text-lg">🏢</span>
+            )}
+            {isSecurity && (
+              <span className="text-red-400 text-lg">🛡️</span>
             )}
           </CardTitle>
           <CardDescription className="text-terminal-green/80 font-mono text-lg lg:text-xl">{description}</CardDescription>
@@ -110,6 +129,15 @@ export function ProjectCard({ id, title, description, techStack, imgSrc, codeUrl
             <div className="mt-2">
               <span className="inline-flex items-center gap-1 bg-purple-500/20 text-purple-400 px-2 py-1 rounded text-xs font-mono border border-purple-500/30">
                 🏢 Nov 2023 - Ene 2024 - Proyecto completado
+              </span>
+            </div>
+          )}
+
+          {/* Status badge adicional para Security */}
+          {isSecurity && (
+            <div className="mt-2">
+              <span className="inline-flex items-center gap-1 bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-mono border border-red-500/30">
+                🛡️ Ago 2023 - Dic 2023 - GISSIC UTN FRC
               </span>
             </div>
           )}
