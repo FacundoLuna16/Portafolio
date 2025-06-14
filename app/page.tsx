@@ -4,7 +4,7 @@ import { TerminalNavbar } from "./components/terminal-navbar"
 import { useTranslation } from "./hooks/use-translation"
 import { useScrollToSection } from "@/lib/hooks/use-scroll-to-section"
 import { HeroSection } from "./sections/HeroSection"
-import { AboutSection } from "./sections/AboutSection"
+import { TerminalAboutSection } from "./sections/TerminalAboutSection"
 import { HistorySection } from "./sections/HistorySection"
 import { ProjectsSection } from "./sections/ProjectsSection"
 import { ContactSection } from "./sections/ContactSection"
@@ -22,7 +22,7 @@ export default function Portfolio() {
     <div className="min-h-screen">
       <TerminalNavbar toggleLanguage={toggleLanguage} onNavigate={scrollToSection} />
       <HeroSection />
-      <AboutSection />
+      <TerminalAboutSection />
       <HistorySection />
       <ProjectsSection />
       <ContactSection />

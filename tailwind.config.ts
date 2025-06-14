@@ -14,6 +14,7 @@ const config: Config = {
         "terminal-black": "#0d0d0d",
         "terminal-green": "#39ff14",
         "terminal-cyan": "#00d9ff",
+        "terminal-yellow": "#ffff00",
         "terminal-gray": "#1a1a1a",
         "off-white": "#f2f2f2",
         background: "hsl(var(--background))",
