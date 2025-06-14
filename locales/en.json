@@ -31,7 +31,7 @@
   "projects.isidoro.title": "Isidoro S.A. – Corporate Website",
   "projects.isidoro.description": "Responsive informational site for an agribusiness company. Style inspired by John Deere, multi-language support, and backend with email sending.",
   "projects.logistica.title": "Logistics System – Shipment Management",
-  "projects.logistica.description": "Comprehensive platform for managing orders, delivery routes, and client notifications. Includes authentication, resource assignment, and Dockerized deployment.",
+  "projects.logistica.description": "Comprehensive logistics and shipment management system developed for Ferretería Siglo21. Features complete traceability, route management, automated status updates, WhatsApp notifications, and secure authentication with Keycloak.",
   "projects.security.title": "Cybersecurity Training – GISSIC UTN",
   "projects.security.description": "Technical repository with analyses, scripts, and solutions to offensive cybersecurity challenges and secure development. Aligned with DevSecOps practices.",
   "projects.devops.title": "DevOps Workshop – Infrastructure & Deployment",

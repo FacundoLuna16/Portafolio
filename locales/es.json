@@ -31,7 +31,7 @@
   "projects.isidoro.title": "Isidoro S.A. – Web Institucional",
   "projects.isidoro.description": "Sitio informativo responsive para empresa agropecuaria. Estilo inspirado en John Deere, soporte multilenguaje y backend con envío de correos.",
   "projects.logistica.title": "Sistema de Logística – Gestión de Envíos",
-  "projects.logistica.description": "Plataforma integral para la gestión de pedidos, rutas de entrega y notificaciones a clientes. Incluye autenticación, asignación de recursos y despliegue dockerizado.",
+  "projects.logistica.description": "Sistema integral para gestión de logística y envíos desarrollado para Ferretería Siglo21. Incluye trazabilidad completa, gestión de rutas, estados automatizados, notificaciones WhatsApp y autenticación segura con Keycloak.",
   "projects.security.title": "Training Ciberseguridad – GISSIC UTN",
   "projects.security.description": "Repositorio técnico con análisis, scripts y soluciones a desafíos de ciberseguridad ofensiva y desarrollo seguro. Alineado a prácticas DevSecOps.",
   "projects.devops.title": "Taller DevOps – Infraestructura & Despliegue",
