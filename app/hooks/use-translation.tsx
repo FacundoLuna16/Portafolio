@@ -16,11 +16,12 @@ const TranslationContext = createContext<TranslationContextType | undefined>(und
 const translations = { en, es } as const
 
 export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState("es") // Cambié a español por defecto
-  const [isClient, setIsClient] = useState(false)
+  const [locale, setLocaleState] = useState("es") // Español por defecto
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setIsClient(true)
+    setMounted(true)
+    // Solo acceder a localStorage después del montaje
     const savedLocale = localStorage.getItem("locale")
     if (savedLocale && (savedLocale === "en" || savedLocale === "es")) {
       setLocaleState(savedLocale)
@@ -29,7 +30,7 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
 
   const setLocale = (newLocale: string) => {
     setLocaleState(newLocale)
-    if (isClient) {
+    if (mounted) {
       localStorage.setItem("locale", newLocale)
     }
   }
