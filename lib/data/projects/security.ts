@@ -10,27 +10,32 @@ export const securityProject: DetailedProject = {
   timeline: 'Agosto 2023 - Diciembre 2023 (5 meses)',
   team: 'Facundo Luna (Individual)',
   techStack: [
-    // Security Tools
-    'Burp Suite Professional', 'Nmap', 'Metasploit', 'Wireshark', 'John the Ripper',
-    'Hashcat', 'SQLmap', 'Nikto', 'DirBuster', 'Hydra',
-    // Programming & Scripting
-    'Python 3', 'Bash', 'PowerShell', 'JavaScript', 'SQL',
+    // Web Security Tools
+    'Burp Suite Professional', 'OWASP ZAP', 'SQLmap', 'Nikto', 'DirBuster',
+    // Network Security Tools  
+    'Nmap', 'Metasploit', 'Wireshark', 'Hydra', 'Netcat',
+    // Password & Crypto Tools
+    'John the Ripper', 'Hashcat', 'OpenSSL',
     // Operating Systems
     'Kali Linux', 'Ubuntu Server', 'Windows Server', 'Parrot Security OS',
-    // DevSecOps Tools
-    'Docker', 'Git', 'Markdown', 'OWASP ZAP', 'Nessus',
+    // Programming & Scripting
+    'Python 3', 'Bash', 'PowerShell', 'JavaScript',
     // Forensics & Analysis
-    'Volatility', 'Autopsy', 'FTK Imager', 'dd (GNU)', 'binwalk'
+    'Volatility', 'Autopsy', 'FTK Imager', 'binwalk',
+    // OSINT Tools
+    'Maltego', 'theHarvester', 'Shodan',
+    // Documentation
+    'Markdown', 'Git', 'Docker'
   ],
   highlights: [
-    'Análisis completo de 15+ vulnerabilidades web críticas',
+    'Análisis completo de vulnerabilidades OWASP Top 10',
     'Implementación de ataques Man-in-the-Middle avanzados',
     'Desarrollo de exploits personalizados en Python',
     'Análisis forense digital de sistemas comprometidos',
     'Documentación detallada con metodología step-by-step',
     'Integración de herramientas OSINT para reconocimiento',
     'Casos prácticos reales de Red Team vs Blue Team',
-    'Aplicación de marcos OWASP Top 10 y NIST'
+    'Aplicación de marcos OWASP, NIST y MITRE ATT&CK'
   ],
   imgSrc: '/Seguridad/portada.webp',
   demoUrl: null, // Repositorio de training - sin demo
@@ -43,30 +48,24 @@ export const securityProject: DetailedProject = {
     impact: 'Formación práctica en ciberseguridad ofensiva, contribución al programa académico UTN FRC, y desarrollo de habilidades aplicables en entornos empresariales de Red Team y pentesting profesional.'
   },
 
-  // Galería de casos prácticos y herramientas
-  gallery: [
-    {
-      src: '/Seguridad/portada.webp',
-      alt: 'Portada del repositorio de ciberseguridad',
-      title: 'Training Ciberseguridad GISSIC UTN'
-    }
-  ],
+  // Sin galería de capturas - proyecto de training técnico
 
   architecture: {
-    description: 'Estructura modular organizada por categorías de ciberseguridad, cada caso práctico con documentación completa, evidencias visuales y scripts reproducibles. Metodología basada en Kill Chain y frameworks OWASP.',
+    description: 'Estructura modular organizada por dominios de ciberseguridad, cada caso práctico con documentación completa, evidencias visuales y scripts reproducibles. Metodología basada en Kill Chain y frameworks reconocidos.',
     components: [
       {
-        name: 'Web Application Security',
-        description: 'Análisis y explotación de vulnerabilidades web siguiendo OWASP Top 10',
-        tech: ['Burp Suite Pro', 'OWASP ZAP', 'SQLmap', 'Nikto', 'DirBuster', 'Custom Python Scripts'],
+        name: 'Web Security',
+        description: 'Análisis y explotación de vulnerabilidades en aplicaciones web',
+        tech: ['Burp Suite Professional', 'OWASP ZAP', 'SQLmap', 'Nikto', 'DirBuster', 'Custom Python Scripts'],
         responsibilities: [
-          'SQL Injection: análisis, explotación y bypass de filtros',
-          'Cross-Site Scripting (XSS): reflected, stored y DOM-based',
+          'SQL Injection: Union-based, Boolean-based, Time-based',
+          'Cross-Site Scripting (XSS): Reflected, Stored, DOM-based',
           'Cross-Site Request Forgery (CSRF) y bypass de tokens',
           'Local File Inclusion (LFI) y Remote File Inclusion (RFI)',
           'Command Injection y OS Command Execution',
           'Authentication Bypass y Session Management flaws',
-          'Directory Traversal y Path Manipulation attacks'
+          'Directory Traversal y Path Manipulation attacks',
+          'File Upload vulnerabilities y web shell deployment'
         ],
         challenges: [
           {
@@ -85,9 +84,9 @@ export const securityProject: DetailedProject = {
         ]
       },
       {
-        name: 'Network Penetration Testing',
-        description: 'Evaluación integral de seguridad de redes corporativas y servicios',
-        tech: ['Nmap', 'Metasploit', 'Wireshark', 'Hydra', 'Custom Bash Scripts', 'Netcat'],
+        name: 'Network Security',
+        description: 'Evaluación de seguridad de redes corporativas y servicios de red',
+        tech: ['Nmap', 'Metasploit', 'Wireshark', 'Hydra', 'Netcat', 'Custom Bash Scripts'],
         responsibilities: [
           'Network reconnaissance y service enumeration',
           'Port scanning avanzado con evasión de IDS/IPS',
@@ -95,7 +94,8 @@ export const securityProject: DetailedProject = {
           'Man-in-the-Middle attacks en redes switching',
           'Wireless security assessment (WEP/WPA/WPA2)',
           'Post-exploitation y lateral movement',
-          'Network pivoting y tunneling techniques'
+          'Network pivoting y tunneling techniques',
+          'Active Directory enumeration y privilege escalation'
         ],
         challenges: [
           {
@@ -114,22 +114,22 @@ export const securityProject: DetailedProject = {
         ]
       },
       {
-        name: 'Digital Forensics & Incident Response',
-        description: 'Análisis forense de sistemas comprometidos y respuesta a incidentes',
-        tech: ['Volatility', 'Autopsy', 'FTK Imager', 'dd', 'binwalk', 'Yara Rules'],
+        name: 'Cryptography',
+        description: 'Análisis de implementaciones criptográficas y ataques a sistemas de autenticación',
+        tech: ['John the Ripper', 'Hashcat', 'OpenSSL', 'Custom Python Scripts'],
         responsibilities: [
-          'Memory dump analysis para detection de malware',
-          'Disk imaging y timeline reconstruction',
-          'Network traffic analysis durante incidentes',
-          'Malware reverse engineering básico',
-          'Evidence preservation y chain of custody',
-          'Incident documentation y reporting',
-          'IOCs (Indicators of Compromise) identification'
+          'Hash cracking usando rainbow tables y brute force',
+          'Weak cryptographic implementation analysis',
+          'Password policy assessment y dictionary attacks',
+          'Certificate validation y PKI security review',
+          'Custom hash algorithm reverse engineering',
+          'Steganography detection y analysis',
+          'Wireless encryption cracking (WEP/WPA/WPA2)'
         ]
       },
       {
-        name: 'OSINT & Reconnaissance',
-        description: 'Técnicas de inteligencia de fuentes abiertas para reconocimiento',
+        name: 'OSINT',
+        description: 'Técnicas de inteligencia de fuentes abiertas para reconocimiento pasivo',
         tech: ['Maltego', 'theHarvester', 'Shodan', 'Google Dorking', 'Custom Python Scripts'],
         responsibilities: [
           'Domain enumeration y subdomain discovery',
@@ -137,19 +137,24 @@ export const securityProject: DetailedProject = {
           'Public database mining para información sensible',
           'Dark web monitoring y threat intelligence',
           'Social engineering preparation via OSINT',
-          'Infrastructure mapping y technology stack identification'
+          'Infrastructure mapping y technology stack identification',
+          'Metadata extraction de documentos públicos',
+          'Geolocation intelligence y physical security assessment'
         ]
       },
       {
-        name: 'Cryptography & Password Security',
-        description: 'Análisis de implementaciones criptográficas y ataques a passwords',
-        tech: ['John the Ripper', 'Hashcat', 'OpenSSL', 'Custom Python Scripts'],
+        name: 'Forensics',
+        description: 'Análisis forense digital y respuesta a incidentes de seguridad',
+        tech: ['Volatility', 'Autopsy', 'FTK Imager', 'dd (GNU)', 'binwalk', 'Yara Rules'],
         responsibilities: [
-          'Hash cracking usando rainbow tables y brute force',
-          'Weak cryptographic implementation analysis',
-          'Password policy assessment y dictionary attacks',
-          'Certificate validation y PKI security review',
-          'Custom hash algorithm reverse engineering'
+          'Memory dump analysis para detection de malware',
+          'Disk imaging y timeline reconstruction',
+          'Network traffic analysis durante incidentes',
+          'Malware reverse engineering básico',
+          'Evidence preservation y chain of custody',
+          'Incident documentation y reporting',
+          'IOCs (Indicators of Compromise) identification',
+          'Steganography analysis y hidden data recovery'
         ]
       }
     ],
@@ -228,19 +233,6 @@ export const securityProject: DetailedProject = {
     }
   ],
 
-  metrics: {
-    performance: {
-      responseTime: 'Training completado en 5 meses',
-      throughput: '15+ casos prácticos documentados',
-      uptime: 'Repositorio activo y mantenido'
-    },
-    business: {
-      usersImpacted: 'Programa GISSIC UTN FRC',
-      conversionImprovement: 'Formación especializada en ciberseguridad',
-      costReduction: 'Contribución académica y investigación aplicada'
-    }
-  },
-
   lessonsLearned: [
     'La ciberseguridad ofensiva requiere un entendimiento profundo de sistemas y redes subyacentes',
     'La documentación meticulosa es tan importante como la ejecución técnica del ataque',
@@ -255,13 +247,21 @@ export const securityProject: DetailedProject = {
   ],
 
   nextSteps: [
-    'Expansión hacia Red Team operations y threat hunting',
-    'Desarrollo de capacidades en cloud security (AWS, Azure)',
-    'Especialización en malware analysis y reverse engineering',
+    // Ataques pendientes por agregar según README
+    'Buffer Overflow exploitation y development de exploits',
+    'Advanced Persistent Threat (APT) simulation',
+    'Mobile application security testing (Android/iOS)',
+    'Cloud security assessment (AWS, Azure, GCP)',
+    'Container security y Docker exploitation',
+    'IoT device security assessment',
+    'Social Engineering campaigns y phishing simulations',
+    'Red Team operations y threat hunting',
+    'Malware analysis y reverse engineering avanzado',
+    'Zero-day vulnerability research y development',
+    // Certificaciones y desarrollo profesional
     'Certificaciones profesionales: CEH, OSCP, CISSP',
     'Contribución a proyectos open source de ciberseguridad',
     'Investigación en AI/ML applications para cybersecurity',
-    'Mentoring y training de nuevos profesionales en seguridad',
-    'Desarrollo de herramientas propias para la comunidad de seguridad'
+    'Mentoring y training de nuevos profesionales en seguridad'
   ]
 }
