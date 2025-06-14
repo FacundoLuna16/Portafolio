@@ -1,6 +1,10 @@
+"use client"
+
+import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle, Clock, AlertCircle } from "lucide-react"
+import { CheckCircle, Clock, AlertCircle, ChevronDown, ChevronUp } from "lucide-react"
 
 interface UserStory {
   sprint: number
@@ -16,6 +20,24 @@ interface SprintTimelineProps {
 }
 
 export function SprintTimeline({ currentSprint, userStories }: SprintTimelineProps) {
+  const [expandedSprints, setExpandedSprints] = useState<number[]>([currentSprint])
+
+  const toggleSprint = (sprintNumber: number) => {
+    setExpandedSprints(prev => 
+      prev.includes(sprintNumber) 
+        ? prev.filter(i => i !== sprintNumber)
+        : [...prev, sprintNumber]
+    )
+  }
+
+  const toggleAll = () => {
+    if (expandedSprints.length === userStories.length) {
+      setExpandedSprints([])
+    } else {
+      setExpandedSprints(userStories.map(sprint => sprint.sprint))
+    }
+  }
+
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed': return <CheckCircle className="h-5 w-5 text-green-400" />
@@ -43,101 +65,148 @@ export function SprintTimeline({ currentSprint, userStories }: SprintTimelinePro
         <p className="text-terminal-green/80 font-mono">
           Desarrollo ágil con sprints de 2 semanas • Actualmente en Sprint {currentSprint}
         </p>
+        
+        {/* Control para expandir/colapsar todos */}
+        <div className="flex justify-center">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={toggleAll}
+            className="border-terminal-green/50 text-terminal-green hover:bg-terminal-green hover:text-terminal-black font-mono"
+          >
+            {expandedSprints.length === userStories.length ? (
+              <>
+                <ChevronUp className="mr-2 h-4 w-4" />
+                Colapsar Sprints
+              </>
+            ) : (
+              <>
+                <ChevronDown className="mr-2 h-4 w-4" />
+                Expandir Sprints
+              </>
+            )}
+          </Button>
+        </div>
       </div>
 
-      <div className="grid gap-6">
-        {userStories.map((sprint, index) => (
-          <Card 
-            key={sprint.sprint}
-            className={`${getStatusColor(sprint.status)} border transition-all duration-300 hover:shadow-lg`}
-          >
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center gap-3 text-terminal-green font-mono">
-                  {getStatusIcon(sprint.status)}
-                  <span>Sprint {sprint.sprint}: {sprint.title}</span>
-                  {sprint.sprint === currentSprint && (
-                    <Badge className="bg-terminal-green text-terminal-black font-mono text-xs">
-                      ACTUAL
-                    </Badge>
-                  )}
-                </CardTitle>
-                
-                <Badge 
-                  variant="outline" 
-                  className={`font-mono text-xs ${
-                    sprint.status === 'completed' ? 'border-green-500 text-green-400' :
-                    sprint.status === 'in-progress' ? 'border-yellow-500 text-yellow-400' :
-                    'border-blue-500 text-blue-400'
-                  }`}
-                >
-                  {sprint.status === 'completed' ? 'Completado' :
-                   sprint.status === 'in-progress' ? 'En Progreso' :
-                   'Planificado'}
-                </Badge>
-              </div>
-            </CardHeader>
-            
-            <CardContent className="space-y-6">
-              {/* User Stories */}
-              <div>
-                <h4 className="text-sm font-mono font-semibold text-terminal-green/80 mb-3">
-                  📋 User Stories:
-                </h4>
-                <ul className="space-y-2">
-                  {sprint.stories.map((story, storyIndex) => (
-                    <li 
-                      key={storyIndex}
-                      className="flex items-start gap-2 text-terminal-green/80 font-mono text-sm"
-                    >
-                      <span className="text-terminal-cyan mt-1">•</span>
-                      <span>{story}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Technical Highlights */}
-              <div>
-                <h4 className="text-sm font-mono font-semibold text-terminal-green/80 mb-3">
-                  🔧 Logros Técnicos:
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {sprint.highlights.map((highlight, highlightIndex) => (
+      <div className="grid gap-4">
+        {userStories.map((sprint, index) => {
+          const isExpanded = expandedSprints.includes(sprint.sprint)
+          
+          return (
+            <Card 
+              key={sprint.sprint}
+              className={`${getStatusColor(sprint.status)} border transition-all duration-300`}
+            >
+              {/* Header clickeable */}
+              <CardHeader 
+                className="cursor-pointer hover:bg-opacity-20 transition-colors duration-200"
+                onClick={() => toggleSprint(sprint.sprint)}
+              >
+                <div className="flex items-center justify-between">
+                  <CardTitle className="flex items-center gap-3 text-terminal-green font-mono">
+                    {getStatusIcon(sprint.status)}
+                    <span>Sprint {sprint.sprint}: {sprint.title}</span>
+                    {sprint.sprint === currentSprint && (
+                      <Badge className="bg-terminal-green text-terminal-black font-mono text-xs">
+                        ACTUAL
+                      </Badge>
+                    )}
+                  </CardTitle>
+                  
+                  <div className="flex items-center gap-3">
                     <Badge 
-                      key={highlightIndex}
-                      variant="outline"
-                      className="border-terminal-cyan/50 text-terminal-cyan text-xs font-mono"
+                      variant="outline" 
+                      className={`font-mono text-xs ${
+                        sprint.status === 'completed' ? 'border-green-500 text-green-400' :
+                        sprint.status === 'in-progress' ? 'border-yellow-500 text-yellow-400' :
+                        'border-blue-500 text-blue-400'
+                      }`}
                     >
-                      {highlight}
+                      {sprint.status === 'completed' ? 'Completado' :
+                       sprint.status === 'in-progress' ? 'En Progreso' :
+                       'Planificado'}
                     </Badge>
-                  ))}
+                    
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-terminal-green hover:text-terminal-cyan p-1"
+                    >
+                      {isExpanded ? (
+                        <ChevronUp className="h-5 w-5" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5" />
+                      )}
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </CardHeader>
+              
+              {/* Contenido expandible */}
+              {isExpanded && (
+                <CardContent className="space-y-6 border-t border-terminal-green/20">
+                  {/* User Stories */}
+                  <div>
+                    <h4 className="text-sm font-mono font-semibold text-terminal-green/80 mb-3">
+                      📋 User Stories:
+                    </h4>
+                    <ul className="space-y-2">
+                      {sprint.stories.map((story, storyIndex) => (
+                        <li 
+                          key={storyIndex}
+                          className="flex items-start gap-2 text-terminal-green/80 font-mono text-sm"
+                        >
+                          <span className="text-terminal-cyan mt-1">•</span>
+                          <span>{story}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              {/* Progress Indicator */}
-              <div className="pt-4 border-t border-terminal-green/20">
-                <div className="flex items-center justify-between text-xs font-mono text-terminal-green/60">
-                  <span>Sprint {sprint.sprint}/∞</span>
-                  <span>
-                    {sprint.status === 'completed' ? '100% completado' :
-                     sprint.status === 'in-progress' ? 'En desarrollo...' :
-                     'Próximamente'}
-                  </span>
-                </div>
-                <div className="mt-2 h-2 bg-terminal-green/20 rounded-full overflow-hidden">
-                  <div 
-                    className={`h-full transition-all duration-1000 ${
-                      sprint.status === 'completed' ? 'w-full bg-green-500' :
-                      sprint.status === 'in-progress' ? 'w-3/4 bg-yellow-500' :
-                      'w-0 bg-blue-500'
-                    }`}
-                  />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+                  {/* Technical Highlights */}
+                  <div>
+                    <h4 className="text-sm font-mono font-semibold text-terminal-green/80 mb-3">
+                      🔧 Logros Técnicos:
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {sprint.highlights.map((highlight, highlightIndex) => (
+                        <Badge 
+                          key={highlightIndex}
+                          variant="outline"
+                          className="border-terminal-cyan/50 text-terminal-cyan text-xs font-mono"
+                        >
+                          {highlight}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Progress Indicator */}
+                  <div className="pt-4 border-t border-terminal-green/20">
+                    <div className="flex items-center justify-between text-xs font-mono text-terminal-green/60">
+                      <span>Sprint {sprint.sprint}/∞</span>
+                      <span>
+                        {sprint.status === 'completed' ? '100% completado' :
+                         sprint.status === 'in-progress' ? 'En desarrollo...' :
+                         'Próximamente'}
+                      </span>
+                    </div>
+                    <div className="mt-2 h-2 bg-terminal-green/20 rounded-full overflow-hidden">
+                      <div 
+                        className={`h-full transition-all duration-1000 ${
+                          sprint.status === 'completed' ? 'w-full bg-green-500' :
+                          sprint.status === 'in-progress' ? 'w-3/4 bg-yellow-500' :
+                          'w-0 bg-blue-500'
+                        }`}
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              )}
+            </Card>
+          )
+        })}
       </div>
 
       {/* Development Stats */}

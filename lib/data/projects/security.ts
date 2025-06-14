@@ -6,8 +6,8 @@ export const securityProject: DetailedProject = {
   title: 'Training Ciberseguridad – GISSIC UTN',
   description: 'Repositorio técnico con análisis, scripts y soluciones a desafíos de ciberseguridad ofensiva y desarrollo seguro. Alineado a prácticas DevSecOps.',
   category: 'Security',
-  status: 'archived',
-  timeline: 'Agosto 2023 - Diciembre 2023 (5 meses)',
+  status: 'development',
+  timeline: 'Abril 2025 - Presente (en desarrollo)',
   team: 'Facundo Luna (Individual)',
   techStack: [
     // Web Security Tools
