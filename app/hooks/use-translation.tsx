@@ -8,17 +8,19 @@ interface TranslationContextType {
   locale: string
   setLocale: (locale: string) => void
   t: (key: string) => string
+  toggleLanguage: () => void
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined)
 
 const translations = { en, es } as const
 
-
 export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState("en")
+  const [locale, setLocaleState] = useState("es") // Cambié a español por defecto
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
     const savedLocale = localStorage.getItem("locale")
     if (savedLocale && (savedLocale === "en" || savedLocale === "es")) {
       setLocaleState(savedLocale)
@@ -27,18 +29,27 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
 
   const setLocale = (newLocale: string) => {
     setLocaleState(newLocale)
-    localStorage.setItem("locale", newLocale)
+    if (isClient) {
+      localStorage.setItem("locale", newLocale)
+    }
+  }
+
+  const toggleLanguage = () => {
+    const newLocale = locale === "en" ? "es" : "en"
+    setLocale(newLocale)
   }
 
   const t = (key: string): string => {
-  // Cast para que TS no proteste
-  const dict = translations[locale as keyof typeof translations] as Record<string, string>
-  return dict[key] || key
+    // Cast para que TS no proteste
+    const dict = translations[locale as keyof typeof translations] as Record<string, string>
+    return dict[key] || key
   }
 
-
-
-  return <TranslationContext.Provider value={{ locale, setLocale, t }}>{children}</TranslationContext.Provider>
+  return (
+    <TranslationContext.Provider value={{ locale, setLocale, t, toggleLanguage }}>
+      {children}
+    </TranslationContext.Provider>
+  )
 }
 
 export function useTranslation() {
@@ -46,5 +57,6 @@ export function useTranslation() {
   if (context === undefined) {
     throw new Error("useTranslation must be used within a TranslationProvider")
   }
+  
   return context
 }
