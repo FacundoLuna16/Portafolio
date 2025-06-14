@@ -6,6 +6,7 @@ import Image from "next/image"
 import { getProjectSlug, hasDetailedPage } from "@/lib/utils/project-utils"
 
 interface ProjectCardProps {
+  id: string // ID único del proyecto
   title: string
   description: string
   techStack: string[]
@@ -15,12 +16,12 @@ interface ProjectCardProps {
   category: string
 }
 
-export function ProjectCard({ title, description, techStack, imgSrc, codeUrl, demoUrl }: ProjectCardProps) {
-  const projectSlug = getProjectSlug(title)
-  const hasDetails = hasDetailedPage(title)
-  const isShopUp = projectSlug === 'shopup'
-  const isIsidoro = projectSlug === 'isidoro'
-  const isSwiftLogix = projectSlug === 'logistica'
+export function ProjectCard({ id, title, description, techStack, imgSrc, codeUrl, demoUrl }: ProjectCardProps) {
+  const projectSlug = getProjectSlug(id)
+  const hasDetails = hasDetailedPage(id)
+  const isShopUp = id === 'shopup'
+  const isIsidoro = id === 'isidoro'
+  const isSwiftLogix = id === 'logistica'
 
   return (
     <Card className="border-terminal-green bg-background hover:border-terminal-cyan transition-all duration-300 group">

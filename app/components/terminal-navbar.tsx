@@ -7,7 +7,7 @@ import { useCommandAnimation } from "../hooks/use-command-animation"
 import { useTranslation } from "../hooks/use-translation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
-import { Languages, Menu, Moon, Sun, ArrowLeft, Home } from "lucide-react"
+import { Languages, Menu, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
 interface TerminalNavbarProps {
@@ -44,11 +44,11 @@ export function TerminalNavbar({ toggleLanguage: toggleLangProp, onNavigate }: T
     if (onNavigate && href.startsWith("/#")) {
       // Navegación dentro de la página principal
       onNavigate(section)
-    } else if (href === "/" && !isHomePage) {
-      // Si estamos en otra página y queremos ir al home
+    } else if (href === "/") {
+      // Navegación al home
       router.push("/")
-    } else if (href.startsWith("/#") && !isHomePage) {
-      // Si estamos en otra página pero queremos ir a una sección del home
+    } else if (href.startsWith("/#")) {
+      // Si queremos ir a una sección del home desde otra página
       router.push("/")
       // Después de navegar al home, hacer scroll a la sección
       setTimeout(() => {
@@ -63,10 +63,6 @@ export function TerminalNavbar({ toggleLanguage: toggleLangProp, onNavigate }: T
     }
   }
 
-  // Determinar el contexto actual - solo en el cliente
-  const isProjectDetail = isClient ? (pathname.startsWith('/projects/') && pathname !== '/projects') : false
-  const isHomePage = isClient ? pathname === '/' : true // Default a home para SSR
-
   return (
     <nav
       className="sticky top-0 z-50 w-full border-b-2 border-terminal-green bg-background"
@@ -74,25 +70,8 @@ export function TerminalNavbar({ toggleLanguage: toggleLangProp, onNavigate }: T
     >
       <div className="grid grid-cols-[auto_1fr_auto] items-center w-full px-2 py-2 md:px-12 md:py-4 gap-2 md:gap-4">
         
-        {/* Columna 1: Prompt con contexto */}
-        <div className="flex items-center gap-2">
-          {/* Botón de navegación para páginas no-home - solo mostrar en cliente */}
-          {isClient && !isHomePage && (
-            <div className="hidden md:flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-terminal-green hover:text-terminal-cyan font-mono text-xs"
-                asChild
-              >
-                <Link href="/">
-                  <ArrowLeft className="mr-1 h-3 w-3" />
-                  home
-                </Link>
-              </Button>
-            </div>
-          )}
-          
+        {/* Columna 1: Terminal Prompt */}
+        <div className="flex items-center">
           <span className="block overflow-hidden text-ellipsis whitespace-nowrap font-mono text-terminal-green text-base md:w-[34ch]">
             facu@portfolio:~$ {command ? (
               <>
@@ -108,19 +87,13 @@ export function TerminalNavbar({ toggleLanguage: toggleLangProp, onNavigate }: T
           </span>
         </div>
 
-        {/* Columna 2: Comandos */}
+        {/* Columna 2: Comandos de navegación */}
         <ul className="hidden md:flex gap-8 justify-center w-full">
           {navItems.map((item) => (
             <li key={item.section}>
               <button
                 onClick={() => handleNav(item.section, item.command, item.href)}
-                className={`font-mono hover:text-terminal-cyan underline-offset-4 hover:underline whitespace-nowrap text-base ${
-                  isClient && isHomePage && onNavigate ? 
-                    // En home con navegación interna, no hacer highlighting automático
-                    "text-terminal-green" :
-                    // En otras páginas, hacer highlighting normal
-                    !isHomePage ? "text-terminal-green" : "text-terminal-green"
-                }`}
+                className="font-mono text-terminal-green hover:text-terminal-cyan underline-offset-4 hover:underline whitespace-nowrap text-base"
               >
                 $ {item.command}
               </button>
@@ -128,24 +101,8 @@ export function TerminalNavbar({ toggleLanguage: toggleLangProp, onNavigate }: T
           ))}
         </ul>
 
-        {/* Columna 3: Toggles y menú */}
+        {/* Columna 3: Controles (idioma, tema, menú mobile) */}
         <div className="flex items-center gap-2 justify-end">
-          {/* Navegación rápida en mobile para páginas no-home - solo en cliente */}
-          {isClient && !isHomePage && (
-            <div className="md:hidden flex items-center gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-terminal-green hover:text-terminal-cyan h-8 w-8"
-                asChild
-              >
-                <Link href="/">
-                  <Home className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          )}
-          
           <Button
             variant="ghost"
             size="icon"
@@ -167,6 +124,7 @@ export function TerminalNavbar({ toggleLanguage: toggleLangProp, onNavigate }: T
             {isClient && theme === "dark" ? <Sun className="h-8 w-8" /> : <Moon className="h-8 w-8" />}
           </Button>
 
+          {/* Menú móvil */}
           <Sheet>
             <SheetTrigger asChild>
               <Button

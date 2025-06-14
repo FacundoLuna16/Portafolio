@@ -1,4 +1,5 @@
 export interface Project {
+  id: string // ID único del proyecto
   title: string
   description: string
   techStack: string[]
@@ -11,6 +12,7 @@ export interface Project {
 export function getProjects(t: (key: string) => string): Project[] {
   return [
     {
+    id: 'shopup',
     title: t('projects.shopup.title'),
     description: t('projects.shopup.description'),
     techStack: [
@@ -35,6 +37,7 @@ export function getProjects(t: (key: string) => string): Project[] {
     category: "Backend",
   },
   {
+    id: 'isidoro',
     title: t('projects.isidoro.title'),
     description: t('projects.isidoro.description'),
     techStack: [
@@ -53,6 +56,7 @@ export function getProjects(t: (key: string) => string): Project[] {
     category: "Frontend",
   },
   {
+    id: 'logistica',
     title: t('projects.logistica.title'),
     description: t('projects.logistica.description'),
     techStack: [
@@ -72,6 +76,7 @@ export function getProjects(t: (key: string) => string): Project[] {
     category: "Backend",
   },
   {
+    id: 'security',
     title: t('projects.security.title'),
     description: t('projects.security.description'),
     techStack: [
@@ -83,12 +88,13 @@ export function getProjects(t: (key: string) => string): Project[] {
       "Kali Linux",
       "DevSecOps",
     ],
-    imgSrc: "/placeholder.svg?height=200&width=300",
+    imgSrc: "/Seguridad/portada.webp",
     codeUrl: "https://github.com/FacundoLuna16/Seguridad",
     demoUrl: null,
     category: "Security",
   },
   {
+    id: 'devops',
     title: t('projects.devops.title'),
     description: t('projects.devops.description'),
     techStack: [
@@ -108,6 +114,7 @@ export function getProjects(t: (key: string) => string): Project[] {
     category: "DevOps",
   },
   {
+    id: 'tpi',
     title: t('projects.tpi.title'),
     description: t('projects.tpi.description'),
     techStack: [

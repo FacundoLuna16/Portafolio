@@ -32,6 +32,8 @@ export function CodeShowcase({ microservices }: CodeShowcaseProps) {
       case 'typescript':
       case 'ts': return 'text-blue-400 border-blue-400/30'
       case 'python': return 'text-green-400 border-green-400/30'
+      case 'bash': return 'text-purple-400 border-purple-400/30'
+      case 'powershell': return 'text-cyan-400 border-cyan-400/30'
       case 'properties': return 'text-purple-400 border-purple-400/30'
       default: return 'text-terminal-green border-terminal-green/30'
     }
@@ -40,14 +42,24 @@ export function CodeShowcase({ microservices }: CodeShowcaseProps) {
   // Filtrar microservicios que tienen code snippets
   const servicesWithCode = microservices.filter(service => service.codeSnippet)
 
+  // Detectar si es un proyecto de seguridad
+  const isSecurityProject = microservices.some(service => 
+    service.tech.some(tech => ['Burp Suite Professional', 'Metasploit', 'Kali Linux', 'Nmap'].includes(tech))
+  )
+
+  // No mostrar esta sección si no hay código para mostrar
+  if (servicesWithCode.length === 0) {
+    return null
+  }
+
   return (
     <section className="space-y-8">
       <div className="text-center space-y-4">
         <h2 className="text-3xl font-mono font-bold text-terminal-green">
-          <span className="text-terminal-cyan">$</span> find . -name "*.java" -o -name "*.py" | head -5
+          <span className="text-terminal-cyan">$</span> {isSecurityProject ? 'cat exploits/*.py' : 'find . -name "*.java" -o -name "*.py" | head -5'}
         </h2>
         <p className="text-terminal-green/80 font-mono">
-          Snippets de código real del proyecto - implementaciones clave
+          {isSecurityProject ? 'Scripts y exploits desarrollados durante el training' : 'Snippets de código real del proyecto - implementaciones clave'}
         </p>
       </div>
 
@@ -119,7 +131,7 @@ export function CodeShowcase({ microservices }: CodeShowcaseProps) {
                     🔍 Contexto del Código:
                   </h4>
                   <div className="space-y-2 text-xs font-mono text-terminal-green/80">
-                    <p><span className="text-terminal-cyan">Servicio:</span> {service.name}</p>
+                    <p><span className="text-terminal-cyan">{isSecurityProject ? 'Dominio:' : 'Servicio:'}</span> {service.name}</p>
                     <p><span className="text-terminal-cyan">Descripción:</span> {service.description}</p>
                     <div className="flex flex-wrap gap-1 mt-2">
                       <span className="text-terminal-cyan">Tech Stack:</span>
@@ -141,49 +153,6 @@ export function CodeShowcase({ microservices }: CodeShowcaseProps) {
           )
         })}
       </div>
-
-      {/* Code Stats */}
-      <Card className="border-terminal-green bg-background/50">
-        <CardContent className="p-6">
-          <h3 className="text-lg font-mono font-bold text-terminal-green mb-4">
-            📊 Estadísticas de Código
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-mono font-bold text-terminal-green">
-                {microservices.length}
-              </div>
-              <div className="text-sm font-mono text-terminal-green/60">
-                Microservicios
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-mono font-bold text-yellow-400">
-                {servicesWithCode.length}
-              </div>
-              <div className="text-sm font-mono text-terminal-green/60">
-                Con Código
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-mono font-bold text-terminal-cyan">
-                {new Set(microservices.flatMap(s => s.tech)).size}
-              </div>
-              <div className="text-sm font-mono text-terminal-green/60">
-                Tecnologías
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-mono font-bold text-green-400">
-                100%
-              </div>
-              <div className="text-sm font-mono text-terminal-green/60">
-                Arquitectura Hex.
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </section>
   )
 }

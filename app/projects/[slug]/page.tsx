@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import { shopupProjectReal } from '@/lib/data/projects/shopup-real'
 import { isidoroProject } from '@/lib/data/projects/isidoro'
 import { swiftlogixProject } from '@/lib/data/projects/swiftlogix'
+import { securityProject } from '@/lib/data/projects/security'
 import { TerminalNavbar } from '../../components/terminal-navbar'
 import { ProjectHero } from './components/ProjectHero'
 import { SprintTimeline } from './components/SprintTimeline'
@@ -21,6 +22,7 @@ const projectsMap = {
   'shopup': shopupProjectReal,
   'isidoro': isidoroProject,
   'logistica': swiftlogixProject,
+  'security': securityProject,
   // Aquí puedes agregar otros proyectos después
 }
 

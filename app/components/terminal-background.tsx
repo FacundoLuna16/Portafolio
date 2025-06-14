@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react"
 
 const allCommands = [
@@ -65,16 +67,43 @@ const allCommands = [
   "fortune | cowsay",
 ];
 
+// Genera líneas iniciales de forma determinística para evitar hidratación mismatch
+function generateInitialLines() {
+  return Array.from({ length: 10 }, (_, i) => {
+    const dir = i % 2 === 0 ? "left" : "right";
+    const duration = dir === "left" ? 28 : 34;
+    return {
+      cmd: allCommands[i % allCommands.length], // Determinístico
+      dir,
+      size: 14 + (i % 7), // Determinístico
+      opacity: 0.15 + (i % 4) * 0.05, // Determinístico
+      top: `${i * 10}%`, // Determinístico
+      delay: `-${i * 2}s`, // Determinístico
+      blur: i % 3 === 0,
+    };
+  });
+}
 
 function randomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 export function TerminalBackground() {
-  const [lines, setLines] = useState(
-    Array.from({ length: 10 }, (_, i) => {
+  const [mounted, setMounted] = useState(false)
+  const [lines, setLines] = useState(generateInitialLines)
+
+  // Marcar como montado en el cliente
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Solo después de montar, empezar a cambiar comandos random
+  useEffect(() => {
+    if (!mounted) return
+    
+    // Generar líneas con valores random después del montaje
+    setLines(Array.from({ length: 10 }, (_, i) => {
       const dir = i % 2 === 0 ? "left" : "right";
-      // Duración debe coincidir con tu CSS (18s y 22s)
       const duration = dir === "left" ? 28 : 34;
       return {
         cmd: allCommands[randomInt(0, allCommands.length - 1)],
@@ -85,11 +114,9 @@ export function TerminalBackground() {
         delay: `-${(0.3 + Math.random() * 0.4) * duration}s`,
         blur: i % 3 === 0,
       };
-    })
-  );
+    }))
 
-  // Cambia comandos random cada 5-10 segundos para efecto “vivo”
-  useEffect(() => {
+    // Cambiar comandos periódicamente
     const interval = setInterval(() => {
       setLines(lines =>
         lines.map(l => ({
@@ -98,8 +125,9 @@ export function TerminalBackground() {
         }))
       )
     }, randomInt(5000, 10000))
+    
     return () => clearInterval(interval)
-  }, [])
+  }, [mounted])
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
