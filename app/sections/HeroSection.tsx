@@ -31,6 +31,9 @@ export function HeroSection({ easterEggs }: HeroSectionProps) {
     setMounted(true)
     setCurrentTagline(t("hero.tagline"))
   }, [t])
+  
+  if (!mounted) return null // <--- agrega esto
+
 
   const handleNameClick = () => {
     if (mounted && easterEggs) {
