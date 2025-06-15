@@ -1,0 +1,111 @@
+{
+  "name": "Facundo Luna Developer - Backend | DevOps | Security",
+  "short_name": "FacuDev",
+  "description": "Portfolio personal de Facundo Luna, Backend Developer especializado en DevOps y Seguridad",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#39ff14",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "categories": ["developer", "portfolio", "technology"],
+  "icons": [
+    {
+      "src": "/favicon-32x32.ico",
+      "sizes": "72x72",
+      "type": "image/x-icon",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/favicon-32x32.ico",
+      "sizes": "96x96",
+      "type": "image/x-icon",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/favicon-32x32.ico",
+      "sizes": "128x128",
+      "type": "image/x-icon",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/favicon-32x32.ico",
+      "sizes": "144x144",
+      "type": "image/x-icon",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/favicon-32x32.ico",
+      "sizes": "152x152",
+      "type": "image/x-icon",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "192x192",
+      "type": "image/x-icon",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "384x384",
+      "type": "image/x-icon",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "512x512",
+      "type": "image/x-icon",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ver Proyectos",
+      "short_name": "Proyectos",
+      "description": "Explorar proyectos de desarrollo",
+      "url": "/#projects",
+      "icons": [{ "src": "/favicon-16x16.ico", "sizes": "96x96" }]
+    },
+    {
+      "name": "Descargar CV",
+      "short_name": "CV",
+      "description": "Descargar curriculum vitae",
+      "url": "/Luna-Facundo-CV.pdf",
+      "icons": [{ "src": "/favicon-16x16.ico", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contacto",
+      "short_name": "Contacto",
+      "description": "Información de contacto",
+      "url": "/#contact",
+      "icons": [{ "src": "/favicon-16x16.ico", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/placeholder.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Home page on desktop - placeholder"
+    },
+    {
+      "src": "/placeholder.jpg", 
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Projects page on mobile - placeholder"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  }
+}

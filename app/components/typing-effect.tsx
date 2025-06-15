@@ -10,16 +10,24 @@ interface TypingEffectProps {
 
 export function TypingEffect({ text, className = "", speed = 50 }: TypingEffectProps) {
   const [mounted, setMounted] = useState(false)
-  const [displayText, setDisplayText] = useState("")
+  const [displayText, setDisplayText] = useState("") // Siempre empezar vacío
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(false)
 
   // Marcar como montado en el cliente
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  // Iniciar animación solo después del montaje
   useEffect(() => {
     if (!mounted) return
+    
+    setIsAnimating(true)
+  }, [mounted])
+
+  useEffect(() => {
+    if (!isAnimating || !mounted) return
     
     if (currentIndex < text.length) {
       const timeout = setTimeout(() => {
@@ -28,18 +36,24 @@ export function TypingEffect({ text, className = "", speed = 50 }: TypingEffectP
       }, speed)
 
       return () => clearTimeout(timeout)
+    } else {
+      setIsAnimating(false)
     }
-  }, [mounted, currentIndex, text, speed])
+  }, [mounted, currentIndex, text, speed, isAnimating])
 
-  // No mostrar animación hasta que esté montado
+  // Durante SSR y antes del montaje, mostrar el texto completo para evitar layout shift
   if (!mounted) {
-    return <div className={className}>{text}</div>
+    return (
+      <div className={className}>
+        {text}
+      </div>
+    )
   }
 
   return (
     <div className={className}>
       {displayText}
-      {currentIndex < text.length && <span className="animate-pulse">_</span>}
+      {isAnimating && <span className="animate-pulse">_</span>}
     </div>
   )
 }

@@ -109,6 +109,41 @@ html {
   background: #00d9ff;
 }
 
+/* Scrollbar personalizado para el chat */
+.chat-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+  background: rgba(13, 13, 13, 0.5);
+  border-radius: 3px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background: #39ff14;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover {
+  background: #00d9ff;
+}
+
+/* Para Firefox */
+.chat-container {
+  scrollbar-width: thin;
+  scrollbar-color: #39ff14 rgba(13, 13, 13, 0.5);
+}
+
+/* Mejorar el word-break para mensajes largos */
+.chat-message {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: calc(100% - 2rem);
+}
+
 /* Glow effects */
 .terminal-glow {
   text-shadow: 0 0 5px #39ff14;
@@ -160,6 +195,73 @@ html {
     left: -100vw;
   }
 }
+
+/* ⚡ NUEVAS ANIMACIONES ULTRA-OPTIMIZADAS */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes terminal-cursor {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
 .animate-marquee-left {
   position: absolute;
   animation: marquee-left 28s linear infinite;
@@ -171,6 +273,27 @@ html {
   animation: marquee-right 34s linear infinite;
   white-space: nowrap;
   width: max-content;
+}
+
+/* ⚡ NUEVAS CLASES DE UTILIDAD */
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-matrix-rain {
+  animation: matrix-rain 4s linear infinite;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s ease-in-out infinite;
+}
+
+.animate-terminal-cursor {
+  animation: terminal-cursor 1s step-end infinite;
 }
 
 .timeline-item {

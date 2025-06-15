@@ -1,10 +1,11 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, FileText } from "lucide-react"
-import Image from "next/image"
 import { getProjectSlug, hasDetailedPage } from "@/lib/utils/project-utils"
+import { useTranslation } from "../hooks/use-translation"
 
 interface ProjectCardProps {
   id: string
@@ -24,6 +25,7 @@ interface FileStructure {
 }
 
 export function TerminalProjectCard({ id, title, description, techStack, imgSrc, codeUrl, demoUrl, category }: ProjectCardProps) {
+  const { t } = useTranslation()
   const [showDescription, setShowDescription] = useState(false)
   const [mounted, setMounted] = useState(false)
   
@@ -34,15 +36,15 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
   const getProjectStatus = () => {
     switch (id) {
       case 'shopup':
-        return { status: 'development', icon: '🚧', label: 'EN DESARROLLO', color: 'yellow' }
+        return { status: 'development', icon: '🚧', label: t('projects.status.development'), color: 'yellow' }
       case 'isidoro':
-        return { status: 'production', icon: '🚀', label: 'EN PRODUCCIÓN', color: 'green' }
+        return { status: 'production', icon: '🚀', label: t('projects.status.production'), color: 'green' }
       case 'logistica':
-        return { status: 'completed', icon: '🏢', label: 'CLIENTE REAL', color: 'purple' }
+        return { status: 'completed', icon: '🏢', label: t('projects.status.client'), color: 'purple' }
       case 'security':
-        return { status: 'archived', icon: '🛡️', label: 'TRAINING', color: 'red' }
+        return { status: 'archived', icon: '🛡️', label: t('projects.status.training'), color: 'red' }
       default:
-        return { status: 'stable', icon: '✅', label: 'COMPLETADO', color: 'blue' }
+        return { status: 'stable', icon: '✅', label: t('projects.status.completed'), color: 'blue' }
     }
   }
 
@@ -257,7 +259,7 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
                   {/* Tech Stack as "Dependencies" */}
                   <div>
                     <div className="font-mono text-sm text-terminal-green/70 mb-1">
-                      <span className="text-terminal-cyan">&gt;</span> Dependencias:
+                      <span className="text-terminal-cyan">&gt;</span> {t('projects.card.dependencies')}
                     </div>
                     <div className="pl-4 flex flex-wrap gap-1">
                       {techStack.slice(0, 3).map((tech, index) => (
@@ -267,7 +269,7 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
                       ))}
                       {techStack.length > 3 && (
                         <span className="font-mono text-xs px-2 py-1 bg-terminal-cyan/10 border border-terminal-cyan/30 rounded text-terminal-cyan/80">
-                          +{techStack.length - 3} más
+                          +{techStack.length - 3} {t('projects.card.more')}
                         </span>
                       )}
                     </div>
@@ -282,8 +284,10 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
                       <Image
                         src={imgSrc || "/placeholder.svg"}
                         alt={title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        width={400}
+                        height={225}
+                        priority={false}
+                        className="transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
                   </div>
@@ -296,7 +300,7 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
           {showDescription && (
             <div className="space-y-2 animate-in slide-in-from-bottom duration-500">
               <div className="font-mono text-sm text-terminal-green/70">
-                <span className="text-terminal-cyan">$</span> Available commands:
+                <span className="text-terminal-cyan">$</span> {t('projects.card.commands')}
               </div>
               <div className="pl-4 flex flex-wrap gap-2">
                 
