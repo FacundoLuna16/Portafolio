@@ -32,7 +32,7 @@ export const swiftlogixProject: DetailedProject = {
     'Sistema de zonas geográficas Neuquén'
   ],
   imgSrc: '/ProyectoLogistica/principal.webp',
-  demoUrl: null, // Sin demo - proyecto para cliente
+  demoUrl: undefined, // Sin demo - proyecto para cliente
   codeUrl: 'https://github.com/FacundoLuna16/ProyectoLogistica',
 
   // Detailed sections

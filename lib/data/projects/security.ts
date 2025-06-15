@@ -38,7 +38,7 @@ export const securityProject: DetailedProject = {
     'Aplicación de marcos OWASP, NIST y MITRE ATT&CK'
   ],
   imgSrc: '/Seguridad/portada.webp',
-  demoUrl: null, // Repositorio de training - sin demo
+  demoUrl: undefined, // Repositorio de training - sin demo
   codeUrl: 'https://github.com/FacundoLuna16/Seguridad',
 
   // Detailed sections

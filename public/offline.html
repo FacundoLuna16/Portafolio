@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Facundo Luna Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0d0d0d;
+            color: #39ff14;
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .terminal {
+            max-width: 600px;
+            width: 100%;
+            background: #0d0d0d;
+            border: 2px solid #39ff14;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+        }
+        
+        .terminal-header {
+            background: rgba(57, 255, 20, 0.1);
+            padding: 10px 15px;
+            border-bottom: 1px solid #39ff14;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .traffic-lights {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .traffic-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27ca3f; }
+        
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-size: 14px;
+            color: #39ff14;
+            opacity: 0.8;
+        }
+        
+        .terminal-content {
+            padding: 30px 20px;
+            line-height: 1.6;
+        }
+        
+        .prompt {
+            color: #00d9ff;
+            margin-right: 5px;
+        }
+        
+        .command {
+            color: #39ff14;
+            margin-bottom: 10px;
+        }
+        
+        .output {
+            margin-bottom: 20px;
+            color: #39ff14;
+            opacity: 0.9;
+        }
+        
+        .error {
+            color: #ff6b6b;
+            margin: 20px 0;
+        }
+        
+        .status {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid #ff6b6b;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .actions {
+            margin-top: 30px;
+        }
+        
+        .btn {
+            background: transparent;
+            border: 1px solid #39ff14;
+            color: #39ff14;
+            padding: 10px 20px;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #39ff14;
+            color: #0d0d0d;
+        }
+        
+        .cursor {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .network-status {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid #00d9ff;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .offline-features {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(57, 255, 20, 0.05);
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            border-radius: 4px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+        
+        .feature-list li {
+            padding: 5px 0;
+            opacity: 0.8;
+        }
+        
+        .feature-list li:before {
+            content: '▶ ';
+            color: #00d9ff;
+            margin-right: 5px;
+        }
+        
+        @media (max-width: 640px) {
+            body { padding: 10px; }
+            .terminal { border-radius: 4px; }
+            .terminal-content { padding: 20px 15px; }
+            .btn { 
+                display: block; 
+                width: 100%; 
+                margin-bottom: 10px; 
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="traffic-lights">
+                <div class="traffic-light red"></div>
+                <div class="traffic-light yellow"></div>
+                <div class="traffic-light green"></div>
+            </div>
+            <div class="terminal-title">facundo@portfolio:~$ - Connection Status</div>
+        </div>
+        
+        <div class="terminal-content">
+            <div class="command">
+                <span class="prompt">$</span> ping google.com
+            </div>
+            <div class="output">ping: cannot resolve google.com: Temporary failure in name resolution</div>
+            
+            <div class="command">
+                <span class="prompt">$</span> systemctl status network
+            </div>
+            <div class="error">
+                ● network.service - Network connectivity
+                   Loaded: loaded (/lib/systemd/system/network.service; enabled)
+                   Active: <strong style="color: #ff6b6b;">failed</strong> (Result: exit-code)
+            </div>
+            
+            <div class="status">
+                <strong>⚠️ CONNECTION ERROR</strong><br>
+                No hay conexión a internet disponible en este momento.
+            </div>
+            
+            <div class="command">
+                <span class="prompt">$</span> ls cached_content/
+            </div>
+            <div class="output">
+                📄 curriculum_vitae.pdf<br>
+                📊 project_data.json<br>
+                🖼️ portfolio_images/<br>
+                📝 contact_info.txt<br>
+                💾 cached_pages/
+            </div>
+            
+            <div class="offline-features">
+                <strong>📱 CONTENIDO DISPONIBLE OFFLINE:</strong>
+                <ul class="feature-list">
+                    <li>Información de contacto y CV</li>
+                    <li>Resumen de proyectos principales</li>
+                    <li>Capturas de pantalla en caché</li>
+                    <li>Datos técnicos de desarrollo</li>
+                </ul>
+            </div>
+            
+            <div class="network-status">
+                <strong>🔄 RECONEXIÓN AUTOMÁTICA</strong><br>
+                El sistema intentará reconectarse automáticamente cuando la conexión se restablezca.
+            </div>
+            
+            <div class="actions">
+                <button class="btn" onclick="retryConnection()">🔄 Reintentar Conexión</button>
+                <button class="btn" onclick="goHome()">🏠 Ir al Inicio</button>
+                <button class="btn" onclick="showCachedContent()">📋 Ver Contenido en Caché</button>
+            </div>
+            
+            <div class="command">
+                <span class="prompt">$</span> <span class="cursor">█</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ⚡ OFFLINE PAGE FUNCTIONALITY
+        
+        function retryConnection() {
+            const btn = event.target;
+            btn.textContent = '🔄 Comprobando...';
+            btn.disabled = true;
+            
+            // Check if online
+            if (navigator.onLine) {
+                window.location.href = '/';
+            } else {
+                // Simulate connection check
+                fetch('/', { 
+                    method: 'HEAD',
+                    cache: 'no-cache'
+                })
+                .then(() => {
+                    window.location.href = '/';
+                })
+                .catch(() => {
+                    btn.textContent = '❌ Sin Conexión';
+                    setTimeout(() => {
+                        btn.textContent = '🔄 Reintentar Conexión';
+                        btn.disabled = false;
+                    }, 2000);
+                });
+            }
+        }
+        
+        function goHome() {
+            // Try to go to cached homepage
+            window.location.href = '/';
+        }
+        
+        function showCachedContent() {
+            alert(`📋 CONTENIDO EN CACHÉ DISPONIBLE:
+
+🏠 Página Principal
+📄 Curriculum Vitae (PDF)
+💼 Lista de Proyectos
+📊 Información Técnica
+🖼️ Imágenes Optimizadas
+
+Nota: Algunas funciones interactivas requieren conexión a internet.`);
+        }
+        
+        // ⚡ AUTO-RETRY CONNECTION
+        let retryInterval;
+        
+        function startAutoRetry() {
+            retryInterval = setInterval(() => {
+                if (navigator.onLine) {
+                    fetch('/', { method: 'HEAD', cache: 'no-cache' })
+                        .then(() => {
+                            clearInterval(retryInterval);
+                            showReconnectionMessage();
+                            setTimeout(() => window.location.href = '/', 2000);
+                        })
+                        .catch(() => {});
+                }
+            }, 10000); // Check every 10 seconds
+        }
+        
+        function showReconnectionMessage() {
+            const content = document.querySelector('.terminal-content');
+            const message = document.createElement('div');
+            message.className = 'command';
+            message.innerHTML = `
+                <span class="prompt">$</span> connection restored
+                <div class="output" style="color: #27ca3f;">
+                    ✅ Conexión restablecida! Redirigiendo...
+                </div>
+            `;
+            content.appendChild(message);
+        }
+        
+        // Online/Offline listeners
+        window.addEventListener('online', () => {
+            const status = document.querySelector('.network-status');
+            status.innerHTML = `
+                <strong>✅ CONEXIÓN RESTABLECIDA</strong><br>
+                Redirigiendo al portfolio...
+            `;
+            status.style.borderColor = '#27ca3f';
+            status.style.background = 'rgba(39, 202, 63, 0.1)';
+            
+            setTimeout(() => window.location.href = '/', 1500);
+        });
+        
+        window.addEventListener('offline', () => {
+            startAutoRetry();
+        });
+        
+        // Start auto-retry when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!navigator.onLine) {
+                startAutoRetry();
+            }
+        });
+        
+        console.log('📱 Offline page loaded - Facundo Luna Portfolio PWA');
+    </script>
+</body>
+</html>

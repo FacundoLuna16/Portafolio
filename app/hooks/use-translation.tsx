@@ -18,19 +18,23 @@ const translations = { en, es } as const
 export function TranslationProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState("es") // Español por defecto
   const [mounted, setMounted] = useState(false)
+  const [initialLocale, setInitialLocale] = useState("es") // Para SSR consistency
 
   useEffect(() => {
     setMounted(true)
-    // Solo acceder a localStorage después del montaje
-    const savedLocale = localStorage.getItem("locale")
-    if (savedLocale && (savedLocale === "en" || savedLocale === "es")) {
-      setLocaleState(savedLocale)
+    // Solo acceder a localStorage después del montaje y si estamos en el cliente
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const savedLocale = localStorage.getItem("locale")
+      if (savedLocale && (savedLocale === "en" || savedLocale === "es")) {
+        setLocaleState(savedLocale)
+        setInitialLocale(savedLocale)
+      }
     }
   }, [])
 
   const setLocale = (newLocale: string) => {
     setLocaleState(newLocale)
-    if (mounted) {
+    if (mounted && typeof window !== 'undefined' && window.localStorage) {
       localStorage.setItem("locale", newLocale)
     }
   }
@@ -41,8 +45,9 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
   }
 
   const t = (key: string): string => {
-    // Cast para que TS no proteste
-    const dict = translations[locale as keyof typeof translations] as Record<string, string>
+    // Usar initialLocale durante SSR/hidratación para consistencia
+    const activeLocale = mounted ? locale : initialLocale
+    const dict = translations[activeLocale as keyof typeof translations] as Record<string, string>
     return dict[key] || key
   }
 

@@ -19,7 +19,7 @@ export const shopupProject: DetailedProject = {
     'Integración Mercado Pago',
     'PWA con offline support'
   ],
-  imgSrc: '/projects/shopup/hero.webp',
+  imgSrc: '/placeholder.jpg', // TODO: Reemplazar con /ShopUp/hero.webp cuando esté disponible
   demoUrl: 'https://kzmlebtfsrefxoyqvjgl.lite.vusercontent.net/',
 
   // Detailed sections

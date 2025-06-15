@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { useCommandAnimation } from "../hooks/use-command-animation"
 import { useTranslation } from "../hooks/use-translation"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle, SheetHeader } from "@/components/ui/sheet"
 import { Languages, Menu, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
@@ -140,6 +140,11 @@ export function TerminalNavbar({ toggleLanguage: toggleLangProp, onNavigate }: T
               side="left"
               className="top-0 right-0 h-full w-2/3 max-w-xs border-2 bg-background border-terminal-green"
             >
+              <SheetHeader>
+                <SheetTitle className="text-terminal-green font-mono text-lg">
+                  {t("navbar.menu") || "Menu"}
+                </SheetTitle>
+              </SheetHeader>
               <nav
                 className="mt-6 flex flex-col gap-4 overflow-y-auto"
                 aria-label="Secciones"

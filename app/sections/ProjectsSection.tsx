@@ -12,7 +12,13 @@ export function ProjectsSection() {
   const projects = React.useMemo(() => getProjects(t), [t])
   const { activeFilter, setActiveFilter, filteredProjects } = useProjectFilter(projects)
   
-  const filters = ["All", "Backend", "Frontend", "DevOps", "Security"]
+  const filters = [
+    t("projects.filter.all"), 
+    t("projects.filter.backend"), 
+    t("projects.filter.frontend"), 
+    t("projects.filter.devops"), 
+    t("projects.filter.security")
+  ]
 
   return (
     <section id="projects" className="py-20 px-2 sm:px-4 lg:px-8">
