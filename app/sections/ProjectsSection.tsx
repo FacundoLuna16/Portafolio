@@ -34,7 +34,7 @@ export function ProjectsSection() {
           filteredCount={filteredProjects.length}
         />
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {filteredProjects.map((project, index) => (
             <TerminalProjectCard key={index} {...project} />
           ))}

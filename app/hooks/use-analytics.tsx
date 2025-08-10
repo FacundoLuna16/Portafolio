@@ -287,7 +287,7 @@ class AnalyticsManager {
       if (process.env.NODE_ENV === 'development') {
         console.group('📊 Analytics Events')
         events.forEach(event => {
-          console.log(`${event.category}/${event.action}:`, event)
+          // Event logged in development mode
         })
         console.groupEnd()
       }
@@ -299,7 +299,7 @@ class AnalyticsManager {
       this.sendToGoogleAnalytics(events)
 
     } catch (error) {
-      console.error('Analytics flush failed:', error)
+      // Analytics flush failed - silent in production
       // Re-queue events for retry
       this.queue.unshift(...events)
     }
@@ -314,7 +314,7 @@ class AnalyticsManager {
       const updated = [...existing, ...events].slice(-100) // Keep last 100 events
       localStorage.setItem('analytics_events', JSON.stringify(updated))
     } catch (error) {
-      console.error('Failed to store analytics locally:', error)
+      // Failed to store analytics locally - silent in production
     }
   }
 

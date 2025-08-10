@@ -7,7 +7,7 @@ const codeSnippets = [
   `docker run -d -p 80:80 nginx`,
   `def greet(name):\n    print(f"Hello, {name}")`,
   `kubectl get pods --all-namespaces`,
-  `console.log('Hello, Facu!');`,
+  `const message = 'Hello, Facu!';`,
   `SELECT * FROM users WHERE active = 1;`,
   `curl -X POST https://api.myapp.com/v1/product`,
   `#include <stdio.h>\nint main() { printf("Hola"); }`,

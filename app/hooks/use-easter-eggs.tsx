@@ -48,7 +48,7 @@ export function useEasterEggs() {
         setTimeout(() => {
           setState(current => ({ ...current, hackerMode: false }))
         }, 10000)
-        console.log('🕵️ Hacker Mode Activated! Welcome to the matrix...')
+        // Hacker Mode Activated
       }
       
       if (elementId === 'hero-tagline' && newCount === 2) {
@@ -58,7 +58,7 @@ export function useEasterEggs() {
         setTimeout(() => {
           setState(current => ({ ...current, glitchMode: false }))
         }, 3000)
-        console.log('⚡ Glitch Mode Activated! Reality is optional...')
+        // Glitch Mode Activated
       }
 
       if (elementId === 'logo-avatar' && newCount >= 5) {
@@ -68,7 +68,7 @@ export function useEasterEggs() {
         setTimeout(() => {
           setState(current => ({ ...current, matrixMode: false }))
         }, 15000)
-        console.log('🟢 Matrix Mode Activated! There is no spoon...')
+        // Matrix Mode Activated
         // Reset counter después de activar
         newTrackers[elementId] = 0
       }
@@ -93,7 +93,7 @@ export function useEasterEggs() {
           fridayMessage: day === 5 && hour >= 18,
         }))
       } catch (error) {
-        console.warn('Error checking time-based effects:', error)
+        // Silent error handling in production
       }
     }
 

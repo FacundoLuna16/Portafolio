@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -55,7 +55,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
     setSelectedImageIndex(null)
   }
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     if (selectedImageIndex !== null) {
       const nextIndex = (selectedImageIndex + 1) % images.length
       setSelectedImageIndex(nextIndex)
@@ -63,9 +63,9 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
       const nextNextIndex = (nextIndex + 1) % images.length
       preloadImage()
     }
-  }
+  }, [selectedImageIndex, images.length, preloadImage])
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     if (selectedImageIndex !== null) {
       const prevIndex = selectedImageIndex === 0 ? images.length - 1 : selectedImageIndex - 1
       setSelectedImageIndex(prevIndex)
@@ -73,7 +73,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
       const prevPrevIndex = prevIndex === 0 ? images.length - 1 : prevIndex - 1
       preloadImage()
     }
-  }
+  }, [selectedImageIndex, images.length, preloadImage])
 
   // ⚡ Keyboard navigation
   useEffect(() => {
@@ -95,7 +95,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedImageIndex])
+  }, [selectedImageIndex, nextImage, prevImage])
 
   if (!mounted) {
     return (

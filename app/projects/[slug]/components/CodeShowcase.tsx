@@ -9,9 +9,10 @@ import { Microservice } from "@/lib/data/projects/types"
 
 interface CodeShowcaseProps {
   microservices: Microservice[]
+  projectSlug?: string
 }
 
-export function CodeShowcase({ microservices }: CodeShowcaseProps) {
+export function CodeShowcase({ microservices, projectSlug }: CodeShowcaseProps) {
   const [copiedCode, setCopiedCode] = useState<string | null>(null)
 
   const copyToClipboard = async (code: string, title: string) => {
@@ -47,8 +48,25 @@ export function CodeShowcase({ microservices }: CodeShowcaseProps) {
     service.tech.some(tech => ['Burp Suite Professional', 'Metasploit', 'Kali Linux', 'Nmap'].includes(tech))
   )
 
-  // No mostrar esta sección si no hay código para mostrar
-  if (servicesWithCode.length === 0) {
+  // Detectar si es el proyecto Isidoro
+  const isIsidoroProject = projectSlug === 'isidoro'
+
+  // Función para generar el título apropiado
+  const getTitle = () => {
+    if (isSecurityProject) return 'cat exploits/*.py'
+    if (isIsidoroProject) return 'ls -la frontend/src/'
+    return 'find . -name "*.java" -o -name "*.py" | head -5'
+  }
+
+  // Función para generar la descripción apropiada
+  const getDescription = () => {
+    if (isSecurityProject) return 'Scripts y exploits desarrollados durante el training'
+    if (isIsidoroProject) return 'Implementaciones clave del frontend React y backend Node.js'
+    return 'Snippets de código real del proyecto - implementaciones clave'
+  }
+
+  // No mostrar esta sección si no hay código para mostrar o es proyecto Isidoro
+  if (servicesWithCode.length === 0 || isIsidoroProject) {
     return null
   }
 
@@ -56,10 +74,10 @@ export function CodeShowcase({ microservices }: CodeShowcaseProps) {
     <section className="space-y-8">
       <div className="text-center space-y-4">
         <h2 className="text-3xl font-mono font-bold text-terminal-green">
-          <span className="text-terminal-cyan">$</span> {isSecurityProject ? 'cat exploits/*.py' : 'find . -name "*.java" -o -name "*.py" | head -5'}
+          <span className="text-terminal-cyan">$</span> {getTitle()}
         </h2>
         <p className="text-terminal-green/80 font-mono">
-          {isSecurityProject ? 'Scripts y exploits desarrollados durante el training' : 'Snippets de código real del proyecto - implementaciones clave'}
+          {getDescription()}
         </p>
       </div>
 

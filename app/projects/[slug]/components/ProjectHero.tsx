@@ -137,7 +137,7 @@ export function ProjectHero({ project }: ProjectHeroProps) {
             <div className="space-y-4">
               {/* Highlights */}
               <div>
-                <h4 className="text-sm font-mono text-terminal-green/80 mb-2">// Características destacadas</h4>
+                <h4 className="text-sm font-mono text-terminal-green/80 mb-2">Características destacadas</h4>
                 <div className="flex flex-wrap gap-2">
                   {project.highlights.map((highlight, index) => (
                     <Badge 
@@ -153,7 +153,7 @@ export function ProjectHero({ project }: ProjectHeroProps) {
 
               {/* Tech Stack */}
               <div>
-                <h4 className="text-sm font-mono text-terminal-green/80 mb-2">// Stack tecnológico</h4>
+                <h4 className="text-sm font-mono text-terminal-green/80 mb-2">Stack tecnológico</h4>
                 <div className="grid grid-cols-2 gap-2">
                   {project.techStack.map((tech, index) => (
                     <div 

@@ -16,6 +16,6 @@ export function getProjectSlug(projectId: string): string {
 
 // Función para verificar si un proyecto tiene página detallada
 export function hasDetailedPage(projectId: string): boolean {
-  // ShopUp, Isidoro, SwiftLogix y Security tienen páginas detalladas
-  return ['shopup', 'isidoro', 'logistica', 'security'].includes(projectId)
+  // ShopUp, FADE ROOM, Isidoro, SwiftLogix y Security tienen páginas detalladas
+  return ['shopup', 'barberia', 'isidoro', 'logistica', 'security'].includes(projectId)
 }

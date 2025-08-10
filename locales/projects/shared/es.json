@@ -1,0 +1,18 @@
+{
+  "filter.all": "Todos",
+  "filter.backend": "Backend",
+  "filter.frontend": "Frontend", 
+  "filter.devops": "DevOps",
+  "filter.security": "Seguridad",
+  
+  "card.demo": "Ver Demo",
+  "card.code": "Ver Código",
+  "card.details": "Ver Detalles",
+  "card.dependencies": "Dependencias:",
+  "card.more": "más",
+  "card.commands": "Comandos disponibles:",
+  "card.showMore": "Mostrar más",
+  "card.showLess": "Mostrar menos",
+  "card.clickToExpand": "Click para ampliar",
+  "card.viewFullSize": "Ver tamaño completo"
+}

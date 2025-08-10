@@ -63,7 +63,7 @@ export function LessonsLearned({ lessons, nextSteps, projectType = 'other' }: Le
     <section className="space-y-8">
       <div className="text-center space-y-4">
         <h2 className="text-3xl font-mono font-bold text-terminal-green">
-          <span className="text-terminal-cyan">$</span> git log --grep="lesson:" --pretty=format:"%s"
+          <span className="text-terminal-cyan">$</span> git log --grep=&quot;lesson:&quot; --pretty=format:&quot;%s&quot;
         </h2>
         <p className="text-terminal-green/80 font-mono">
           Reflexiones y próximos pasos en el desarrollo

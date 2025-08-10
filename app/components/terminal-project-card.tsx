@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, FileText } from "lucide-react"
+import { ExternalLink, Github, FileText, Expand } from "lucide-react"
 import { getProjectSlug, hasDetailedPage } from "@/lib/utils/project-utils"
 import { useTranslation } from "../hooks/use-translation"
+import { ImageModal } from "./image-modal"
 
 interface ProjectCardProps {
   id: string
@@ -28,6 +29,7 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
   const { t } = useTranslation()
   const [showDescription, setShowDescription] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false)
   
   const projectSlug = getProjectSlug(id)
   const hasDetails = hasDetailedPage(id)
@@ -129,9 +131,11 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
   }
 
   return (
-    <div className="group relative">
+    <div className="group relative h-full">
       {/* Terminal Window Frame */}
-      <div className="border border-terminal-green bg-terminal-black/95 rounded-lg overflow-hidden hover:border-terminal-cyan transition-all duration-300 hover:shadow-lg hover:shadow-terminal-green/20 flex flex-col">
+      <div className={`border border-terminal-green bg-terminal-black/95 rounded-lg overflow-hidden hover:border-terminal-cyan transition-all duration-300 hover:shadow-lg hover:shadow-terminal-green/20 flex flex-col h-full ${
+        showDescription ? 'min-h-[700px] md:min-h-[800px]' : ''
+      }`}>
         
         {/* Terminal Header */}
         <div className="flex items-center gap-2 px-3 py-2 bg-terminal-green/10 border-b border-terminal-green/30 flex-shrink-0">
@@ -162,45 +166,57 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
           </div>
         </div>
 
-        {/* Terminal Content - Sin altura mínima fija */}
-        <div className="p-4 space-y-3">
+        {/* Terminal Content - Con distribución flexible */}
+        <div className="p-4 flex flex-col flex-grow">
           
-          {/* File Structure */}
-          <div className="space-y-1">
-            <div className="font-mono text-terminal-green text-sm mb-1">
-              <span className="text-terminal-cyan">$</span> ls -la
+          {/* Top Section - File Structure + Toggle (Fixed) */}
+          <div className="space-y-3 flex-shrink-0">
+            {/* File Structure */}
+            <div className="space-y-1">
+              <div className="font-mono text-terminal-green text-sm mb-1">
+                <span className="text-terminal-cyan">$</span> ls -la
+              </div>
+              <div className="pl-4 space-y-1">
+                {fileStructure.map((item, index) => (
+                  <div key={index} className="flex items-center gap-2 font-mono text-xs text-terminal-green/80">
+                    <span>{item.icon}</span>
+                    <span className={item.type === 'folder' ? 'text-terminal-cyan' : 'text-terminal-green'}>
+                      {item.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="pl-4 space-y-1">
-              {fileStructure.map((item, index) => (
-                <div key={index} className="flex items-center gap-2 font-mono text-xs text-terminal-green/80">
-                  <span>{item.icon}</span>
-                  <span className={item.type === 'folder' ? 'text-terminal-cyan' : 'text-terminal-green'}>
-                    {item.name}
+
+            {/* README Command Toggle */}
+            <div className="space-y-2">
+              {/* Botón toggle que siempre está presente */}
+              <button 
+                onClick={handleCatCommand}
+                className={`w-full text-left font-mono text-sm transition-all duration-200 rounded-lg p-3 border-2 group/button ${
+                  showDescription 
+                    ? 'text-terminal-cyan bg-terminal-cyan/10 border-terminal-cyan/40 hover:bg-terminal-cyan/15 hover:border-terminal-cyan/60 shadow-lg shadow-terminal-cyan/20' 
+                    : 'text-terminal-green hover:text-terminal-cyan bg-terminal-green/5 hover:bg-terminal-green/10 border-terminal-green/30 hover:border-terminal-cyan/60 hover:shadow-lg hover:shadow-terminal-cyan/10'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-medium">
+                    {showDescription ? t('projects.card.showLess') : t('projects.card.showMore')}
+                  </span>
+                  <span className={`transition-transform duration-200 ${
+                    showDescription ? 'rotate-180' : 'rotate-0'
+                  } group-hover/button:scale-110`}>
+                    {showDescription ? '🔽' : '▶️'}
                   </span>
                 </div>
-              ))}
+              </button>
             </div>
           </div>
 
-          {/* README Command - Sin flex-1 que causa el espacio extra */}
-          <div className="space-y-2">
-            {/* Botón toggle que siempre está presente */}
-            <button 
-              onClick={handleCatCommand}
-              className={`w-full text-left font-mono text-sm transition-colors duration-200 rounded p-2 border ${
-                showDescription 
-                  ? 'text-terminal-cyan bg-terminal-cyan/10 border-terminal-cyan/40 hover:bg-terminal-cyan/15' 
-                  : 'text-terminal-green hover:text-terminal-cyan bg-terminal-green/5 hover:bg-terminal-green/10 border-terminal-green/20 hover:border-terminal-cyan/40'
-              }`}
-            >
-              <span className="text-terminal-cyan">$</span> cat README.md
-              <span className="ml-2 text-terminal-cyan">
-                {showDescription ? '🔽' : '▶'}
-              </span>
-            </button>
-
-            {/* Description - Solo se muestra si está expandido */}
-            {showDescription && (
+          {/* Expandible Content - Flex grow section */}
+          {showDescription && (
+            <div className="flex-grow flex flex-col justify-between mt-4">
+              {/* Description and content */}
               <div className="space-y-3 animate-in fade-in duration-200">
                 <div className="pl-4 space-y-3">
                   <div className="font-mono text-sm text-terminal-green/90 leading-relaxed">
@@ -211,7 +227,7 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
                   {id === 'shopup' && (
                     <div className="pl-4">
                       <span className="inline-flex items-center gap-1 bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-xs font-mono border border-yellow-500/30">
-                        📅 Sprint 4/∞ - Proyecto Final ISI
+                        📅 Sprint 8/∞ - Proyecto Final ISI
                       </span>
                     </div>
                   )}
@@ -248,10 +264,10 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
                     </div>
                   )}
 
-                  {id === 'tpi' && (
+                  {id === 'barberia' && (
                     <div className="pl-4">
-                      <span className="inline-flex items-center gap-1 bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded text-xs font-mono border border-cyan-500/30">
-                        🚴 TPI Backend - Sistema de alquiler
+                      <span className="inline-flex items-center gap-1 bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded text-xs font-mono border border-emerald-500/30">
+                        💇‍♂️ Jul 2025 - Sistema completo operativo
                       </span>
                     </div>
                   )}
@@ -277,44 +293,59 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
 
                   {/* Preview Image */}
                   <div className="animate-in slide-in-from-top duration-300">
-                    <div className="font-mono text-sm text-terminal-green/70 mb-2">
-                      <span className="text-terminal-cyan">$</span> preview ./screenshot.png
+                    <div className="font-mono text-sm text-terminal-green/70 mb-2 flex items-center justify-between">
+                      <span>
+                        <span className="text-terminal-cyan">$</span> preview ./screenshot.png
+                      </span>
+                      <span className="text-xs text-terminal-green/50 flex items-center gap-1">
+                        <Expand className="w-3 h-3" />
+                        {t('projects.card.clickToExpand')}
+                      </span>
                     </div>
-                    <div className="relative aspect-video rounded border border-terminal-green/30 overflow-hidden">
+                    <div 
+                      className="relative aspect-video rounded border border-terminal-green/30 overflow-hidden cursor-pointer group/image"
+                      onClick={() => setIsImageModalOpen(true)}
+                    >
                       <Image
                         src={imgSrc || "/placeholder.svg"}
                         alt={title}
                         width={400}
                         height={225}
                         priority={false}
-                        className="transition-transform duration-300 group-hover:scale-105"
+                        className="transition-all duration-300 group-hover:scale-105 group-hover/image:scale-110"
                       />
+                      {/* Overlay indicator on hover */}
+                      <div className="absolute inset-0 bg-terminal-green/10 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div className="bg-terminal-black/80 border border-terminal-green/50 rounded px-3 py-2 backdrop-blur-sm">
+                          <div className="flex items-center gap-2 font-mono text-sm text-terminal-green">
+                            <Expand className="w-4 h-4" />
+                            {t('projects.card.viewFullSize')}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
 
-          {/* Terminal Commands (Buttons) - Solo se muestran cuando está expandido */}
-          {showDescription && (
-            <div className="space-y-2 animate-in slide-in-from-bottom duration-500">
-              <div className="font-mono text-sm text-terminal-green/70">
-                <span className="text-terminal-cyan">$</span> {t('projects.card.commands')}
-              </div>
-              <div className="pl-4 flex flex-wrap gap-2">
+              {/* Terminal Commands (Buttons) - Fixed at bottom */}
+              <div className="space-y-2 animate-in slide-in-from-bottom duration-500 flex-shrink-0 mt-4">
+                <div className="font-mono text-sm text-terminal-green/70">
+                  <span className="text-terminal-cyan">$</span> {t('projects.card.commands')}
+                </div>
+                <div className="pl-4 flex flex-wrap gap-2">
                 
                 {/* Details Command */}
                 {hasDetails && (
                   <Button
                     size="sm"
                     variant="outline"
-                    className="font-mono text-xs border-terminal-cyan text-terminal-cyan hover:bg-terminal-cyan hover:text-terminal-black transition-all duration-200"
+                    className="font-mono text-xs border-2 border-terminal-cyan text-terminal-cyan hover:bg-terminal-cyan hover:text-terminal-black transition-all duration-200 hover:shadow-lg hover:shadow-terminal-cyan/30 hover:scale-105 active:scale-95"
                     asChild
                   >
-                    <a href={`/projects/${projectSlug}`} className="flex items-center gap-1">
-                      <FileText className="w-3 h-3" />
-                      ./details
+                    <a href={`/projects/${projectSlug}`} className="flex items-center gap-2 px-3 py-2">
+                      <FileText className="w-4 h-4" />
+                      <span className="font-semibold">./details</span>
                     </a>
                   </Button>
                 )}
@@ -324,12 +355,12 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
                   <Button
                     size="sm"
                     variant="outline"
-                    className="font-mono text-xs border-terminal-green text-terminal-green hover:bg-terminal-green hover:text-terminal-black transition-all duration-200"
+                    className="font-mono text-xs border-2 border-terminal-green text-terminal-green hover:bg-terminal-green hover:text-terminal-black transition-all duration-200 hover:shadow-lg hover:shadow-terminal-green/30 hover:scale-105 active:scale-95"
                     asChild
                   >
-                    <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
-                      <Github className="w-3 h-3" />
-                      ./source
+                    <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2">
+                      <Github className="w-4 h-4" />
+                      <span className="font-semibold">./source</span>
                     </a>
                   </Button>
                 )}
@@ -339,20 +370,30 @@ export function TerminalProjectCard({ id, title, description, techStack, imgSrc,
                   <Button
                     size="sm"
                     variant="outline"
-                    className="font-mono text-xs border-terminal-yellow text-terminal-yellow hover:bg-terminal-yellow hover:text-terminal-black transition-all duration-200"
+                    className="font-mono text-xs border-2 border-terminal-yellow text-terminal-yellow hover:bg-terminal-yellow hover:text-terminal-black transition-all duration-200 hover:shadow-lg hover:shadow-terminal-yellow/30 hover:scale-105 active:scale-95"
                     asChild
                   >
-                    <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
-                      <ExternalLink className="w-3 h-3" />
-                      ./demo
+                    <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2">
+                      <ExternalLink className="w-4 h-4" />
+                      <span className="font-semibold">./demo</span>
                     </a>
                   </Button>
                 )}
               </div>
             </div>
+            </div>
           )}
         </div>
       </div>
+
+      {/* Image Modal */}
+      <ImageModal
+        isOpen={isImageModalOpen}
+        onClose={() => setIsImageModalOpen(false)}
+        imageSrc={imgSrc || "/placeholder.svg"}
+        imageAlt={title}
+        projectTitle={title}
+      />
     </div>
   )
 }

@@ -14,15 +14,19 @@ interface ArchitectureOverviewProps {
 export function ArchitectureOverview({ architecture, techStack }: ArchitectureOverviewProps) {
   const getTechCategory = (tech: string) => {
     // Backend
-    if (['Java 24', 'Spring Boot 3.4.5', 'Spring Cloud Gateway', 'Spring Security', 'Spring Data JPA'].includes(tech)) {
+    if (['Java 24', 'Spring Boot 3.4+', 'Spring Cloud Gateway', 'Spring Security', 'Spring Data JPA'].includes(tech)) {
       return { category: 'Backend', icon: <Zap className="h-4 w-4" />, color: 'text-green-400' }
+    }
+    // Frontend
+    if (['React 19', 'Vite', 'Material-UI v7', 'Redux Toolkit'].includes(tech)) {
+      return { category: 'Frontend', icon: <Network className="h-4 w-4" />, color: 'text-cyan-400' }
     }
     // Database
     if (['PostgreSQL', 'OpenSearch'].includes(tech)) {
       return { category: 'Database', icon: <Database className="h-4 w-4" />, color: 'text-blue-400' }
     }
     // Security
-    if (['Keycloak', 'JWT'].includes(tech)) {
+    if (['Keycloak', 'JWT', 'Spring Security'].includes(tech)) {
       return { category: 'Security', icon: <Shield className="h-4 w-4" />, color: 'text-red-400' }
     }
     // AI/ML
@@ -30,7 +34,7 @@ export function ArchitectureOverview({ architecture, techStack }: ArchitectureOv
       return { category: 'AI/ML', icon: <Zap className="h-4 w-4" />, color: 'text-purple-400' }
     }
     // Infrastructure
-    if (['Docker', 'Maven'].includes(tech)) {
+    if (['Docker', 'Docker Compose', 'Nginx', 'Maven', 'Swagger/OpenAPI'].includes(tech)) {
       return { category: 'DevOps', icon: <Cloud className="h-4 w-4" />, color: 'text-orange-400' }
     }
     // Default

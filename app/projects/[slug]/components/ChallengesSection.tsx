@@ -9,9 +9,10 @@ import { Challenge } from "@/lib/data/projects/types"
 
 interface ChallengesSectionProps {
   challenges: Challenge[]
+  projectSlug?: string
 }
 
-export function ChallengesSection({ challenges }: ChallengesSectionProps) {
+export function ChallengesSection({ challenges, projectSlug }: ChallengesSectionProps) {
   const [expandedChallenges, setExpandedChallenges] = useState<number[]>([])
 
   const toggleChallenge = (index: number) => {
@@ -30,11 +31,20 @@ export function ChallengesSection({ challenges }: ChallengesSectionProps) {
     }
   }
 
+  // Detectar si es el proyecto Isidoro
+  const isIsidoroProject = projectSlug === 'isidoro'
+
+  // Función para generar el título apropiado
+  const getTitle = () => {
+    if (isIsidoroProject) return 'cat troubleshooting.md'
+    return 'git log --grep="fix:" --oneline'
+  }
+
   return (
     <section className="space-y-8">
       <div className="text-center space-y-4">
         <h2 className="text-3xl font-mono font-bold text-terminal-green">
-          <span className="text-terminal-cyan">$</span> git log --grep="fix:" --oneline
+          <span className="text-terminal-cyan">$</span> {getTitle()}
         </h2>
         <p className="text-terminal-green/80 font-mono">
           Principales desafíos técnicos y cómo los resolví

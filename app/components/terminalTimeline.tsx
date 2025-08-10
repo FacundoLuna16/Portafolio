@@ -59,10 +59,22 @@ export default function TerminalTimeline() {
       summary: t('timeline.qasummary'),
     },
     {
-      year: 'Nov 202\nEne 2024',
+      year: 'Nov 2023\nEne 2024',
       title: t('timeline.logistics.title'),
       description: t('timeline.logistics.description'),
       summary: t('timeline.logistics.summary'),
+    },
+    {
+      year: 'Mar 2025',
+      title: t('timeline.isidoro.title'),
+      description: t('timeline.isidoro.description'),
+      summary: t('timeline.isidoro.summary'),
+    },
+    {
+      year: 'Jun 2025\nJul 2025',
+      title: t('timeline.barberia.title'),
+      description: t('timeline.barberia.description'),
+      summary: t('timeline.barberia.summary'),
     },
     {
       year: '2024\nActualidad',
@@ -70,15 +82,9 @@ export default function TerminalTimeline() {
       description: t('timeline.utn.description'),
       summary: t('timeline.utn.summary'),
     },
-    {
-      year: t('timeline.soon.year'),
-      title: t('timeline.soon.title'),
-      description: t('timeline.soon.description'),
-      summary: t('timeline.soon.summary'),
-    },
   ];
 
-  const icons = [FaLaptopCode, FaServer, FaShieldAlt, FaCode];
+  const icons = [FaLaptopCode, FaServer, FaCode, FaLaptopCode, FaShieldAlt];
   if (!mounted) return null; // Evitar renderizado antes de que el tema esté disponible
 
   return (

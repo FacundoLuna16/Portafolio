@@ -243,7 +243,7 @@ export function TerminalAboutSection() {
                         : 'bg-terminal-cyan/10 text-terminal-cyan border-terminal-cyan/30 hover:bg-terminal-cyan/20'
                     }`}
                   >
-                    {executedCommands.includes(cmd.id) ? '✗' : '▶'} {cmd.command}
+                    {executedCommands.includes(cmd.id) ? '✗' : '▶'} {cmd.description}
                   </button>
                 ))}
               </div>

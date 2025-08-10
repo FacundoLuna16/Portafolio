@@ -1,78 +1,87 @@
 import { DetailedProject } from './types'
 
-export const shopupProjectReal: DetailedProject = {
+export function getShopupProject(t: (key: string) => string): DetailedProject {
+  return {
   // Basic info (basado en código real)
   slug: 'shopup',
-  title: 'ShopUp - Sistema de Gestión de Emprendimientos',
-  description: 'Proyecto Final de Ingeniería en Sistemas - PWA para gestión integral de emprendimientos con microservicios, IA y arquitectura hexagonal.',
+  title: t('projects.shopup.title'),
+  description: t('projects.shopup.description'),
   category: 'Backend',
   status: 'development',
-  timeline: 'Marzo 2025 - En desarrollo (Sprint 4/∞)',
-  team: 'Proyecto Final ISI - Equipo de 4 desarrolladores',
+  timeline: t('projects.shopup.timeline'),
+  team: t('projects.shopup.team'),
   techStack: [
-    // Backend Stack (real)
-    'Java 24', 'Spring Boot 3.4.5', 'Spring Cloud Gateway', 'Spring Security',
+    // Backend Stack (from real project)
+    'Java 24', 'Spring Boot 3.4+', 'Spring Cloud Gateway', 'Spring Security',
     'Spring Data JPA', 'PostgreSQL', 'OpenSearch', 'Keycloak',
-    // IA Stack (real) 
+    // Frontend Stack (from real project)
+    'React 19', 'Vite', 'Material-UI v7', 'Redux Toolkit',
+    // AI Stack (from real project) 
     'Python', 'FastAPI', 'OpenAI API', 'Whisper', 'Embeddings',
-    // Infraestructura (real)
-    'Docker', 'Maven', 'Swagger/OpenAPI', 'JWT'
+    // Infrastructure (from real project)
+    'Docker', 'Docker Compose', 'Nginx', 'Maven', 'Swagger/OpenAPI', 'JWT',
+    // External APIs
+    'MercadoPago API', 'Google Maps API'
   ],
   highlights: [
-    'Arquitectura Hexagonal completa',
-    'Microservicios con Spring Cloud Gateway',
-    'IA para búsquedas semánticas y audio-to-text',
-    'Autenticación OAuth2 con Keycloak',
-    'Filtros JWT personalizados',
-    'OpenSearch para búsquedas vectoriales',
-    'Documentación API automatizada'
+    t('projects.shopup.highlights.1'),
+    t('projects.shopup.highlights.2'),
+    t('projects.shopup.highlights.3'),
+    t('projects.shopup.highlights.4'),
+    t('projects.shopup.highlights.5'),
+    t('projects.shopup.highlights.6'),
+    t('projects.shopup.highlights.7'),
+    t('projects.shopup.highlights.8'),
+    t('projects.shopup.highlights.9'),
+    t('projects.shopup.highlights.10')
   ],
   imgSrc: '/projects/shopup/architecture-real.webp',
-  demoUrl: 'http://localhost:8080', // Gateway local
+  demoUrl: 'https://shopup.com.ar', // Gateway local
   codeUrl: 'private', // Proyecto académico
 
-  // Detailed sections basadas en análisis real
+  // Detailed sections based on real project architecture
   overview: {
-    problemStatement: 'Desarrollar un sistema integral para la gestión de emprendimientos que permita registro, modificación, consulta y baja de cuentas, cumpliendo con user stories académicas específicas.',
-    solution: 'Sistema distribuido con microservicios, implementando arquitectura hexagonal, autenticación OAuth2, procesamiento de IA para audio y búsquedas semánticas, con bases de datos relacionales y vectoriales.',
-    impact: 'Sprint 4 completado con funcionalidades core de gestión de emprendimientos, integración de IA operativa, y sistema de autenticación/autorización robusto.'
+    problemStatement: t('projects.shopup.overview.problemStatement'),
+    solution: t('projects.shopup.overview.solution'),
+    impact: t('projects.shopup.overview.impact')
   },
 
   architecture: {
-    description: 'Arquitectura de microservicios distribuida con Gateway centralizado, servicios especializados y bases de datos dedicadas, implementando patrones DDD y arquitectura hexagonal.',
+    description: t('projects.shopup.architecture.description'),
     microservices: [
       {
-        name: 'API Gateway (Spring Cloud Gateway)',
-        description: 'Punto de entrada único con enrutamiento, autenticación OAuth2 y filtros JWT personalizados',
+        name: t('projects.shopup.microservices.gateway.name'),
+        description: t('projects.shopup.microservices.gateway.description'),
         tech: ['Spring Cloud Gateway', 'Spring Security OAuth2', 'JWT', 'Keycloak Integration'],
         responsibilities: [
-          'Enrutamiento a microservicios (Core:8081, IA:8082)',
-          'Validación JWT con Keycloak (puerto 8083)',
-          'Filtros de autorización por recurso con UUID matching',
-          'Rate limiting y logging centralizado',
-          'CORS y configuración de seguridad'
+          t('projects.shopup.microservices.gateway.responsibilities.1'),
+          t('projects.shopup.microservices.gateway.responsibilities.2'),
+          t('projects.shopup.microservices.gateway.responsibilities.3'),
+          t('projects.shopup.microservices.gateway.responsibilities.4'),
+          t('projects.shopup.microservices.gateway.responsibilities.5')
         ],
         endpoints: [
-          '/api/core/** → Core Service (8081)',
-          '/api/ai/** → AI Service (8082)',
-          '/api/auth/** → Keycloak (8083)'
+          t('projects.shopup.microservices.gateway.endpoints.1'),
+          t('projects.shopup.microservices.gateway.endpoints.2'),
+          t('projects.shopup.microservices.gateway.endpoints.3'),
+          t('projects.shopup.microservices.gateway.endpoints.4')
         ],
         challenges: [
           {
-            title: 'Filtros JWT Personalizados con UUID Matching',
-            problem: 'Necesidad de validar que el usuario solo acceda a recursos que le pertenecen usando UUIDs en path y query params',
-            solution: 'Implementé GenericJwtIdMatchFilter con regex patterns configurables para extraer UUIDs y compararlos con claims JWT',
-            impact: 'Seguridad granular por recurso sin duplicar lógica en cada microservicio',
+            title: t('projects.shopup.challenges.gateway.jwtFilters.title'),
+            problem: t('projects.shopup.challenges.gateway.jwtFilters.problem'),
+            solution: t('projects.shopup.challenges.gateway.jwtFilters.solution'),
+            impact: t('projects.shopup.challenges.gateway.jwtFilters.impact'),
             techDetails: [
-              'Regex patterns para extraer UUIDs de paths: /emprendimientos/{uuid}',
-              'Query param matching para /productos?idEmprendimiento={uuid}', 
-              'Comparación automática con JWT claim "sub"',
-              'Configuración declarativa en application.properties'
+              t('projects.shopup.challenges.gateway.jwtFilters.techDetails.1'),
+              t('projects.shopup.challenges.gateway.jwtFilters.techDetails.2'),
+              t('projects.shopup.challenges.gateway.jwtFilters.techDetails.3'),
+              t('projects.shopup.challenges.gateway.jwtFilters.techDetails.4')
             ]
           }
         ],
         codeSnippet: {
-          title: 'Configuración de Filtros JWT en Gateway',
+          title: t('projects.shopup.codeSnippets.gatewayJwtConfig.title'),
           language: 'properties',
           code: `# Filtro para emprendimientos y productos con UUID en path
 shopup.gateway.filter.jwt-id-match.rules[0].name="EmprendimientoProductoGeneralPathUUID"
@@ -85,49 +94,52 @@ shopup.gateway.filter.jwt-id-match.rules[0].jwtClaimName="sub"
 shopup.gateway.filter.jwt-id-match.rules[1].pathRegex=".*/productos$"
 shopup.gateway.filter.jwt-id-match.rules[1].extractionStrategy=QUERY_PARAM
 shopup.gateway.filter.jwt-id-match.rules[1].queryParamName="idEmprendimiento"`,
-          explanation: 'Configuración de filtros que permiten autorización granular comparando UUIDs del path/query con claims JWT'
+          explanation: t('projects.shopup.codeSnippets.gatewayJwtConfig.explanation')
         }
       },
       {
-        name: 'Core Service (Microservicio Principal)',
-        description: 'Servicio principal con arquitectura hexagonal para gestión de emprendimientos y productos',
+        name: t('projects.shopup.microservices.core.name'),
+        description: t('projects.shopup.microservices.core.description'),
         tech: ['Spring Boot 3.4.5', 'Spring Data JPA', 'PostgreSQL', 'MapStruct', 'Bean Validation'],
         responsibilities: [
-          'CRUD completo de emprendimientos (User Stories Sprint 1)',
-          'Gestión de productos con atributos dinámicos',
-          'Integración con OpenSearch para embeddings',
-          'Validaciones de negocio (DNI, emails, teléfonos)',
-          'Manejo de estados (Patrón State): Aprobado, Pendiente, Suspendido, Eliminado',
-          'Seeders para datos iniciales (provincias, rubros, tipos)'
+          t('projects.shopup.microservices.core.responsibilities.1'),
+          t('projects.shopup.microservices.core.responsibilities.2'),
+          t('projects.shopup.microservices.core.responsibilities.3'),
+          t('projects.shopup.microservices.core.responsibilities.4'),
+          t('projects.shopup.microservices.core.responsibilities.5'),
+          t('projects.shopup.microservices.core.responsibilities.6'),
+          t('projects.shopup.microservices.core.responsibilities.7'),
+          t('projects.shopup.microservices.core.responsibilities.8'),
+          t('projects.shopup.microservices.core.responsibilities.9')
         ],
-        database: 'PostgreSQL con tablas normalizadas y triggers para embeddings',
+        database: t('projects.shopup.microservices.core.database'),
         challenges: [
           {
-            title: 'Arquitectura Hexagonal Pura',
-            problem: 'Implementar Clean Architecture sin dependencias entre capas y mantener testabilidad',
-            solution: 'Separación estricta en Application/Domain/Infrastructure con interfaces de repositorio y mappers automáticos',
-            impact: 'Código testeable, mantenible y desacoplado de frameworks',
+            title: t('projects.shopup.challenges.core.hexagonal.title'),
+            problem: t('projects.shopup.challenges.core.hexagonal.problem'),
+            solution: t('projects.shopup.challenges.core.hexagonal.solution'),
+            impact: t('projects.shopup.challenges.core.hexagonal.impact'),
             techDetails: [
-              'Application: Controllers, DTOs (Request/Response), Exception Handlers',
-              'Domain: Models puros, Services con lógica de negocio, Repository interfaces',
-              'Infrastructure: Entities JPA, DAOs, Repository adapters, Configuration'
+              t('projects.shopup.challenges.core.hexagonal.techDetails.1'),
+              t('projects.shopup.challenges.core.hexagonal.techDetails.2'),
+              t('projects.shopup.challenges.core.hexagonal.techDetails.3')
             ]
           },
           {
-            title: 'Patrón State para Estados de Emprendimiento',
-            problem: 'Modelar transiciones de estado complejas (Pendiente → Aprobado → Suspendido → Eliminado)',
-            solution: 'Implementé State Pattern con clases Estado concretas y validaciones de transición',
-            impact: 'Lógica de estados centralizada y extensible',
+            title: t('projects.shopup.challenges.core.statePattern.title'),
+            problem: t('projects.shopup.challenges.core.statePattern.problem'),
+            solution: t('projects.shopup.challenges.core.statePattern.solution'),
+            impact: t('projects.shopup.challenges.core.statePattern.impact'),
             techDetails: [
-              'Estado abstract class con método cambiarA()',
-              'EstadoAprobado, EstadoPendiente, EstadoSuspendido, EstadoEliminado',
-              'Validaciones de transiciones permitidas',
-              'Auditoría de cambios con CambioEstado entity'
+              t('projects.shopup.challenges.core.statePattern.techDetails.1'),
+              t('projects.shopup.challenges.core.statePattern.techDetails.2'),
+              t('projects.shopup.challenges.core.statePattern.techDetails.3'),
+              t('projects.shopup.challenges.core.statePattern.techDetails.4')
             ]
           }
         ],
         codeSnippet: {
-          title: 'Estructura de Controller con Arquitectura Hexagonal',
+          title: t('projects.shopup.codeSnippets.hexagonalController.title'),
           language: 'java',
           code: `@RestController
 @RequestMapping("/api/emprendimientos")
@@ -154,151 +166,371 @@ public class EmprendimientoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }`,
-          explanation: 'Controller que actúa como adaptador entre HTTP y el dominio, usando DTOs y delegando lógica al service'
+          explanation: t('projects.shopup.codeSnippets.hexagonalController.explanation')
         }
       },
       {
-        name: 'AI Service (Microservicio de IA)',
-        description: 'Servicio Python especializado en procesamiento de audio, embeddings y búsquedas semánticas',
+        name: t('projects.shopup.microservices.ai.name'),
+        description: t('projects.shopup.microservices.ai.description'),
         tech: ['Python', 'FastAPI', 'OpenAI API', 'Whisper', 'Pydantic', 'Docker'],
         responsibilities: [
-          'Transcripción de audio a texto con Whisper',
-          'Generación de embeddings para productos',
-          'Búsquedas semánticas vectoriales',
-          'Integración con Core Service para sincronización',
-          'Procesamiento de lenguaje natural'
+          t('projects.shopup.microservices.ai.responsibilities.1'),
+          t('projects.shopup.microservices.ai.responsibilities.2'),
+          t('projects.shopup.microservices.ai.responsibilities.3'),
+          t('projects.shopup.microservices.ai.responsibilities.4'),
+          t('projects.shopup.microservices.ai.responsibilities.5')
         ],
         challenges: [
           {
-            title: 'Integración Audio-to-Text en Tiempo Real',
-            problem: 'Procesar audio de usuario para búsquedas por voz con baja latencia',
-            solution: 'Pipeline con Whisper optimizado y cache de transcripciones frecuentes',
-            impact: 'Búsquedas por voz con latencia < 3 segundos',
+            title: t('projects.shopup.challenges.ai.audioProcessing.title'),
+            problem: t('projects.shopup.challenges.ai.audioProcessing.problem'),
+            solution: t('projects.shopup.challenges.ai.audioProcessing.solution'),
+            impact: t('projects.shopup.challenges.ai.audioProcessing.impact'),
             techDetails: [
-              'Whisper model size optimizado para español',
-              'Preprocessing de audio para mejor calidad',
-              'Cache de transcripciones comunes',
-              'Validación de formato de audio en entrada'
+              t('projects.shopup.challenges.ai.audioProcessing.techDetails.1'),
+              t('projects.shopup.challenges.ai.audioProcessing.techDetails.2'),
+              t('projects.shopup.challenges.ai.audioProcessing.techDetails.3'),
+              t('projects.shopup.challenges.ai.audioProcessing.techDetails.4')
             ]
           }
         ]
       }
     ],
     integrations: [
-      'Keycloak para SSO y gestión de usuarios',
-      'PostgreSQL como base de datos principal',
-      'OpenSearch para búsquedas vectoriales',
-      'OpenAI API para procesamiento de IA',
-      'Docker para containerización'
+      t('projects.shopup.integrations.1'),
+      t('projects.shopup.integrations.2'),
+      t('projects.shopup.integrations.3'),
+      t('projects.shopup.integrations.4'),
+      t('projects.shopup.integrations.5'),
+      t('projects.shopup.integrations.6'),
+      t('projects.shopup.integrations.7'),
+      t('projects.shopup.integrations.8')
     ]
   },
 
   challenges: [
     {
-      title: 'Implementación de User Stories Académicas',
-      problem: 'Cumplir con especificaciones exactas de criterios de aceptación y validaciones complejas (DNI 8 dígitos, emails formato específico, nombres 2-30 caracteres)',
-      solution: 'Bean Validation personalizada con anotaciones custom y validators específicos para cada regla de negocio',
-      impact: 'Cumplimiento 100% de criterios de aceptación definidos',
+      title: t('projects.shopup.challenges.main.rbac.title'),
+      problem: t('projects.shopup.challenges.main.rbac.problem'),
+      solution: t('projects.shopup.challenges.main.rbac.solution'),
+      impact: t('projects.shopup.challenges.main.rbac.impact'),
       techDetails: [
-        '@Pattern para DNI: "^[0-9]{8}$"',
-        '@Email con validación personalizada xxxx@xxxx.com',
-        '@Size para nombres (2-30 caracteres)',
-        'Validators custom para teléfonos con código de área',
-        'Validación de edad mínima 18 años'
+        t('projects.shopup.challenges.main.rbac.techDetails.1'),
+        t('projects.shopup.challenges.main.rbac.techDetails.2'),
+        t('projects.shopup.challenges.main.rbac.techDetails.3'),
+        t('projects.shopup.challenges.main.rbac.techDetails.4'),
+        t('projects.shopup.challenges.main.rbac.techDetails.5')
       ],
       learnings: [
-        'Bean Validation es poderoso pero requiere validators custom para reglas complejas',
-        'Separar validaciones de formato de validaciones de negocio',
-        'Documentar reglas de validación en OpenAPI para frontend'
+        t('projects.shopup.challenges.main.rbac.learnings.1'),
+        t('projects.shopup.challenges.main.rbac.learnings.2'),
+        t('projects.shopup.challenges.main.rbac.learnings.3'),
+        t('projects.shopup.challenges.main.rbac.learnings.4')
       ]
     },
     {
-      title: 'Sistema de Audio-to-Text para CRUD de Productos',
-      problem: 'Permitir registro y modificación de productos mediante comandos de voz, con precisión en la extracción de datos y manejo de ambigüedades',
-      solution: 'Pipeline completo con Whisper para transcripción, OpenAI para análisis semántico y validación de datos extraídos',
-      impact: 'UX revolucionaria que permite gestión hands-free de inventario',
+      title: t('projects.shopup.challenges.main.aiVoice.title'),
+      problem: t('projects.shopup.challenges.main.aiVoice.problem'),
+      solution: t('projects.shopup.challenges.main.aiVoice.solution'),
+      impact: t('projects.shopup.challenges.main.aiVoice.impact'),
       techDetails: [
-        'Whisper API para speech-to-text en español',
-        'GPT para extraer JSON estructurado del texto',
-        'Embedding similarity para identificar productos existentes',
-        'Validación en dos fases: IA + confirmación humana',
-        'Soporte para múltiples productos en un solo audio',
-        'Manejo de ruido y transcripciones ambiguas'
+        t('projects.shopup.challenges.main.aiVoice.techDetails.1'),
+        t('projects.shopup.challenges.main.aiVoice.techDetails.2'),
+        t('projects.shopup.challenges.main.aiVoice.techDetails.3'),
+        t('projects.shopup.challenges.main.aiVoice.techDetails.4'),
+        t('projects.shopup.challenges.main.aiVoice.techDetails.5'),
+        t('projects.shopup.challenges.main.aiVoice.techDetails.6')
       ],
       learnings: [
-        'La IA debe ser asistente, no reemplazo: siempre confirmar con el usuario',
-        'La similaridad semántica es clave para identificar productos existentes',
-        'El manejo de errores de transcripción requiere UX cuidadoso'
+        t('projects.shopup.challenges.main.aiVoice.learnings.1'),
+        t('projects.shopup.challenges.main.aiVoice.learnings.2'),
+        t('projects.shopup.challenges.main.aiVoice.learnings.3'),
+        t('projects.shopup.challenges.main.aiVoice.learnings.4')
       ]
     },
     {
-      title: 'Configuración de Keycloak con Docker',
-      problem: 'Configurar autenticación OAuth2 con Keycloak en contenedor para desarrollo local',
-      solution: 'Setup de Keycloak con realm personalizado, clients configurados y integración JWT',
-      impact: 'Autenticación robusta con refresh tokens y claims personalizados',
+      title: t('projects.shopup.challenges.main.keycloak.title'),
+      problem: t('projects.shopup.challenges.main.keycloak.problem'),
+      solution: t('projects.shopup.challenges.main.keycloak.solution'),
+      impact: t('projects.shopup.challenges.main.keycloak.impact'),
       techDetails: [
-        'Keycloak realm "shopup" con users y roles',
-        'Client configuration para Gateway y frontend',
-        'JWT claims con UUID de usuario en "sub"',
-        'CORS configuration para desarrollo local'
+        t('projects.shopup.challenges.main.keycloak.techDetails.1'),
+        t('projects.shopup.challenges.main.keycloak.techDetails.2'),
+        t('projects.shopup.challenges.main.keycloak.techDetails.3'),
+        t('projects.shopup.challenges.main.keycloak.techDetails.4'),
+        t('projects.shopup.challenges.main.keycloak.techDetails.5')
       ]
     },
     {
-      title: 'Integración Google OAuth con Keycloak',
-      problem: 'Permitir login con Google manteniendo la arquitectura de seguridad existente',
-      solution: 'Configuración de Identity Provider en Keycloak con mapeo de claims y tokens de refresh',
-      impact: 'Onboarding simplificado para usuarios finales',
+      title: t('projects.shopup.challenges.main.googleOauth.title'),
+      problem: t('projects.shopup.challenges.main.googleOauth.problem'),
+      solution: t('projects.shopup.challenges.main.googleOauth.solution'),
+      impact: t('projects.shopup.challenges.main.googleOauth.impact'),
       techDetails: [
-        'Google OAuth 2.0 como Identity Provider',
-        'Mapeo automático de claims de Google a Keycloak',
-        'Refresh tokens para sesiones extendidas',
-        'Sincronización de datos de perfil'
+        t('projects.shopup.challenges.main.googleOauth.techDetails.1'),
+        t('projects.shopup.challenges.main.googleOauth.techDetails.2'),
+        t('projects.shopup.challenges.main.googleOauth.techDetails.3'),
+        t('projects.shopup.challenges.main.googleOauth.techDetails.4')
       ]
     },
     {
-      title: 'Sincronización de Embeddings con Triggers',
-      problem: 'Mantener embeddings de OpenSearch sincronizados cuando se actualizan productos en PostgreSQL',
-      solution: 'Triggers de PostgreSQL que insertan en tabla de pendientes, procesada asíncronamente por servicio Python',
-      impact: 'Consistencia eventual entre PostgreSQL y OpenSearch sin impacto en performance',
+      title: t('projects.shopup.challenges.main.embeddings.title'),
+      problem: t('projects.shopup.challenges.main.embeddings.problem'),
+      solution: t('projects.shopup.challenges.main.embeddings.solution'),
+      impact: t('projects.shopup.challenges.main.embeddings.impact'),
       techDetails: [
-        'Trigger AFTER INSERT/UPDATE en tabla productos',
-        'Tabla embeddings_pendientes como queue',
-        'Servicio Python que procesa cola periódicamente',
-        'Retry logic para fallos de OpenAI API'
+        t('projects.shopup.challenges.main.embeddings.techDetails.1'),
+        t('projects.shopup.challenges.main.embeddings.techDetails.2'),
+        t('projects.shopup.challenges.main.embeddings.techDetails.3'),
+        t('projects.shopup.challenges.main.embeddings.techDetails.4')
+      ]
+    },
+    {
+      title: t('projects.shopup.challenges.main.mercadopago.title'),
+      problem: t('projects.shopup.challenges.main.mercadopago.problem'),
+      solution: t('projects.shopup.challenges.main.mercadopago.solution'),
+      impact: t('projects.shopup.challenges.main.mercadopago.impact'),
+      techDetails: [
+        t('projects.shopup.challenges.main.mercadopago.techDetails.1'),
+        t('projects.shopup.challenges.main.mercadopago.techDetails.2'),
+        t('projects.shopup.challenges.main.mercadopago.techDetails.3'),
+        t('projects.shopup.challenges.main.mercadopago.techDetails.4'),
+        t('projects.shopup.challenges.main.mercadopago.techDetails.5'),
+        t('projects.shopup.challenges.main.mercadopago.techDetails.6')
+      ],
+      learnings: [
+        t('projects.shopup.challenges.main.mercadopago.learnings.1'),
+        t('projects.shopup.challenges.main.mercadopago.learnings.2'),
+        t('projects.shopup.challenges.main.mercadopago.learnings.3'),
+        t('projects.shopup.challenges.main.mercadopago.learnings.4')
+      ]
+    },
+    {
+      title: t('projects.shopup.challenges.main.googleMaps.title'),
+      problem: t('projects.shopup.challenges.main.googleMaps.problem'),
+      solution: t('projects.shopup.challenges.main.googleMaps.solution'),
+      impact: t('projects.shopup.challenges.main.googleMaps.impact'),
+      techDetails: [
+        t('projects.shopup.challenges.main.googleMaps.techDetails.1'),
+        t('projects.shopup.challenges.main.googleMaps.techDetails.2'),
+        t('projects.shopup.challenges.main.googleMaps.techDetails.3'),
+        t('projects.shopup.challenges.main.googleMaps.techDetails.4'),
+        t('projects.shopup.challenges.main.googleMaps.techDetails.5'),
+        t('projects.shopup.challenges.main.googleMaps.techDetails.6')
+      ],
+      learnings: [
+        t('projects.shopup.challenges.main.googleMaps.learnings.1'),
+        t('projects.shopup.challenges.main.googleMaps.learnings.2'),
+        t('projects.shopup.challenges.main.googleMaps.learnings.3'),
+        t('projects.shopup.challenges.main.googleMaps.learnings.4')
       ]
     }
   ],
 
   metrics: {
     performance: {
-      responseTime: '< 500ms para CRUD básico',
-      throughput: 'Desarrollo local - no medido en producción',
-      uptime: 'Docker compose stack estable'
+      responseTime: t('projects.shopup.metrics.performance.responseTime'),
+      throughput: t('projects.shopup.metrics.performance.throughput'),
+      uptime: t('projects.shopup.metrics.performance.uptime')
     },
     business: {
-      usersImpacted: 'Proyecto académico - demo con datos simulados',
-      conversionImprovement: 'N/A - enfoque en cumplimiento de user stories',
-      costReduction: 'Arquitectura preparada para escalabilidad'
+      usersImpacted: t('projects.shopup.metrics.business.usersImpacted'),
+      conversionImprovement: t('projects.shopup.metrics.business.conversionImprovement'),
+      costReduction: t('projects.shopup.metrics.business.costReduction')
     }
   },
 
+  sprintTimeline: {
+    description: t('projects.shopup.sprints.description'),
+    sprints: [
+      {
+        number: 1,
+        title: t('projects.shopup.sprints.1.title'),
+        status: 'completed' as const,
+        duration: t('projects.shopup.sprints.1.duration'),
+        description: t('projects.shopup.sprints.1.description'),
+        achievements: [
+          t('projects.shopup.sprints.1.achievements.1'),
+          t('projects.shopup.sprints.1.achievements.2'),
+          t('projects.shopup.sprints.1.achievements.3'),
+          t('projects.shopup.sprints.1.achievements.4')
+        ],
+        userStories: [
+          t('projects.shopup.sprints.1.userStories.1'),
+          t('projects.shopup.sprints.1.userStories.2'),
+          t('projects.shopup.sprints.1.userStories.3'),
+          t('projects.shopup.sprints.1.userStories.4')
+        ]
+      },
+      {
+        number: 2,
+        title: t('projects.shopup.sprints.2.title'),
+        status: 'completed' as const,
+        duration: t('projects.shopup.sprints.2.duration'),
+        description: t('projects.shopup.sprints.2.description'),
+        achievements: [
+          t('projects.shopup.sprints.2.achievements.1'),
+          t('projects.shopup.sprints.2.achievements.2'),
+          t('projects.shopup.sprints.2.achievements.3'),
+          t('projects.shopup.sprints.2.achievements.4')
+        ],
+        userStories: [
+          t('projects.shopup.sprints.2.userStories.1'),
+          t('projects.shopup.sprints.2.userStories.2'),
+          t('projects.shopup.sprints.2.userStories.3'),
+          t('projects.shopup.sprints.2.userStories.4')
+        ]
+      },
+      {
+        number: 3,
+        title: t('projects.shopup.sprints.3.title'),
+        status: 'completed' as const,
+        duration: t('projects.shopup.sprints.3.duration'),
+        description: t('projects.shopup.sprints.3.description'),
+        achievements: [
+          t('projects.shopup.sprints.3.achievements.1'),
+          t('projects.shopup.sprints.3.achievements.2'),
+          t('projects.shopup.sprints.3.achievements.3'),
+          t('projects.shopup.sprints.3.achievements.4')
+        ],
+        userStories: [
+          t('projects.shopup.sprints.3.userStories.1'),
+          t('projects.shopup.sprints.3.userStories.2'),
+          t('projects.shopup.sprints.3.userStories.3'),
+          t('projects.shopup.sprints.3.userStories.4')
+        ]
+      },
+      {
+        number: 4,
+        title: t('projects.shopup.sprints.4.title'),
+        status: 'completed' as const,
+        duration: t('projects.shopup.sprints.4.duration'),
+        description: t('projects.shopup.sprints.4.description'),
+        achievements: [
+          t('projects.shopup.sprints.4.achievements.1'),
+          t('projects.shopup.sprints.4.achievements.2'),
+          t('projects.shopup.sprints.4.achievements.3'),
+          t('projects.shopup.sprints.4.achievements.4')
+        ],
+        userStories: [
+          t('projects.shopup.sprints.4.userStories.1'),
+          t('projects.shopup.sprints.4.userStories.2'),
+          t('projects.shopup.sprints.4.userStories.3'),
+          t('projects.shopup.sprints.4.userStories.4')
+        ]
+      },
+      {
+        number: 5,
+        title: t('projects.shopup.sprints.5.title'),
+        status: 'completed' as const,
+        duration: t('projects.shopup.sprints.5.duration'),
+        description: t('projects.shopup.sprints.5.description'),
+        achievements: [
+          t('projects.shopup.sprints.5.achievements.1'),
+          t('projects.shopup.sprints.5.achievements.2'),
+          t('projects.shopup.sprints.5.achievements.3'),
+          t('projects.shopup.sprints.5.achievements.4')
+        ],
+        userStories: [
+          t('projects.shopup.sprints.5.userStories.1'),
+          t('projects.shopup.sprints.5.userStories.2'),
+          t('projects.shopup.sprints.5.userStories.3'),
+          t('projects.shopup.sprints.5.userStories.4')
+        ]
+      },
+      {
+        number: 6,
+        title: t('projects.shopup.sprints.6.title'),
+        status: 'completed' as const,
+        duration: t('projects.shopup.sprints.6.duration'),
+        description: t('projects.shopup.sprints.6.description'),
+        achievements: [
+          t('projects.shopup.sprints.6.achievements.1'),
+          t('projects.shopup.sprints.6.achievements.2'),
+          t('projects.shopup.sprints.6.achievements.3'),
+          t('projects.shopup.sprints.6.achievements.4')
+        ],
+        userStories: [
+          t('projects.shopup.sprints.6.userStories.1'),
+          t('projects.shopup.sprints.6.userStories.2'),
+          t('projects.shopup.sprints.6.userStories.3'),
+          t('projects.shopup.sprints.6.userStories.4'),
+          t('projects.shopup.sprints.6.userStories.5')
+        ]
+      },
+      {
+        number: 7,
+        title: t('projects.shopup.sprints.7.title'),
+        status: 'completed' as const,
+        duration: t('projects.shopup.sprints.7.duration'),
+        description: t('projects.shopup.sprints.7.description'),
+        achievements: [
+          t('projects.shopup.sprints.7.achievements.1'),
+          t('projects.shopup.sprints.7.achievements.2'),
+          t('projects.shopup.sprints.7.achievements.3'),
+          t('projects.shopup.sprints.7.achievements.4')
+        ],
+        userStories: [
+          t('projects.shopup.sprints.7.userStories.1'),
+          t('projects.shopup.sprints.7.userStories.2'),
+          t('projects.shopup.sprints.7.userStories.3'),
+          t('projects.shopup.sprints.7.userStories.4')
+        ]
+      },
+      {
+        number: 8,
+        title: t('projects.shopup.sprints.8.title'),
+        status: 'in_progress' as const,
+        duration: t('projects.shopup.sprints.8.duration'),
+        description: t('projects.shopup.sprints.8.description'),
+        achievements: [
+          t('projects.shopup.sprints.8.achievements.1'),
+          t('projects.shopup.sprints.8.achievements.2'),
+          t('projects.shopup.sprints.8.achievements.3'),
+          t('projects.shopup.sprints.8.achievements.4')
+        ],
+        userStories: [
+          t('projects.shopup.sprints.8.userStories.1'),
+          t('projects.shopup.sprints.8.userStories.2'),
+          t('projects.shopup.sprints.8.userStories.3'),
+          t('projects.shopup.sprints.8.userStories.4'),
+          t('projects.shopup.sprints.8.userStories.5'),
+          t('projects.shopup.sprints.8.userStories.6')
+        ],
+        currentFocus: [
+          t('projects.shopup.sprints.8.currentFocus.1'),
+          t('projects.shopup.sprints.8.currentFocus.2'),
+          t('projects.shopup.sprints.8.currentFocus.3'),
+          t('projects.shopup.sprints.8.currentFocus.4')
+        ]
+      }
+    ]
+  },
+
   lessonsLearned: [
-    'La arquitectura hexagonal facilita enormemente el testing y mantenimiento del código',
-    'Spring Cloud Gateway es poderoso pero requiere configuración cuidadosa de filtros',
-    'Los triggers de base de datos son útiles para sincronización pero complejizan debugging',
-    'Keycloak tiene curva de aprendizaje alta pero vale la pena para autenticación enterprise',
-    'Docker compose simplifica desarrollo local con múltiples servicios',
-    'FastAPI con Python es excelente para servicios de IA especializados',
-    'La validación Bean Validation debe complementarse con validaciones de negocio en services',
-    'OpenAPI/Swagger es esencial para documentar APIs en equipos'
+    t('projects.shopup.lessonsLearned.1'),
+    t('projects.shopup.lessonsLearned.2'),
+    t('projects.shopup.lessonsLearned.3'),
+    t('projects.shopup.lessonsLearned.4'),
+    t('projects.shopup.lessonsLearned.5'),
+    t('projects.shopup.lessonsLearned.6'),
+    t('projects.shopup.lessonsLearned.7'),
+    t('projects.shopup.lessonsLearned.8'),
+    t('projects.shopup.lessonsLearned.9'),
+    t('projects.shopup.lessonsLearned.10')
   ],
 
   nextSteps: [
-    'Sprint 5: Implementar gestión de órdenes y carrito de compras',
-    'Sprint 6: Sistema de notificaciones y emails',
-    'Sprint 7: Dashboard de analytics para emprendedores',
-    'Optimización: Implementar cache Redis para consultas frecuentes',
-    'Testing: Aumentar cobertura de tests de integración',
-    'Deploy: Configurar CI/CD pipeline con GitHub Actions'
+    t('projects.shopup.nextSteps.1'),
+    t('projects.shopup.nextSteps.2'),
+    t('projects.shopup.nextSteps.3'),
+    t('projects.shopup.nextSteps.4'),
+    t('projects.shopup.nextSteps.5'),
+    t('projects.shopup.nextSteps.6'),
+    t('projects.shopup.nextSteps.7'),
+    t('projects.shopup.nextSteps.8'),
+    t('projects.shopup.nextSteps.9'),
+    t('projects.shopup.nextSteps.10')
   ]
+  }
 }

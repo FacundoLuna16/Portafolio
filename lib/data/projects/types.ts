@@ -61,6 +61,36 @@ export interface ProjectImage {
   title: string
 }
 
+export interface Sprint {
+  number: number
+  title: string
+  status: 'completed' | 'in_progress' | 'planned'
+  duration: string
+  description: string
+  achievements: string[]
+  userStories: string[]
+  currentFocus?: string[]
+}
+
+export interface SprintTimeline {
+  description: string
+  sprints: Sprint[]
+}
+
+export interface UserFlowStep {
+  title: string
+  description: string
+  image: string
+  features: string[]
+}
+
+export interface AdminFeature {
+  title: string
+  description: string
+  image: string
+  capabilities: string[]
+}
+
 export interface DetailedProject extends ProjectOverview {
   overview: {
     problemStatement: string
@@ -75,7 +105,16 @@ export interface DetailedProject extends ProjectOverview {
     components?: Microservice[]
     integrations: string[]
   }
+  userFlow?: {
+    description: string
+    steps: UserFlowStep[]
+  }
+  adminPanel?: {
+    description: string
+    features: AdminFeature[]
+  }
   challenges: Challenge[]
+  sprintTimeline?: SprintTimeline
   metrics?: ProjectMetrics
   lessonsLearned: string[]
   nextSteps?: string[]

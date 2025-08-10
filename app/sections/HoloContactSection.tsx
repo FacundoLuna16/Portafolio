@@ -85,7 +85,7 @@ export function HoloContactSection() {
 
     const timeoutId = setTimeout(loadInitialMessages, 500)
     return () => clearTimeout(timeoutId)
-  }, [mounted]) // Solo depende de mounted, no de t
+  }, [mounted, initialMessagesLoaded, t])
 
   // Auto-scroll cuando se agregan nuevos mensajes
   useEffect(() => {
@@ -376,7 +376,7 @@ export function HoloContactSection() {
 
         {/* Terminal Signature */}
         <div className="mt-8 text-center font-mono text-terminal-green/60">
-          <span className="text-terminal-cyan">$</span> echo "{t('contact.thanks')}" 
+          <span className="text-terminal-cyan">$</span> echo &quot;{t('contact.thanks')}&quot; 
           <span className="animate-pulse text-terminal-green">█</span>
         </div>
 
