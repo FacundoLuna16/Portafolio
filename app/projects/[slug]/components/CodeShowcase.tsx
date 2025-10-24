@@ -13,6 +13,11 @@ interface CodeShowcaseProps {
 }
 
 export function CodeShowcase({ microservices, projectSlug }: CodeShowcaseProps) {
+  // No mostrar esta sección para el proyecto ShopUp - ANTES de todos los hooks
+  if (projectSlug === 'shopup') {
+    return null
+  }
+
   const [copiedCode, setCopiedCode] = useState<string | null>(null)
 
   const copyToClipboard = async (code: string, title: string) => {
@@ -38,11 +43,6 @@ export function CodeShowcase({ microservices, projectSlug }: CodeShowcaseProps) 
       case 'properties': return 'text-purple-400 border-purple-400/30'
       default: return 'text-terminal-green border-terminal-green/30'
     }
-  }
-
-  // No mostrar esta sección para el proyecto ShopUp
-  if (projectSlug === 'shopup') {
-    return null
   }
 
   // Filtrar microservicios que tienen code snippets

@@ -13,13 +13,13 @@ interface MicroserviceDetailsProps {
 }
 
 export function MicroserviceDetails({ microservices, projectSlug }: MicroserviceDetailsProps) {
-  const [expandedService, setExpandedService] = useState<string | null>(null)
-  const [isClient, setIsClient] = useState(false)
-
-  // No mostrar esta sección para el proyecto ShopUp
+  // No mostrar esta sección para el proyecto ShopUp - ANTES de todos los hooks
   if (projectSlug === 'shopup') {
     return null
   }
+
+  const [expandedService, setExpandedService] = useState<string | null>(null)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
