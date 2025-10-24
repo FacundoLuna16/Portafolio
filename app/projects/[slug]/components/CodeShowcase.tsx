@@ -40,11 +40,16 @@ export function CodeShowcase({ microservices, projectSlug }: CodeShowcaseProps) 
     }
   }
 
+  // No mostrar esta sección para el proyecto ShopUp
+  if (projectSlug === 'shopup') {
+    return null
+  }
+
   // Filtrar microservicios que tienen code snippets
   const servicesWithCode = microservices.filter(service => service.codeSnippet)
 
   // Detectar si es un proyecto de seguridad
-  const isSecurityProject = microservices.some(service => 
+  const isSecurityProject = microservices.some(service =>
     service.tech.some(tech => ['Burp Suite Professional', 'Metasploit', 'Kali Linux', 'Nmap'].includes(tech))
   )
 

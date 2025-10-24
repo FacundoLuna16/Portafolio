@@ -21,7 +21,7 @@ const inter = Inter({
 const criticalStyles = `
   /* Critical CSS inline para hero section */
   .hero-critical {
-    font-family: ${inter.style.fontFamily};
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
     background: #0d0d0d;
     color: #39ff14;
     min-height: 100vh;
@@ -29,16 +29,16 @@ const criticalStyles = `
     align-items: center;
     justify-content: center;
   }
-  
+
   .terminal-text {
     font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
     text-shadow: 0 0 5px #39ff14;
   }
-  
+
   .terminal-glow {
     text-shadow: 0 0 5px #39ff14;
   }
-  
+
   /* Optimización inicial del navbar */
   .navbar-critical {
     position: fixed;

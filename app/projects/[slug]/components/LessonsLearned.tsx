@@ -6,9 +6,15 @@ interface LessonsLearnedProps {
   lessons: string[]
   nextSteps: string[]
   projectType?: 'development' | 'security' | 'web' | 'other'
+  projectSlug?: string
 }
 
-export function LessonsLearned({ lessons, nextSteps, projectType = 'other' }: LessonsLearnedProps) {
+export function LessonsLearned({ lessons, nextSteps, projectType = 'other', projectSlug }: LessonsLearnedProps) {
+  // No mostrar esta sección para el proyecto ShopUp
+  if (projectSlug === 'shopup') {
+    return null
+  }
+
   // Determinar si mostrar la filosofía de desarrollo (solo para proyectos de desarrollo activo)
   const showPhilosophy = projectType === 'development'
   

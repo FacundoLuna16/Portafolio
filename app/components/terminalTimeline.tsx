@@ -53,12 +53,6 @@ export default function TerminalTimeline() {
 
   const timelineItems = [
     {
-      year: 'Ene 2024\nNov 2024',
-      title: t('timeline.qatitle'),
-      description: t('timeline.qadescription'),
-      summary: t('timeline.qasummary'),
-    },
-    {
       year: 'Nov 2023\nEne 2024',
       title: t('timeline.logistics.title'),
       description: t('timeline.logistics.description'),
@@ -82,9 +76,15 @@ export default function TerminalTimeline() {
       description: t('timeline.utn.description'),
       summary: t('timeline.utn.summary'),
     },
+    {
+      year: 'Ene 2024\nActualidad',
+      title: t('timeline.qatitle'),
+      description: t('timeline.qadescription'),
+      summary: t('timeline.qasummary'),
+    },
   ];
 
-  const icons = [FaLaptopCode, FaServer, FaCode, FaLaptopCode, FaShieldAlt];
+  const icons = [FaLaptopCode, FaShieldAlt, FaLaptopCode, FaServer, FaCode];
   if (!mounted) return null; // Evitar renderizado antes de que el tema esté disponible
 
   return (

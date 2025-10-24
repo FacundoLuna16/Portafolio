@@ -9,11 +9,17 @@ import { Microservice } from "@/lib/data/projects/types"
 
 interface MicroserviceDetailsProps {
   microservices: Microservice[]
+  projectSlug?: string
 }
 
-export function MicroserviceDetails({ microservices }: MicroserviceDetailsProps) {
+export function MicroserviceDetails({ microservices, projectSlug }: MicroserviceDetailsProps) {
   const [expandedService, setExpandedService] = useState<string | null>(null)
   const [isClient, setIsClient] = useState(false)
+
+  // No mostrar esta sección para el proyecto ShopUp
+  if (projectSlug === 'shopup') {
+    return null
+  }
 
   useEffect(() => {
     setIsClient(true)

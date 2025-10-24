@@ -26,7 +26,7 @@
   "timeline.utn.summary": "Prepared and delivered theoretical and lab classes, graded exams, and provided technical and conceptual support to students. Full course responsibility since 2025.",
   "timeline.qatitle": "TestingDeSoftwareArg – QA Automation",
   "timeline.qadescription": "QA Automation, TestingDeSoftwareArg (Jan 2024–Nov 2024)",
-  "timeline.qasummary": "Designed and executed automated tests using Selenium (Python/Java), Locust, TDD, and REST API validation. Integrated testing in CI pipelines.",
+  "timeline.qasummary": "Designed and executed automated tests using Selenium (Python/Java), Playwright (TypeScript), Locust, TDD, and REST API validation. Integrated testing in CI pipelines.",
   "timeline.logistics.title": "Logistics Project – Backend Developer (Freelance)",
   "timeline.logistics.description": "Backend Developer, Freelance Project (Nov 2023–Jan 2024)",
   "timeline.logistics.summary": "Developed RESTful APIs with Java/Spring Boot, implemented microservice architectures, Docker integration, API Gateway management, and security with Keycloak/Spring Security.",

@@ -143,15 +143,17 @@ export default function ProjectPage() {
 
             {/* Microservices Deep Dive - Solo para proyectos con microservicios */}
             {project.architecture.microservices && (
-              <MicroserviceDetails 
+              <MicroserviceDetails
                 microservices={project.architecture.microservices}
+                projectSlug={slug}
               />
             )}
 
             {/* Components Deep Dive - Para proyectos simples */}
             {project.architecture.components && (
-              <MicroserviceDetails 
+              <MicroserviceDetails
                 microservices={project.architecture.components}
+                projectSlug={slug}
               />
             )}
 
@@ -173,10 +175,11 @@ export default function ProjectPage() {
 
         {/* Common sections for ALL projects */}
         {/* Lessons Learned */}
-        <LessonsLearned 
+        <LessonsLearned
           lessons={project.lessonsLearned}
           nextSteps={project.nextSteps || []}
           projectType={projectType}
+          projectSlug={slug}
         />
 
       </div>
